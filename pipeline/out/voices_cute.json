@@ -1,0 +1,2788 @@
+[
+  {
+    "name": "Johnny Kid - Serious and Calm Narrator",
+    "id": "8JVbfL6oEdmuxKn5DK2C",
+    "gender": "male",
+    "age": "young",
+    "accent": "british",
+    "language": "en",
+    "desc": "calm",
+    "useCase": "narrative_story",
+    "usedBy": 225761,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/custom/voices/8JVbfL6oEdmuxKn5DK2C/9Hw1XQQvlZM44JEKddyi.mp3",
+    "free": true,
+    "description": "Young British male with a serious and calm voice. Perfect for audiobooks.",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Candy - Young and Sweet",
+    "id": "Nggzl2QAXh3OijoXD116",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 121316,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/Nggzl2QAXh3OijoXD116/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI0YjhlNjQ0NWVmMzE0OTIwOWMwZGQ1MDgwYzdkNGE1NSIsImZpbGVuYW1lIjoiQ3NEajFYZGJOMDd3R1A3RVo3REQubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Youthful, cute, sassy, energetic, bubbly, expressive, high pitched, excited, happy, sparkly, giggly, whimsical, bright, cheerful, playful, c",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Minnie - High pitch cartoon character",
+    "id": "eppqEXVumQ3CfdndcIBd",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 35141,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/ALqfGQvfmpaWu4h31YukjCGTOtE2/voices/eppqEXVumQ3CfdndcIBd/hV8J8hAjjdCfnFyoNGZd.mp3",
+    "free": true,
+    "description": "High energy comic cartoon character inspired by Minnie Mouse. Perfect for hilarious, spontaneous, silly and fun dialogues in animated conten",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Kak Ceria - Cute Kids Storyteller",
+    "id": "d15jrIAARvF899pDoC6T",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "id",
+    "desc": "cute",
+    "useCase": "narrative_story",
+    "usedBy": 32686,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/2a36dbb7e1da44858ec1853e1d6116b3/voices/d15jrIAARvF899pDoC6T/EEjcVyQ1k7336eJqqw2b.mp3",
+    "free": true,
+    "description": "The bright, adorable \"kakak\" voice every Indonesian child instantly trusts, from a real kids' TV storyteller. Perfect for dongeng, cerita an",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Chutki - Cute Young Kids Storyteller",
+    "id": "CNKl99QEbWm8RQ4D8GfC",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 31169,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/CNKl99QEbWm8RQ4D8GfC/GI7h6itewth46gFxMcxV.mp3",
+    "free": true,
+    "description": "Bubbly, sweet and impossible to tune out — Chutki brings the kind of cute, energetic storytelling that makes children lean in and listen. He",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Kano - Cute & Anime",
+    "id": "OSwaPSNdfituxkWcjlkR",
+    "gender": "female",
+    "age": "young",
+    "accent": "kanto",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 30658,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/OSwaPSNdfituxkWcjlkR/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI1ZjJiZjljYjQyZGQ0MTkyODk2NmFlN2FmODVmOGY3OSIsImZpbGVuYW1lIjoiUklQQXBydVVNMnNJdFJWVEIydVgubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Energetic, cheerful, female anime voice.",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Miffy Mouse - Squeaky, Upbeat Cartoon",
+    "id": "M5t0724ORuAGCh3p3DUR",
+    "gender": "neutral",
+    "age": "young",
+    "accent": "en-british",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 24918,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/gZiPJ4XvPyank4m6aSXGcASkXl12/voices/M5t0724ORuAGCh3p3DUR/NWZlXzhSq9vIj9cusStE.mp3",
+    "free": true,
+    "description": "Miffy Mice is an energetic and adventurous young character with a bright, playful voice. Always curious, always moving, and full of imaginat",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Bittu - Heavy Kid Cartoon Character",
+    "id": "4iqKdEXMW8NRF8USiS3Q",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "deep",
+    "useCase": "characters_animation",
+    "usedBy": 24242,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/4iqKdEXMW8NRF8USiS3Q/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoiSllUbFJsblE1eld3Tm1oaExYWGQubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Deep, gruff, irresistibly playful, Bittu is the character nobody sees coming but everyone loves instantly. His rumbling Hindi delivery paire",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "itsuki - Anime energetic voice",
+    "id": "oAlEJuW30knHWhA6cF0e",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 22296,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/oAlEJuW30knHWhA6cF0e/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ1c2VyX2lkIjoiSHpJSHZjRFdFZWQxZnJiQzlQVHV5QVdmWDFhMiIsImZpbGVuYW1lIjoiNmdkNFExQktaUFB3a0JXS0V3REkubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Dynamic tomboyish girl voice with infectious energy! Lower, confident pitch delivers spirited performances full of athletic charm and casual",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Irohauta - Bratty Anime female",
+    "id": "uYwU1hsbnP5viqq9qhob",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 22231,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/uYwU1hsbnP5viqq9qhob/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI4NGIzMWI4OTI5NGQ0MjQyOGYyYmM5OGNkODNhN2RjMiIsImZpbGVuYW1lIjoidXVqak93VXQwYWZ1blk2ZVI4STEubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "A youthful, high-pitched voice with a cute, playful, and innocent cartoon-like charm.",
+    "found": [
+      "search: cartoon",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Chutki - Cute Kids Cartoon Character",
+    "id": "Jr72SE8p9OcJmr8hyX0D",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 21643,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/Jr72SE8p9OcJmr8hyX0D/ZfVi3EErgqSNwXa2GjrF.mp3",
+    "free": true,
+    "description": "Bubbly, giggly, and endlessly energetic — Chutki sounds like she's five seconds from bursting into laughter. Her animated, joy-filled delive",
+    "found": [
+      "search: cartoon",
+      "search: cute",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Piku - Expressive Kid Character",
+    "id": "EeQEodFZVtBkjtgK3HBc",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 19800,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/EeQEodFZVtBkjtgK3HBc/hMAP6LoA4398mWo70lu0.mp3",
+    "free": true,
+    "description": "Innocent, animated, and naturally dramatic — Piku brings childlike energy to every line, reacting with genuine surprise, excitement, or worr",
+    "found": [
+      "search: cartoon",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Lumi - Funny and Playful",
+    "id": "zndmYEEoWWxRYyEL2ZZY",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 19043,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/VxdFSFnnZuYqGRy3FE7MD5gtkdN2/voices/zndmYEEoWWxRYyEL2ZZY/fGpCXnWR2zZ30cZApiAS.mp3",
+    "free": true,
+    "description": "Lumi sparkles with playful energy — bright, curious, and delightfully mischievous. Her voice has that soft, bouncy charm you expect from ani",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Suzu - Cute, Clear & Calm",
+    "id": "6awt6FKyZGV0HyQEwisX",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 18793,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f1e31ae8193a40b38228a116f8c35c75/voices/6awt6FKyZGV0HyQEwisX/8A2f2WFiE62VSLCpwOJ8.mp3",
+    "free": true,
+    "description": "A cute, clear anime-style voice with a youthful teenage tone. Calm and composed in delivery, with crisp articulation that stays comfortable ",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Paula Paw - Energetic and Adventurous ",
+    "id": "iukn3a1vSSNFmdi5NZS4",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 18035,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/6PepXtO6L5eOWtYyGObg2TDYJex2/voices/iukn3a1vSSNFmdi5NZS4/04FdSbSiHb7ph0AHKgYs.mp3",
+    "free": true,
+    "description": "A bright, energetic cartoon animal voice full of excitement and heart. Sounds like a loyal companion and best friend, always ready for adven",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Kavya - Expressive Kid Narrator",
+    "id": "uyv82ARGSiPieXDxTMOc",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 17252,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/uyv82ARGSiPieXDxTMOc/NjKuGiXix5B4d2Hdb374.mp3",
+    "free": true,
+    "description": "Innocent, bubbly, and full of wonder — Kavya narrates stories the way a genuinely curious storyteller would, never performed or grown-up in ",
+    "found": [
+      "search: cartoon",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Gungun - Kids Show Character",
+    "id": "nfMYisZqs1GOjTFllho3",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 15132,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/nfMYisZqs1GOjTFllho3/agA9zzdVzSd9zt85yIFv.mp3",
+    "free": true,
+    "description": "Expressive, playful, and built for the kind of storytelling that pulls children completely into the scene. Gungun brings multiple characters",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Vivien - Mysterious Witch",
+    "id": "sssn4wp3AspuK2kvy3Ym",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "intense",
+    "useCase": "characters_animation",
+    "usedBy": 14086,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/QGxwtfx4WtZs6nzSVZ2IGfhnUDy2/voices/sssn4wp3AspuK2kvy3Ym/r5ajru2yhSI4HjKXeEYm.mp3",
+    "free": true,
+    "description": "This voice carries a mysterious witchy, elegant, dark-fantasy aesthetic, suited for sorceresses, goddesses, evil queens, narrators, and powe",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Leo - Cute Energetic Young Kid",
+    "id": "1tDEBGOo8EqEPApM49eJ",
+    "gender": "neutral",
+    "age": "young",
+    "accent": "peninsular",
+    "language": "es",
+    "desc": "childish",
+    "useCase": "characters_animation",
+    "usedBy": 13562,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/09e71d7d3a9b4b12a719c34169fcf3f1/voices/1tDEBGOo8EqEPApM49eJ/dlrm8VGYPO2iTEQ2KXxY.mp3",
+    "free": false,
+    "description": "A kid´s voice in Spanish that can be used for Animations, character narrations, audio books, social media and entertainment projects . Very ",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Doreymonster - Robotic Child Character",
+    "id": "4Bk8kSmfWn7kN1am2GME",
+    "gender": "neutral",
+    "age": "young",
+    "accent": "standard",
+    "language": "fil",
+    "desc": "hyped",
+    "useCase": "characters_animation",
+    "usedBy": 11933,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/00d3e426a4ec48cda2413d7038347603/voices/4Bk8kSmfWn7kN1am2GME/uh2RHsur7mFmlgPfG0vM.mp3",
+    "free": false,
+    "description": "A warm, nostalgic, and slightly magical voice that brings the spirit of classic anime to life. It captures the innocence of childhood and th",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Emma - Wry, Gritty Hero",
+    "id": "dmWfLQZJq7wNPv9WmtiM",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "confident",
+    "useCase": "characters_animation",
+    "usedBy": 11790,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f97cd766753c4b298a5d1e90b97f31ce/voices/dmWfLQZJq7wNPv9WmtiM/P7mHhOpkUDHNgzd8RgzE.mp3",
+    "free": false,
+    "description": "A wry, gritty American female character voice with dry humor, understated sarcasm, and grounded confidence. Tough and capable without losing",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Mimmi - Playful and Cartoonish Italian Female Voice ",
+    "id": "ZRKmc75tGxpIMNTEiwe0",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "it",
+    "desc": "upbeat",
+    "useCase": "entertainment_tv",
+    "usedBy": 11523,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/4647908adad14351ae1ae262df798ad2/voices/ZRKmc75tGxpIMNTEiwe0/u02gXDDmUza3SGEVcbtb.mp3",
+    "free": true,
+    "description": "High-energy, cartoonish and playfully childish. From snarky, exaggerated tones to cute, quirky whispers. Ideal for animated characters, masc",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Indrani K - Energetic & Animated",
+    "id": "N6PAsaEqAXM8EIxJn9g3",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "bn",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 10893,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/N6PAsaEqAXM8EIxJn9g3/MgSt5WKSLj71IC5g6Rky.mp3",
+    "free": true,
+    "description": "Dramatic, over-the-top, and genuinely expressive, Indrani K performs rather than narrates — big reactions, sudden intensity, larger-than-lif",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Mithi - Moral Kids Stories Character",
+    "id": "MIl0Flub6Sc9KSkX2A42",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 10289,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/MIl0Flub6Sc9KSkX2A42/lVgyczia8hhSTuOf4Gh6.mp3",
+    "free": true,
+    "description": "Bright, sincere, and unmistakably childlike — Mithi sounds like an actual young girl figuring things out, not an adult performing innocence.",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Granny - Cartoonish Old Lady",
+    "id": "M9RTtrzRACmbUzsEMq8p",
+    "gender": "female",
+    "age": "old",
+    "accent": "peninsular",
+    "language": "es",
+    "desc": "wise",
+    "useCase": "characters_animation",
+    "usedBy": 9952,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/M9RTtrzRACmbUzsEMq8p/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIwOWU3MWQ3ZDNhOWI0YjEyYTcxOWMzNDE2OWZjZjNmMSIsImZpbGVuYW1lIjoiUThhR1ZxR2xKR3NQczRBNGVlMFAubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": false,
+    "description": "Granny La Witch is an old hispanic lady who is perfect for language courses,  audiobooks, conversations and character creation for animation",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Nelson - High-Pitched, Anxious Nerd",
+    "id": "EaX6rnyDKjJx35tchi80",
+    "gender": "male",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "anxious",
+    "useCase": "characters_animation",
+    "usedBy": 9862,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/EaX6rnyDKjJx35tchi80/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ1c2VyX2lkIjoiR05BMUtnMGpFc1czN2lXNHBpbTYyNlNRWUdKMyIsImZpbGVuYW1lIjoiWHh5WTdNNHp6ZzlMUHpLeVl6MHkubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Socially anxious nerd with expressive, slightly squeaky delivery. Great for POV skits, social media comedy, school or exam scenes, tech expl",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Vardan - Fun Kids Show Character",
+    "id": "bBG9wwa23659EgIkMbc1",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 9821,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/bBG9wwa23659EgIkMbc1/A5YVfFdOTueA7OzIa14U.mp3",
+    "free": true,
+    "description": "Quirky, energetic, playful, Vardan brings cheerful mischief to every line, sounding like a genuine cartoon hero kids actually root for. Buil",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Keshavi – Over The Top Character Voice",
+    "id": "6v2RZdJ2lFrnhKGGffBi",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 9247,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/6v2RZdJ2lFrnhKGGffBi/XzHTiXNrctJvhWUaKc87.mp3",
+    "free": true,
+    "description": "Keshavi is loud, funny, and completely over the top — & that's exactly the point. Her dramatic, expressive delivery brings comedic character",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Nathaniel C – Kid's Bedtime Storyteller",
+    "id": "h9CKu0pq1LSjIPhJEGCv",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "british",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 9189,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/h9CKu0pq1LSjIPhJEGCv/1LrMr1Rh6PBFgHanK9jg.mp3",
+    "free": true,
+    "description": "Nathaneil C delivers a gentle, expressive British storytelling style designed for children’s content. His warm, playful delivery brings char",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Torri Miles - Bright, Perky and Feminine",
+    "id": "a30ekmfK56EKHR341YaO",
+    "gender": "female",
+    "age": "young",
+    "accent": "kiev",
+    "language": "uk",
+    "desc": "",
+    "useCase": "",
+    "usedBy": 9114,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/a30ekmfK56EKHR341YaO/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ1c2VyX2lkIjoiVXlTMUxoZ3BaTFJXSm9HMzUxQTc2TW8zTWVaMiIsImZpbGVuYW1lIjoiZmQyNDg4ZDItMzVhYS00YTNkLWJjYzAtYjM5MTQxYjNjZTM3Lm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": true,
+    "description": "My voice is high and sonorous, with childish intonations and a squeaky tinge. It sounds energetic, cheerful and quite fast, conveying ease a",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Seyana Seya - Social Meida & Voice Actor",
+    "id": "ugYcuAusTuWCSOpJD0Xd",
+    "gender": "female",
+    "age": "young",
+    "accent": "kansai",
+    "language": "ja",
+    "desc": "casual",
+    "useCase": "characters_animation",
+    "usedBy": 8412,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/260baab57d8f4174a5784b311deb1626/voices/ugYcuAusTuWCSOpJD0Xd/yFL6kxRP1RkaJ7z6gZKz.mp3",
+    "free": true,
+    "description": "A versatile professional voice actor, capable of a wide range of expressions, from bright and energetic anime-style vocals to calm, professi",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Sean - Squeaky voice",
+    "id": "4NJLA7OQNVkeKe4jVdHw",
+    "gender": "male",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 8089,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/ITWRWd4dBvPPWe02UcHPXMhozfC2/voices/4NJLA7OQNVkeKe4jVdHw/PMtRqmsghTbJdqiwkP0F.mp3",
+    "free": true,
+    "description": "High-pitched, energetic, squeaky cartoon-style male voice.",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Caglayan- Cartoonish, Young and Cheerful",
+    "id": "sJ0xHHPzz1LOio4QNlB0",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "tr",
+    "desc": "upbeat",
+    "useCase": "characters_animation",
+    "usedBy": 8013,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/rIw8csAR2EVVlNorLZzriF3FWZF3/voices/sJ0xHHPzz1LOio4QNlB0/n0F91bSnZGU7Dapo3nyB.mp3",
+    "free": true,
+    "description": "\nHow about animating your characters with a cheerful, lively and female voice, adding a magic touch to your stories?",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Munni - Animated Kid Character",
+    "id": "VOGEEZj2Kly5dP9LrQy8",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 7971,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/VOGEEZj2Kly5dP9LrQy8/ZpEWx63YWxhcmNpYOe4t.mp3",
+    "free": true,
+    "description": "Bright, lively, and childlike, capturing the real stumbles and run-on excitement of an actual kid talking, not a polished adult impression. ",
+    "found": [
+      "search: cartoon",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Daisy Sweetwood - Charming little kind ",
+    "id": "DVP0tUPMxAGcT3nZxz0b",
+    "gender": "female",
+    "age": "",
+    "accent": "german",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 7574,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3beac6f4a99246c7ba23fac207753b92/voices/DVP0tUPMxAGcT3nZxz0b/tS0t2PtXQ0WQeuqS9Imf.mp3",
+    "free": true,
+    "description": "A lively, high-pitched character voice that sounds cheerful, mischievous, and full of personality. It has a cartoon-like quality, with exagg",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Siti - Clean, Chill, Expresive, Casual",
+    "id": "WAotVoK2Yv2ufjocfYYs",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "id",
+    "desc": "chill",
+    "useCase": "narrative_story",
+    "usedBy": 7460,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/WAotVoK2Yv2ufjocfYYs/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI3OTZiZTU4ZDdjN2U0MWRlOThjMjUxNmIzZjIwNjc1YSIsImZpbGVuYW1lIjoiempobk9RVmoyaWFWVFVSRXBLaU4ubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "A young Indonesian female voice with a chill, laid-back tone and a subtle Javanese accent. Warm, natural, and easygoing, as if she’s chattin",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Elmoe - Silly & Energetic",
+    "id": "1kvnzrSTos1KbmLKMLCC",
+    "gender": "male",
+    "age": "young",
+    "accent": "german",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 7303,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b28cc4a9d0384cf9857840644b429281/voices/1kvnzrSTos1KbmLKMLCC/dhsfAYTaCFtlaLKB0kqu.mp3",
+    "free": true,
+    "description": "A sweet, cute, and wildly funny cartoon voice heavily inspired by over-the-top Sesame Street and Muppet-style characters. Throaty, squeaky, ",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Tilly - Bright, Spirited, Naive, Scrappy",
+    "id": "MkTSSXNgnBULS6ek4pon",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 7044,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/MkTSSXNgnBULS6ek4pon/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI2YjY3N2QzYWQyYjM0MjAwOWEzYmMzZDQyOGNlYmZjMyIsImZpbGVuYW1lIjoiMEVKVWhvNEJieTN0dW82b0JmN2IubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": false,
+    "description": "Young, high-pitched voice with sweet, naive charm and an underdog spirit. Perfect for video games, animated series, anime dubbing, children'",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Gudiya - Innocent Kid Narrator",
+    "id": "e3FEEanj39p8QCSMe8iV",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 6980,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/e3FEEanj39p8QCSMe8iV/va8c2AlxrEdmpXVs0gq0.mp3",
+    "free": true,
+    "description": "Cute, bubbly, and full of wonder — Gudiya narrates a story the way a genuinely curious child would, discovering it rather than performing it",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Pipi - Cute & Anime",
+    "id": "n7534fCgBXcPEM82JQYu",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 6772,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6c80ad99e38b417cb9eef5f5bf3936bc/voices/n7534fCgBXcPEM82JQYu/IFjxgBx6DyHr479PSGew.mp3",
+    "free": true,
+    "description": "This is a cute Japanese female character voice that is easy to use for any purpose.",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Emma - Bright Kids Educator",
+    "id": "oClOrzqamOXmtcB8iqTj",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "pleasant",
+    "useCase": "informative_educational",
+    "usedBy": 5672,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f97cd766753c4b298a5d1e90b97f31ce/voices/oClOrzqamOXmtcB8iqTj/GXxlP39HNay3sqJG8pZj.mp3",
+    "free": false,
+    "description": "A warm, bright American female voice for children’s educational content and narration. Clear, encouraging, and expressive without sounding o",
+    "found": [
+      "search: cartoon",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Amuro -  Cute & Mature",
+    "id": "9wuWjGIR6FYAWDzxx9um",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 5283,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/7942b63d6e474cdaaa3b4cc428f64978/voices/9wuWjGIR6FYAWDzxx9um/gelKi6rU6lqGCyIvNlTB.mp3",
+    "free": true,
+    "description": "A versatile and expressive Japanese female voice actress with a wide vocal range, from sweet, cute, and youthful tones to elegant, mature, a",
+    "found": [
+      "characters_animation + female young",
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Guddu - Animated Kids Storyteller",
+    "id": "dcHcQLErgj7UUNkgJYgs",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 5199,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/dcHcQLErgj7UUNkgJYgs/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoiZUszcEEwZUtZS2V1WVNGOHRDZ0wubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Expressive, immersive, and completely captivating for young listeners. Guddu brings every character to life with a warm energy that pulls ch",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Niharika - Visual Kids Storyteller",
+    "id": "zJrRUu1KEcKH8qdpNaPJ",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "narrative_story",
+    "usedBy": 5147,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/zJrRUu1KEcKH8qdpNaPJ/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoibEU5RndBT2Z6UFhZdXdIN1NGcDcubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Clear, warm, and built to hold a child's attention through every scene. Niharika brings each character to life with consistent delivery and ",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Veda Sky - Animated Narrator for Kids",
+    "id": "IR4Yywb88oVWHqzWLjAs",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 5135,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/IR4Yywb88oVWHqzWLjAs/wdCJJ6ejCNbR2wqLQb4M.mp3",
+    "free": true,
+    "description": "Whimsical Storyteller & Animated Narrator for Kids. Perfect for children, cartoons, & bedtime. Built for fairy tales, folk tales, fables, nu",
+    "found": [
+      "search: cartoon",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Mahira J - Expressive kids Narrator",
+    "id": "subIZc6skATBQ1Rbqpi7",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "narrative_story",
+    "usedBy": 4946,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/subIZc6skATBQ1Rbqpi7/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoiTVNxelNLYnF5cTgwVFVtQ3k2SjUubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Warm and wonderfully dramatic, Mahira brings stories to life with the kind of expressive, larger-than-life delivery that keeps children genu",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Deniz - Warm Turkish Storyteller",
+    "id": "2w5twzryiFg9VNnXphRP",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "istanbul",
+    "language": "tr",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 4790,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/96a69b4ec24e4dc9a11dbe9efc16e750/voices/2w5twzryiFg9VNnXphRP/THrhVciyc3U0WvCEzdPi.mp3",
+    "free": true,
+    "description": "Warm and expressive native Turkish voice, ideal for cartoons, animation, fairy tales and children’s stories. Shifts easily from soft, cozy s",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Mishi - Children Animation videos",
+    "id": "Pbk8E6dlpCANrnpOLIns",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 4206,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/a7a11cf7c4534d69a61535cc1590aa57/voices/Pbk8E6dlpCANrnpOLIns/DhEQoDU0TAkJe61QLLfc.mp3",
+    "free": true,
+    "description": "Perfect for Animation, storytelling, Cartoon videos for kids, heartwarming narration, and playful conversations. A beautifully natural, gend",
+    "found": [
+      "characters_animation + female young",
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Scruffy Duck - Energetic & Raspy",
+    "id": "8VJBrRk4O7tFoB5kqxa6",
+    "gender": "neutral",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 3723,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b28cc4a9d0384cf9857840644b429281/voices/8VJBrRk4O7tFoB5kqxa6/kmOfIgUQcbqetPnXWmnQ.mp3",
+    "free": true,
+    "description": "Probably the world's first AI powered waterfowl with a jittery, excitable tone and frantic humor! Perfect for catoons. Fast, raspy and hyper",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Kaori - Cute & Calm Japanese Actor",
+    "id": "30Bl9aRayVzd7rYeBNHc",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 3721,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/7942b63d6e474cdaaa3b4cc428f64978/voices/30Bl9aRayVzd7rYeBNHc/61LUx3v6WZWnFrSjS5PR.mp3",
+    "free": true,
+    "description": "Warm, bright and friendly Japanese female voice with a cheerful radio-style delivery. Perfect for narration, announcements, e-learning, and ",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Betty - Quirky, Cartoonish & Warm",
+    "id": "iV6xDQ4wcM3ZcXDx30GB",
+    "gender": "female",
+    "age": "young",
+    "accent": "latin american",
+    "language": "es",
+    "desc": "upbeat",
+    "useCase": "characters_animation",
+    "usedBy": 3635,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/iV6xDQ4wcM3ZcXDx30GB/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI5OGMxMTk5MTM4YmE0YjcxOGQyNjIxYTM3ZmNkMDcyYSIsImZpbGVuYW1lIjoicGs2NzI0d2N5TUhlZ1A5YWVwZnIubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "A Latin American female voice with a charmingly cartoonish character. Expressive, playful, quirky, and very appealing, with a unique vocal p",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Yuna - Cute & fantastic",
+    "id": "GSFvrPXzdN7bQvY4mEAd",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 3624,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/GSFvrPXzdN7bQvY4mEAd/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJiNDMzZjgyOTg1NGM0MGY0ODYzYjc0YTkzOWNhMGQ1MyIsImZpbGVuYW1lIjoiS0hMVG9PaXVsSlFQVXgxbndLeVIubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "A cute, sweet, and charming Japanese anime-style female voice with a bright, youthful personality.  Perfect for anime characters, games, dub",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Kimmy: Youthful and Sweet",
+    "id": "TmK7x2BFDD7TOVlR69J2",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 3598,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/318608b1899749dc8e3393d168dd6f48/voices/TmK7x2BFDD7TOVlR69J2/WoxVeyLn8QtQteLjiIOg.mp3",
+    "free": true,
+    "description": "A lovely woman's voice with natural charm and subtle depth. Perfect for social media, conversational content, or anime dubbing. ",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Snorre - Nervous & Eccentric",
+    "id": "JSV4pJFuHRMCWZTxkpoQ",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "sassy",
+    "useCase": "characters_animation",
+    "usedBy": 3569,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/JSV4pJFuHRMCWZTxkpoQ/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI5MDY3NjljZWQ1NjA0MWQyOWNiMzAyMzhlMzZhNWRkMSIsImZpbGVuYW1lIjoiRlJQdHc0THFpZGQ2Qm1kUWlWalMubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Fast-talking cartoon voice with a jittery, excitable tone and frantic humor. Try periods … for timid stutters and nervous chuckles. Perfect ",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Mrs. Bruelli - Whimsical and Nice",
+    "id": "q6mfXZhCPNqTDA4sX437",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "de",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 3374,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/Ohb6qV808yNnmWgAlgDQsz7KxKH3/voices/q6mfXZhCPNqTDA4sX437/omLNwZDqeVIJBZsWTQwE.mp3",
+    "free": true,
+    "description": "A whimsical, high-pitched character voice with a bubbly personality and boundless energy. Ideal for animation, children's audiobooks, talkin",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Bholu - Cute, Innocent Kids Character",
+    "id": "5krdMTA5HonvWAlY2vSx",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 3186,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/5krdMTA5HonvWAlY2vSx/fOU77o1kSpwEOppMFgfj.mp3",
+    "free": false,
+    "description": "Bubbly, wide-eyed, and full of wonder — Bholu reacts to everything like it's the first time, peaking with genuine excitement at just the rig",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Auri Cute - Sweet, friendly female",
+    "id": "1jR8l3dNgd4OQs6kxgaF",
+    "gender": "female",
+    "age": "young",
+    "accent": "german",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "",
+    "usedBy": 3161,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3beac6f4a99246c7ba23fac207753b92/voices/1jR8l3dNgd4OQs6kxgaF/DV4FkWOF0hIEYQe42SJq.mp3",
+    "free": true,
+    "description": "A charming, young, and natural-sounding female voice with a soft, warm, and playful quality. She comes across as friendly, empathetic, and a",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Lulu - Cute Little Witch ",
+    "id": "BT0SH7Hb8NRPpT5xbCgg",
+    "gender": "female",
+    "age": "young",
+    "accent": "taiwan mandarin",
+    "language": "zh",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 3112,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/451fb4b0fbd844bbb0c30fe416b6498e/voices/BT0SH7Hb8NRPpT5xbCgg/JMJTJG4vYXdZKcbYxLQv.mp3",
+    "free": false,
+    "description": "A cute and playful little witch voice with a bright, energetic, anime-inspired tone. Perfect for anime, games, VTubers, visual novels, fanta",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Honoka - Clear & Composed",
+    "id": "5I5dvUIAoHkJi5p41hL1",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "calm",
+    "useCase": "characters_animation",
+    "usedBy": 3084,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3473b3123b9c4dfa9950c6caf69ea332/voices/5I5dvUIAoHkJi5p41hL1/BDDF4qohbOaHyoxEaXYd.mp3",
+    "free": true,
+    "description": "A clear and composed Japanese female voice with a cool, confident tone. Calm and steady, suited for narration, explainer videos, audiobooks,",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Aisyah - Energetic Anime Character",
+    "id": "AHZrC3koSCQHU4zbOI0Z",
+    "gender": "female",
+    "age": "young",
+    "accent": "malaysian",
+    "language": "ms",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 2995,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/AHZrC3koSCQHU4zbOI0Z/fXV2WcdFaOPUcvb5X5T6.mp3",
+    "free": true,
+    "description": "Bright, playful, and lively — Aisyah brings an instantly likeable 18-year-old energy to every line, with crisp pronunciation and punchy pitc",
+    "found": [
+      "search: cartoon",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Mahira J - Sweet Kids Storyteller",
+    "id": "k7VpLNbNlTind1DBkWwD",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 2645,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/k7VpLNbNlTind1DBkWwD/hEI7SooKFjv5uEJl41C5.mp3",
+    "free": true,
+    "description": "Warm, animated, and highly expressive — Mahira J tells a tale the way a mother would, fully invested, voices shifting for every character sh",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Tsuki - Tender, Cheerful & Friendly",
+    "id": "IbNtK9ck5SyXyxyjqHEN",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "kansai",
+    "language": "ja",
+    "desc": "classy",
+    "useCase": "characters_animation",
+    "usedBy": 2608,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e5a797d27d04482ba7e0c397a340541a/voices/IbNtK9ck5SyXyxyjqHEN/LlvZuSk5Ag3aOStYQ2Wy.mp3",
+    "free": true,
+    "description": "A cheerful and expressive Japanese female voice with a soft Osaka/Kansai accent. Friendly, sweet, cheerful, energetic, and highly natural — ",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Geet - Talkative girl next door",
+    "id": "2lLgWMtK52t50e2eLKAk",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "chill",
+    "useCase": "characters_animation",
+    "usedBy": 2554,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/9eaa320bc8d14636805ae37119db2ebb/voices/2lLgWMtK52t50e2eLKAk/MxfdHMBmEHNYPIWJqeC7.mp3",
+    "free": true,
+    "description": "A lively, bubbly, and naturally talkative young Indian female voice with a warm, friendly, girl-next-door personality. Her voice is bright, ",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Serena - Cute, Relaxed",
+    "id": "oxbYD1TO2CqZp6MJoeD0",
+    "gender": "female",
+    "age": "young",
+    "accent": "brazilian",
+    "language": "pt",
+    "desc": "cute",
+    "useCase": "entertainment_tv",
+    "usedBy": 2546,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/70e842a6ad7a4554a57c9194803d695d/voices/oxbYD1TO2CqZp6MJoeD0/d23b5479-b9ea-48eb-86f8-f29d5234f899.mp3",
+    "free": true,
+    "description": "A young Latina female voice speaking English with a warm Brazilian accent, a relaxed, unhurried pace, and a playful, humorous personality. N",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Nao - Cute, Playful & Bright",
+    "id": "iTqcz0mjbxzCZAfsqojU",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 2541,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/06fec620f0d2491880262ed9a5c6ec97/voices/iTqcz0mjbxzCZAfsqojU/qDJUHWUo7X6ORs9sxft4.mp3",
+    "free": true,
+    "description": "A sweet, cheerful, and teasing female voice with a playful charm.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Hafiz - Energetic Cartoon Character",
+    "id": "LkSPBLr5WF7APTCqF4ZJ",
+    "gender": "male",
+    "age": "young",
+    "accent": "malaysian",
+    "language": "ms",
+    "desc": "upbeat",
+    "useCase": "characters_animation",
+    "usedBy": 2527,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/LkSPBLr5WF7APTCqF4ZJ/utoS8dudTKnNnnnyXmCl.mp3",
+    "free": true,
+    "description": "Bright, cheerful, and quick to react — Hafiz brings genuine excitement to every line without ever tipping into squeaky or hard to understand",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Laila - Soft, Romantic & Enchanting",
+    "id": "IDtcuDsxYTOIGN7AjCvp",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "pleasant",
+    "useCase": "characters_animation",
+    "usedBy": 2521,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6b8bc72bbb0a4c57886bcad94cc3a6a9/voices/IDtcuDsxYTOIGN7AjCvp/nj8H3ZBeaqpLG6eaVQbo.mp3",
+    "free": true,
+    "description": "Laila is a captivating, soft, and deeply romantic young Indian female voice with a naturally sweet, silky, and intimate tone. Her voice carr",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Ayla - Bubbly, Cute & Expressive",
+    "id": "b8JMPeNuVrqqWExQc8e9",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 2426,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ad49f95305044123b94f9da51419c105/voices/b8JMPeNuVrqqWExQc8e9/uOnEwzWNn4qlS3zHYdAr.mp3",
+    "free": false,
+    "description": "Ayla is a bright, bubbly young-adult character with energetic pacing, expressive reactions and a playful anime-inspired delivery. Ideal for ",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Kashvi - Cute Caring Sweet Girlfriend",
+    "id": "t65y7fZZv3UrpG7b4PUD",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 2320,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/t65y7fZZv3UrpG7b4PUD/fJJ9XSWrFqLysd99eWUN.mp3",
+    "free": true,
+    "description": "Real, interactive, and emotionally present — Kashvi makes every exchange feel like an actual conversation, not a script read back. She picks",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Nandinha - Sweet Brazilian Youth",
+    "id": "2X9Z76WMMBAwEqPIZQjd",
+    "gender": "female",
+    "age": "young",
+    "accent": "brazilian",
+    "language": "pt",
+    "desc": "gentle",
+    "useCase": "social_media",
+    "usedBy": 2315,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b5fa93f16ce94744b07689d14065e094/voices/2X9Z76WMMBAwEqPIZQjd/756705b2-3752-414e-a831-1f609316757b.mp3",
+    "free": true,
+    "description": "Premium Brazilian Portuguese youth voice. Nandinha features a sweet, lovable, and highly versatile youthful tone (português Brasil). High-de",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Natalia - Versatile",
+    "id": "zJtOCbdQjTZt7YZtkRDP",
+    "gender": "female",
+    "age": "young",
+    "accent": "latin american",
+    "language": "es",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 2306,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/509a774f78d344dbafe11a81d09ec496/voices/zJtOCbdQjTZt7YZtkRDP/bRUYhKQidUgilkuBZlsH.mp3",
+    "free": true,
+    "description": "A youthful female voice, perfect for voice-overs, monologues, emotive narrations, etc.\n",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Lola - Sensual, Soothing, Confident",
+    "id": "QynjFzqBt96iEuetB1Tq",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "fr",
+    "desc": "soft",
+    "useCase": "characters_animation",
+    "usedBy": 2304,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/0c6162b9133e4e5399b246329d3b43c7/voices/QynjFzqBt96iEuetB1Tq/B0Q6n3XTqxE9InywxXCg.mp3",
+    "free": true,
+    "description": "A soft, delicately textured voice, positioned very close to the microphone. It creates an enveloping and reassuring atmosphere—perfect for A",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "KawaIIchan - Cute & Friendly",
+    "id": "orJJwOpc1v9dJbhXKsPq",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "entertainment_tv",
+    "usedBy": 2298,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/a45484b4345e4cfd89e8eb5b018daecb/voices/orJJwOpc1v9dJbhXKsPq/iXoGRNk2U8ecnXaFVfhW.mp3",
+    "free": true,
+    "description": "A sweet and youthful Japanese female voice with an adorable anime-idol charm. Ideal for content, videos, character narration, and Yukkuri-st",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Ayaka - Cute, Bright & Clear",
+    "id": "dp4HJlekKt0HZFHL2jQg",
+    "gender": "female",
+    "age": "young",
+    "accent": "kanto",
+    "language": "ja",
+    "desc": "professional",
+    "useCase": "narrative_story",
+    "usedBy": 2280,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/80a10100c4924c2eb0a45329cb42691b/voices/dp4HJlekKt0HZFHL2jQg/J757N21bsMnHGXYh9Wme.mp3",
+    "free": true,
+    "description": "A cute, bright, and clear voice of an adult Japanese woman. Friendly and easy to listen to, it suits both lively conversation and long reads",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Tinku - Animated Kids Storyteller",
+    "id": "HrEP6VcINSSo6BOoRlQl",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 2256,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/HrEP6VcINSSo6BOoRlQl/p5OIkgpXrKoeGEWuC3KO.mp3",
+    "free": true,
+    "description": "Warm, sweet and animated. Tinku tells every fable like a grandfather settling into his favourite chair, and changing his voice like one of t",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Unya - Sweet & Expressive Japanese",
+    "id": "OPMFuXBnkGNrWUx7xtZY",
+    "gender": "female",
+    "age": "young",
+    "accent": "kanto",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 2179,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/502a4a0b15ea4c0e8ab38acd2bd81b4a/voices/OPMFuXBnkGNrWUx7xtZY/aHiCTS5XliRZHBGFAARn.mp3",
+    "free": true,
+    "description": "A sweet, high-pitched Japanese voice with a bright, playful tone and expressive delivery. Ideal for anime-inspired characters, games, cheerf",
+    "found": [
+      "characters_animation + female young",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Niki 3 - Lively, Cartoon Character",
+    "id": "GKXCdIjjORefHK29tFTY",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "el",
+    "desc": "pleasant",
+    "useCase": "characters_animation",
+    "usedBy": 2129,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/custom/voices/GKXCdIjjORefHK29tFTY/nlVOkTb2cBm4H3PBgCho.mp3",
+    "free": false,
+    "description": "A young native Greek female voice, vibrant and expressive. Her lively tone brings characters to life, making stories engaging and captivatin",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Gamze - Cartoon Character, Animated Voice",
+    "id": "Hr3W7yWIljG9YBJn39oK",
+    "gender": "female",
+    "age": "young",
+    "accent": "istanbul",
+    "language": "tr",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 2124,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/fbf8f758fdae49ba8fd5e173dec07791/voices/Hr3W7yWIljG9YBJn39oK/d7c8c57f-3446-4503-bfff-e4cfad225728.mp3",
+    "free": false,
+    "description": "An expressive, lively, and character-driven voice perfect for cartoons, animation, games, and engaging storytelling. Bright tone, clear arti",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Miki - Bright, Natural, Expressive",
+    "id": "DpPUi15aFdxHd3pJG2EF",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "",
+    "useCase": "conversational",
+    "usedBy": 2102,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/465f294783164fa6885b4439a4470346/voices/DpPUi15aFdxHd3pJG2EF/hWAjSz1m6hudJGTety5e.mp3",
+    "free": false,
+    "description": "A bright, approachable voice belonging to a woman in her twenties—one that becomes increasingly engaging as the story unfolds. It strikes a ",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Kurumin - Cute Japanese Anime",
+    "id": "UiDW9qKjB9LaJDdoINsZ",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 2077,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/758e13740394414793ba08d8d77009bb/voices/UiDW9qKjB9LaJDdoINsZ/XMQOIw9aGQ3OVO1cpTj4.mp3",
+    "free": true,
+    "description": "A cute, youthful Japanese anime-style female voice with a sweet tone. Perfect for anime characters, video games, videos, storytelling, educa",
+    "found": [
+      "characters_animation + female young",
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Georgia K - Happy, Comforting Character",
+    "id": "h5EerLZbdVHFXe9rEGjM",
+    "gender": "female",
+    "age": "young",
+    "accent": "british",
+    "language": "en",
+    "desc": "upbeat",
+    "useCase": "characters_animation",
+    "usedBy": 2069,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/h5EerLZbdVHFXe9rEGjM/2xnGCVY3HjxHKGKKIhCN.mp3",
+    "free": true,
+    "description": "Friendly, Sweet, Joyful — Georgia K bursts into a teary laugh when a friend turns up for her birthday, tells Mum and Dad they are going to b",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Elowen - Elf",
+    "id": "3bMMFnv44fDwVPsFtKwZ",
+    "gender": "female",
+    "age": "young",
+    "accent": "british",
+    "language": "en",
+    "desc": "casual",
+    "useCase": "characters_animation",
+    "usedBy": 2053,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6b3ffc945d6944e288bd005dfea30d7a/voices/3bMMFnv44fDwVPsFtKwZ/yjb44rKNVMCILDi3oFsE.mp3",
+    "free": true,
+    "description": "Young British female character voice for a sassy, quick-witted elf. Playful, cheeky and a little sarcastic, with crisp English diction and a",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "kagura - Anime Tender Narrator",
+    "id": "JDbrk1l8iJW80Ln72Hoj",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "classy",
+    "useCase": "characters_animation",
+    "usedBy": 1945,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e51335c69e024948a4dbb446e476d308/voices/JDbrk1l8iJW80Ln72Hoj/C84vVQn7Pv09VmYCP11f.mp3",
+    "free": true,
+    "description": "A clear and tender female & fragile beautiful voice.",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Fortunate - Bright and Clear",
+    "id": "oIRJ3fSxF9tP2YIGrbsI",
+    "gender": "female",
+    "age": "young",
+    "accent": "nigerian",
+    "language": "en",
+    "desc": "formal",
+    "useCase": "informative_educational",
+    "usedBy": 1838,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/user/user_0201kfn2nxgtfn9tpsm1dn45w5bh/voices/oIRJ3fSxF9tP2YIGrbsI/0b211b62-7dcd-4a73-ab77-e5b68441392c.mp3",
+    "free": true,
+    "description": "Clear Vocals for your E-books, podcasts, voiceovers, radio presenter, Cartoon Bedtime Stories for kids, and announcements.",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Chinyaku - Cute Japanese Actor",
+    "id": "eymz1ANTJnON6eFsgi2l",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "husky",
+    "useCase": "characters_animation",
+    "usedBy": 1827,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/7942b63d6e474cdaaa3b4cc428f64978/voices/eymz1ANTJnON6eFsgi2l/hss57d1UcUsThdjoh6gN.mp3",
+    "free": true,
+    "description": "I offer a powerful yet charming Japanese female voice that is sure to energize the listener.\nBeyond just being \"cute,\" this voice can also s",
+    "found": [
+      "characters_animation + female young",
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Anie - Bright & Expressive",
+    "id": "vg8DM7RKx0OPGlUuUBPw",
+    "gender": "female",
+    "age": "young",
+    "accent": "colombian",
+    "language": "es",
+    "desc": "calm",
+    "useCase": "advertisement",
+    "usedBy": 1695,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/0079c635a2774ee8acc621c67189c7a0/voices/vg8DM7RKx0OPGlUuUBPw/tPpWwsDGwnaTnXaubwUY.mp3",
+    "free": true,
+    "description": "Female voice, natural conversational energy. Suited to social media, explainers, ads and UGC, character dialogue, podcasts and conversationa",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Rei - Japanese Young Lady",
+    "id": "LCjxmvbOHJFuUnh87ifL",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "",
+    "useCase": "",
+    "usedBy": 1653,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/497dfc0f335848c883a9ac03588db4c6/voices/LCjxmvbOHJFuUnh87ifL/GgPFEJFvXha0Tr7c4WvU.mp3",
+    "free": false,
+    "description": "A low, calm voice belonging to a woman in her twenties; she steps forward just enough to engage while maintaining a sense of personal space.",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Ayame - Anime",
+    "id": "Y1JL3teRC0POFnlfftJe",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "classy",
+    "useCase": "characters_animation",
+    "usedBy": 1602,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/Y1JL3teRC0POFnlfftJe/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlMGFmN2RmMThhMWQ0ZTA2ODg0MTQ3YjQ0ZjNiNDUxZSIsImZpbGVuYW1lIjoiUEtLSEVFSms4YUVxSFJQUHF6Y0gubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": false,
+    "description": "This voice is perfect for seductive anime characters. It's not only great for character voices, but also handles intelligent and calm narrat",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Maya J - Kids Bedtime Storyteller",
+    "id": "0m9IEyVwDrXpg93kwWrc",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "indian",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 1514,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/0m9IEyVwDrXpg93kwWrc/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoiUEFKZ1dRVTQyMUhUaW55dlllV0kubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Magical, bright, youthful female narrator who turns fairy tales and folk tales into wide-eyed adventures. Rhythmic pacing, playful character",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Álfwyn - Excitable & Squeaky",
+    "id": "o7bn7T3k6h58H9hn9j3y",
+    "gender": "male",
+    "age": "young",
+    "accent": "british",
+    "language": "en",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 1488,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/631bf5a20c2d45ffacc1311eb5dec41f/voices/o7bn7T3k6h58H9hn9j3y/chIM4vkLSJ6rIEARqJjg.mp3",
+    "free": false,
+    "description": "Álfwyn sounds small and high, sir, with a bit of a squeak in the nose and a soft British accent. Álfwyn is useful for fantasy games and NPCs",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Belle B - Engaging Kids Storyteller",
+    "id": "CqSwFbfWKBt9DQkSW9UV",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 1465,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/CqSwFbfWKBt9DQkSW9UV/ngCxXUjNpCeVkJZLrtqb.mp3",
+    "free": true,
+    "description": "Expressive, Emotive, Playful — Belle B follows a tiny dragon into the Whispering Woods, booms as a castle giant, then shrinks into a brave l",
+    "found": [
+      "characters_animation + female young",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Evan - Calm Midwestern",
+    "id": "0TTPEqCaS5DxN1MVUivW",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "us midwest",
+    "language": "en",
+    "desc": "calm",
+    "useCase": "narrative_story",
+    "usedBy": 1465,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/5e9c5e3142d244408783a4e3d17c34ae/voices/0TTPEqCaS5DxN1MVUivW/d78c7555-97f1-4ac2-b4a2-cbbbbfd289f6.mp3",
+    "free": true,
+    "description": "A middle-aged male voice from Northwest Ohio—neutral Midwest accent, mid-range pitch, no deep rumble or high squeak. Slow, deliberate cadenc",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Ezgi - Cute",
+    "id": "XjxV2uE0ZjxxzwMtx4Zx",
+    "gender": "female",
+    "age": "young",
+    "accent": "istanbul",
+    "language": "tr",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 1354,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e6c9a7cd917e4d76bb71c84f6b4687c4/voices/XjxV2uE0ZjxxzwMtx4Zx/5dbce136-89d3-42a3-82c0-983cbd81367c.mp3",
+    "free": true,
+    "description": "A young warm an natural woman voice. Best to use in daily conversations.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Kunibert Cuddle - Sweet & Puppyish",
+    "id": "eRExbYUuATnn9e2um0J1",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 1155,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b66eed95dce547ca97ffd9dcab45ffbb/voices/eRExbYUuATnn9e2um0J1/WlfVWFw5h0GpW7i4FveR.mp3",
+    "free": true,
+    "description": "A naturally high-pitched, cute and heart-melting voice for children’s content. Soft, squeaky, and irresistibly adorable, with a playful, che",
+    "found": [
+      "characters_animation + female young",
+      "search: cartoon",
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Rin - Gentle Japanese Narrator",
+    "id": "bZjtSxWhBPMzzHFovCVu",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "cute",
+    "useCase": "narrative_story",
+    "usedBy": 1021,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/444c0bcccb1f4312846f5dff00ed41d9/voices/bZjtSxWhBPMzzHFovCVu/7451c1f4-492a-4034-9dd7-727312cc3950.mp3",
+    "free": false,
+    "description": "Rin is a young adult Japanese female narrator with a soft, clear, and emotionally expressive delivery. Her natural pacing and delicate inton",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Kanya - Sad & Dramatic Character",
+    "id": "BPijbfGdXu3TnEziCDbE",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "sad",
+    "useCase": "characters_animation",
+    "usedBy": 1013,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/BPijbfGdXu3TnEziCDbE/f9joU0CmLy3ZtVIRjdMo.mp3",
+    "free": true,
+    "description": "Emotional, melancholic, reflective. Made for the moments a scene goes silent: a farewell on a railway platform, a letter that never gets sen",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Nami Kawada - Natural",
+    "id": "6ZReDmeRP9qcZuwNC3Vv",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "",
+    "useCase": "narrative_story",
+    "usedBy": 989,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3fac21cecdf34522bd1d5150dfa27998/voices/6ZReDmeRP9qcZuwNC3Vv/uL1AccDyLbHSYBfc5w07.mp3",
+    "free": false,
+    "description": "A quintessential voice for women in their 30s that elevates the overall quality of any production. It combines stable delivery with subtle, ",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Milly - Cheerful Aussie Character",
+    "id": "BB9S0ZoOunfdUYSciL2X",
+    "gender": "female",
+    "age": "young",
+    "accent": "australian",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 988,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/BB9S0ZoOunfdUYSciL2X/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIxZWE1YWFiYzQ0ODE0M2JkODQyNWZlOTNkZjIzY2M5ZiIsImZpbGVuYW1lIjoiU0k1Z2g5S1FUcVJ2VEJkRmQyYmYubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": false,
+    "description": "Playful and expressive Australian female character voice, perfect for kids animation, cartoons, storytelling, educational content and games.",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Kurea - Warm, Expressive Woman",
+    "id": "IgiTcMDSHJPIJjnlwIdM",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "pleasant",
+    "useCase": "characters_animation",
+    "usedBy": 924,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/IgiTcMDSHJPIJjnlwIdM/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJjY2QwMGE1ZGRiMDM0MGZhODFiOWYwYWRiMWM0NmUyZSIsImZpbGVuYW1lIjoiZWVlYmNiOGYtOWUwYS00NjZlLTg2MmUtZTU5OWUyOTExNzFjLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": false,
+    "description": "A warm and expressive female voice with a natural, mature tone. Soft and approachable in everyday conversation, with confident and emotional",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Mukta Parab - Cute Marathi Support Agent",
+    "id": "3IWTjbo2MgKIPd81jGhM",
+    "gender": "female",
+    "age": "young",
+    "accent": "",
+    "language": "mr",
+    "desc": "calm",
+    "useCase": "conversational",
+    "usedBy": 891,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/3IWTjbo2MgKIPd81jGhM/uYPH5BwpqOMAHVY3jhTh.mp3",
+    "free": true,
+    "description": "Sweet, warm and instantly likeable — Mukta Parab brings a naturally cute Marathi energy that makes every interaction feel friendly and genui",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Chandni - Warm, Innocent Kids Stories",
+    "id": "UjyXWA6lD39dFijK4hDa",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "characters_animation",
+    "usedBy": 845,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/UjyXWA6lD39dFijK4hDa/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJlZDliMDVlNjMyNGM0NTc2ODU0OTAzNTJlOWExZWM5MCIsImZpbGVuYW1lIjoiQjZqUExXemtUQlJlWE9CN0U5RGQubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Expressive, Animated, Sweet — Chandni sounds like the didi every child wants at bedtime: a rabbit chasing the moon, a parrot copying Dadi, a",
+    "found": [
+      "characters_animation + female young",
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Madoka - Cute female & fantastic",
+    "id": "LplhAM1KePvoc1AoDYtA",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "classy",
+    "useCase": "characters_animation",
+    "usedBy": 833,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b90f4cd6569b44389da910fe18cefc47/voices/LplhAM1KePvoc1AoDYtA/W5dCDrqTAHSIEgR4ttZu.mp3",
+    "free": true,
+    "description": "Madoka is a female voice with a calm, elegant, warm, and sophisticated tone. Her mature, gentle, and natural speaking style is perfect for n",
+    "found": [
+      "characters_animation + female young",
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Zain - Gentle Kids Story Narrator",
+    "id": "kTmRervbB02qoZhoY4dF",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "ms",
+    "desc": "upbeat",
+    "useCase": "characters_animation",
+    "usedBy": 801,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/kTmRervbB02qoZhoY4dF/0PLQhwvZr3Iv2EQNeg3F.mp3",
+    "free": true,
+    "description": "Warm, playful, and quietly reassuring — Zain brings the maturity of an experienced narrator with enough charm to genuinely entertain younger",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Belle B - Sweet & Calm Children’s Tutor",
+    "id": "Ov7OTdKIPpevrpNdUZRz",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "informative_educational",
+    "usedBy": 772,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/Ov7OTdKIPpevrpNdUZRz/CzlV5X8VDnb9VunIKQDl.mp3",
+    "free": true,
+    "description": "Gentle, Patient, Helpful — Belle B sounds out a first word letter by letter, counts apples one at a time, and cheers when a triangle turns u",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Kanya - Angry, Intense & Gritty Actress",
+    "id": "jlzuEXOOn1zdb88CFaIJ",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "intense",
+    "useCase": "characters_animation",
+    "usedBy": 676,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/jlzuEXOOn1zdb88CFaIJ/CoqhTjIpulm2R9bRo3SH.mp3",
+    "free": true,
+    "description": "Frustrated, loud, aggressive. Built for the scenes where tempers snap: a rooftop showdown, a courtroom outburst, a boardroom door slammed sh",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Motoko Yawata",
+    "id": "v7vE0TVBV2EXSDLsSfO9",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "",
+    "useCase": "narrative_story",
+    "usedBy": 666,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ddf274cde6af48f4a4e291ff6a34f176/voices/v7vE0TVBV2EXSDLsSfO9/YLl1zIizFk8KVAAlerbC.mp3",
+    "free": false,
+    "description": "A character-driven voice belonging to a Japanese woman in her 40s that exudes an overwhelming presence at pivotal moments. It blends a natur",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Ezgi - Cute",
+    "id": "BMRQG4PIovkwKTk46STk",
+    "gender": "female",
+    "age": "young",
+    "accent": "istanbul",
+    "language": "tr",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 610,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/BMRQG4PIovkwKTk46STk/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIxYzlmNzYxOTg4NmI0OTg5ODVmODg3OTc1MTZhYjIxYSIsImZpbGVuYW1lIjoiOUFIdVRReDFwVEpGSmQzeDJNNzgubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": false,
+    "description": "Young female voice for narration and energetic characters.",
+    "found": [
+      "characters_animation + female young",
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Grizzy - Expressive Dark Fantasy",
+    "id": "fhNley3gMN1oXT2fQZjN",
+    "gender": "female",
+    "age": "young",
+    "accent": "italian",
+    "language": "en",
+    "desc": "whispery",
+    "useCase": "characters_animation",
+    "usedBy": 556,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/313555e6488046d5bb52335614916a55/voices/fhNley3gMN1oXT2fQZjN/m7skKlw6o466bz4hvxR0.mp3",
+    "free": true,
+    "description": "A highly expressive, raspy, and atmospheric voice with a unique whispered edge. Crafted specifically for dark fantasy environments, RPG vide",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Kino - Cute",
+    "id": "8Mzcu97YDhDLBmmducmU",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ja",
+    "desc": "calm",
+    "useCase": "narrative_story",
+    "usedBy": 552,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/cc4ecc2357f2432eb3e9b69547172ae1/voices/8Mzcu97YDhDLBmmducmU/Whk42cNLbni6sr7NDw0C.mp3",
+    "free": true,
+    "description": "This is the voice of a Japanese woman. It is well-suited for a variety of uses, including narration, casual conversation, and anime-style di",
+    "found": [
+      "search: cute",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Lalita - Real Romantic Expressive",
+    "id": "pXEknmGYrp2EATTIOIdV",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "calm",
+    "useCase": "characters_animation",
+    "usedBy": 548,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/pXEknmGYrp2EATTIOIdV/hdTno0w8i9dO2SQse47X.mp3",
+    "free": true,
+    "description": "Lively, Expressive, Interactive — Lalita teases, cheers and pouts her way through every chat in a bright young Hindi female voice that sound",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Rika Sturm - Young, Clear, Warm, Friendly",
+    "id": "Jpm0FNvrnzdW3k4rnWVH",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "pleasant",
+    "useCase": "characters_animation",
+    "usedBy": 539,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f0fc107fa7564f339ac782916afe7d50/voices/Jpm0FNvrnzdW3k4rnWVH/NINHnanl3qrlmdnO4D8t.mp3",
+    "free": false,
+    "description": "Young, dynamic, warm, clear, versatile, friendly, and likable.\n",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Zahraa Nazar - Friendly",
+    "id": "lyCai1IuK6JS9oyYHRWs",
+    "gender": "female",
+    "age": "young",
+    "accent": "iraqi",
+    "language": "ar",
+    "desc": "confident",
+    "useCase": "characters_animation",
+    "usedBy": 536,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/a4e8fe9bd7bc4cc485f2a5719ac54a82/voices/lyCai1IuK6JS9oyYHRWs/4JIs2TKvwBQoHZS23xMf.mp3",
+    "free": false,
+    "description": "Calm, friendly and energetic Arabic Iraqi woman voice.",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Allesia K - Interactive Kids Teacher",
+    "id": "Vubu6fZDKniKINiVlQNh",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ru",
+    "desc": "calm",
+    "useCase": "informative_educational",
+    "usedBy": 521,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/Vubu6fZDKniKINiVlQNh/Ifx9LUOVQGCUy2rT1LFn.mp3",
+    "free": true,
+    "description": "Clear, Professional, Gentle — Allesia K explains why the Moon seems to change shape, turns fractions into pizza slices and quizzes children ",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Chandni - Cute & Friendly Companion",
+    "id": "KiyhWeX8ertYnl678VkL",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 468,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/KiyhWeX8ertYnl678VkL/1dwijP6HgsiltlZAAzmR.mp3",
+    "free": true,
+    "description": "Smart, clear and supportive. Chandni answers only after she’s actually heard the question, then repeats it back before walking through the n",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Idriss - Chill",
+    "id": "WFGpsFiyRV1Fv6MHC5tU",
+    "gender": "male",
+    "age": "young",
+    "accent": "african",
+    "language": "fr",
+    "desc": "confident",
+    "useCase": "",
+    "usedBy": 442,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6e35c70b1aae4ff58ef7443446841514/voices/WFGpsFiyRV1Fv6MHC5tU/d7cf2b1d-781c-42b1-8786-ba8b3b6bfe9d.mp3",
+    "free": true,
+    "description": "A soft, lyrical voice of a French-speaking African man. His tone is smooth and light, carrying a natural warmth and a melodic lilt that make",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Thiago - Chill",
+    "id": "gzQG1wjdcAjdmmsny6Y8",
+    "gender": "male",
+    "age": "young",
+    "accent": "brazilian",
+    "language": "pt",
+    "desc": "crisp",
+    "useCase": "narrative_story",
+    "usedBy": 438,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/30131aae780f41eb85e099423ad53676/voices/gzQG1wjdcAjdmmsny6Y8/61dbffc9-5ccb-4150-84b6-22e2f8033459.mp3",
+    "free": true,
+    "description": "A voice from Espírito Santo, a 28-year-old Brazilian.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Nila - Angry & Dramatic Character",
+    "id": "WnoI5Yx75MxIeSEPVzZF",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "ta",
+    "desc": "intense",
+    "useCase": "characters_animation",
+    "usedBy": 435,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/ed9b05e6324c457685490352e9a1ec90/voices/WnoI5Yx75MxIeSEPVzZF/HHSwxJMK8FqgTVg3TOcp.mp3",
+    "free": true,
+    "description": "Raw, explosive, and Dramatic — Emotional intensity that stops a scene cold. Her controlled fury builds from a slow burn to full confrontatio",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Ananya - Bright, Happy Character",
+    "id": "PYRaAAjVbDEj4aaaEcjn",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "hyped",
+    "useCase": "characters_animation",
+    "usedBy": 425,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/PYRaAAjVbDEj4aaaEcjn/5CUO4wt8UTLDd4KBYPYD.mp3",
+    "free": true,
+    "description": "Upbeat, Bubbly, Joyful — Ananya squeals over a job offer, laughs off a birthday cake that slid off the plate, and still calls Monday a brand",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Yans - Cute",
+    "id": "X0kVZ6etKD78evvlP6Ka",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "filipino",
+    "language": "en",
+    "desc": "classy",
+    "useCase": "conversational",
+    "usedBy": 423,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3e3a841ae2db47e0b4a1ebd42c34069a/voices/X0kVZ6etKD78evvlP6Ka/6635b524-8ccd-4f60-adbc-fb8c763f674b.mp3",
+    "free": true,
+    "description": "A Filipina Voice.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "KateCosm - Cute",
+    "id": "GdkzDKpMmeAQJgBUaW9v",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "pl",
+    "desc": "cute",
+    "useCase": "entertainment_tv",
+    "usedBy": 412,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/8a67d484c12f430ab9bc6e002b243a71/voices/GdkzDKpMmeAQJgBUaW9v/7aec38fe-de14-4153-a769-2fcc6ef085fc.mp3",
+    "free": true,
+    "description": "A playful, lighthearted voice with a touch of sitcom-style comedy and expressive character.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Mushy PsyNoir - Cute",
+    "id": "NOYEkuwh3HWiAj6uaJiv",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "entertainment_tv",
+    "usedBy": 402,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/c6770cc85715469f9c4d798cde35c2d3/voices/NOYEkuwh3HWiAj6uaJiv/8d552fee-7138-4344-8d80-6b017b030458.mp3",
+    "free": true,
+    "description": "Cute female voice.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Rhea - Sad & Heartbroken Character",
+    "id": "U4ba8U8x7A75yESxUUIi",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "sad",
+    "useCase": "characters_animation",
+    "usedBy": 371,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/514d94e9241c48e8b7905375729c436f/voices/U4ba8U8x7A75yESxUUIi/yzkjRx01x7f6bJXkLHJY.mp3",
+    "free": true,
+    "description": "Expressive, Emotional, Dramatic — Rhea cracks mid-sentence when a lover leaves over a text, sobs to her mother about a marriage that could n",
+    "found": [
+      "characters_animation + female young",
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Carolin - The Social Queen",
+    "id": "tJsRxZVX6zwpQ9Si2fvd",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "deep",
+    "useCase": "social_media",
+    "usedBy": 364,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/df56af25e4f3408f8740ec0866c67bc8/voices/tJsRxZVX6zwpQ9Si2fvd/2512dfb4-6e9e-4a83-abdc-19866b1b62aa.mp3",
+    "free": true,
+    "description": "Voice of a social queen, with hints of squeak & vinyl, shoulders back & chin up style, friendly & trustworthy, and best of all, a warmth tha",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Diel - Chill",
+    "id": "vHomanhySpJysvsAZnPL",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "brazilian",
+    "language": "pt",
+    "desc": "chill",
+    "useCase": "narrative_story",
+    "usedBy": 354,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6da4ddf30da740fe9bb7758eae1ed092/voices/vHomanhySpJysvsAZnPL/cd7aa5c2-e9eb-4fcc-a7d8-72875eb9c595.mp3",
+    "free": true,
+    "description": "Brazilian Portuguese with a *paulista* (São Paulo) accent—not too drawn-out.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Ravneet - Kids Storyteller",
+    "id": "uJ0W9pGzn1umHSKVtR1m",
+    "gender": "female",
+    "age": "young",
+    "accent": "indian",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "informative_educational",
+    "usedBy": 353,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3a844bb3554743079b31ac8d8f8fcc24/voices/uJ0W9pGzn1umHSKVtR1m/cPpsR2Fa4xHFLbRACwBI.mp3",
+    "free": false,
+    "description": "A bubbly, friendly, expressive and playful English female voice designed for children’s learning, educational content, storytelling and e-le",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Luna - Calm & Friendly Storyteller",
+    "id": "E5jYs8feJ94ePIqdvqRb",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "it",
+    "desc": "casual",
+    "useCase": "narrative_story",
+    "usedBy": 299,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/002dc3e1fa834b18847285aaff1a5b9c/voices/E5jYs8feJ94ePIqdvqRb/8ET01ecbxgIpYBPWmqtl.mp3",
+    "free": false,
+    "description": "A highly expressive Italian voice spoken with a charming Thai/Asian accent. Perfect for diverse characters, anime recaps, and unique storyte",
+    "found": [
+      "search: anime"
+    ]
+  },
+  {
+    "name": "Jennifer - Playful Austrian",
+    "id": "uQ0GYs7czQMXuLnoBhfc",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "de",
+    "desc": "excited",
+    "useCase": "characters_animation",
+    "usedBy": 279,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/8b8c75caa6ee4318ab1204b3cdc1d7ba/voices/uQ0GYs7czQMXuLnoBhfc/609f90d7-a7cf-4db0-a863-8e3588fa2ac2.mp3",
+    "free": false,
+    "description": "High-pitched, lively and full of personality. An expressive Austrian German female voice with a natural, easy pace. Great for animated chara",
+    "found": [
+      "search: cartoon"
+    ]
+  },
+  {
+    "name": "Candela - Chill",
+    "id": "2utNeJvKaTOYbyCrKTZk",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "andalusian",
+    "language": "es",
+    "desc": "upbeat",
+    "useCase": "advertisement",
+    "usedBy": 253,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/8430e2e7a78e4cf7a301be5dc81f875c/voices/2utNeJvKaTOYbyCrKTZk/pVOo83LnltPrLJPfsVqC.mp3",
+    "free": true,
+    "description": "Andalusian woman with flair and spirit.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Sebastian Chile - Sales",
+    "id": "ozAVqK4jDRE7YAlT86By",
+    "gender": "male",
+    "age": "young",
+    "accent": "chilean",
+    "language": "es",
+    "desc": "anxious",
+    "useCase": "advertisement",
+    "usedBy": 248,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/afb31b425b524ea6832cae8ed75719e2/voices/ozAVqK4jDRE7YAlT86By/58adb459-2aea-4212-be75-f99c60966e67.mp3",
+    "free": true,
+    "description": "Young Spanish male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Jenny - Cute",
+    "id": "XzmU8xSgJptd9XqHGnSx",
+    "gender": "female",
+    "age": "young",
+    "accent": "chinese",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 239,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/XzmU8xSgJptd9XqHGnSx/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIyMDc4NTM5NGZlNTk0NDQwYjI4Mjg5ZjM5NTVlNzg3NyIsImZpbGVuYW1lIjoiZjIwM2NiY2MtYjcyYy00NWZhLThmNWQtOTUyMDNmMzZiZjliLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": true,
+    "description": "Taiwanese Mandarin female.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Chrissy - Soft-spoken, Cute,",
+    "id": "L2VAaZdFwi5QvefZw36d",
+    "gender": "female",
+    "age": "young",
+    "accent": "german",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 225,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/7fd1b8e6a20e4e84a2c8c1b4e6b9ccaf/voices/L2VAaZdFwi5QvefZw36d/7ae69b70-fbe2-43ed-943a-bb5c1feae51f.mp3",
+    "free": true,
+    "description": "Young Adult Female with An Accent (Austrian-Viennese English). The voice: soft-spoken, cute, non-native English speaker, quiet.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Vexa - Friendly Kids E-Learning Tutor",
+    "id": "Gvt0qzlFKLLx6pLJkZoi",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "modulated",
+    "useCase": "informative_educational",
+    "usedBy": 221,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/Gvt0qzlFKLLx6pLJkZoi/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI1MTRkOTRlOTI0MWM0OGU4Yjc5MDUzNzU3MjljNDM2ZiIsImZpbGVuYW1lIjoidEVBTlZyYm9LMVV1SDhsekNSa3AubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Engaging, Bright, Interactive — Vexa counts by fives, explains why Earth has day and night, and turns a caterpillar’s chrysalis into a littl",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Olloyor G'ofurov - Chill",
+    "id": "kOL3PirU3cCbPSBBjW5n",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "uz",
+    "desc": "calm",
+    "useCase": "narrative_story",
+    "usedBy": 212,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/2c07144b03ce4fb392016aa702721323/voices/kOL3PirU3cCbPSBBjW5n/e00979a8-79e8-4740-bb10-520a09e2e99e.mp3",
+    "free": true,
+    "description": "Young Uzbek male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Krusha - Sweet Children's Story Narrator",
+    "id": "EAFv21mBchPfKisUNAsj",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "narrative_story",
+    "usedBy": 190,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/EAFv21mBchPfKisUNAsj/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI1MTRkOTRlOTI0MWM0OGU4Yjc5MDUzNzU3MjljNDM2ZiIsImZpbGVuYW1lIjoiY1R1QTFTWDRsSkRxYzVTR2x2N2wubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Cute, gentle, and playful — Krusha reads a picture book the way a favourite aunt does, in a soft, bright female tone that gives the bunny a ",
+    "found": [
+      "search: child",
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Heba - Syrian Female",
+    "id": "adbALhARj5EJRv8vQPw1",
+    "gender": "female",
+    "age": "young",
+    "accent": "levantine",
+    "language": "ar",
+    "desc": "confident",
+    "useCase": "characters_animation",
+    "usedBy": 188,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/93362cabea324b29a755f82060c3348f/voices/adbALhARj5EJRv8vQPw1/4bec0fcb-e6ca-4089-a477-9606a8b0fadd.mp3",
+    "free": false,
+    "description": "Easy to understand and follow.",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Ericka Quispe - Cute",
+    "id": "pRFoGbueYVjH460a4p9j",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "spanish",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "conversational",
+    "usedBy": 187,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e392b709b73648a99524a9b473ba0503/voices/pRFoGbueYVjH460a4p9j/3391de65-0305-41e6-99f2-dd65cf2e1a13.mp3",
+    "free": true,
+    "description": "Middle-aged Peruvian voice.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Joe Chen - Chill",
+    "id": "ll2HbNnOgPnGfMTp2nRn",
+    "gender": "male",
+    "age": "young",
+    "accent": "taiwan mandarin",
+    "language": "zh",
+    "desc": "neutral",
+    "useCase": "narrative_story",
+    "usedBy": 144,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/de527fbfe0bb4fc28232e7d190605b1e/voices/ll2HbNnOgPnGfMTp2nRn/bmKu0jJUMqLKvaZab7TB.mp3",
+    "free": true,
+    "description": "Taiwanese Youth, Programming Instruction.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Andrew - Chill",
+    "id": "AJMCJQns5sfAJLpiugFW",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "confident",
+    "useCase": "conversational",
+    "usedBy": 110,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/AJMCJQns5sfAJLpiugFW/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI0N2Q5NjAxOTc0MmQ0ZTBkOGJjNjRiMzFkNjAxNzAyYSIsImZpbGVuYW1lIjoiZjBjZDkyZTUtZjJhZC00ZmFmLTk0YWQtMWEyZWQ1ODllOGNjLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": true,
+    "description": "Mellow and informational.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Aspyn - Cute",
+    "id": "qrcHUXM58k6UZG4mHyR0",
+    "gender": "female",
+    "age": "young",
+    "accent": "american",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "narrative_story",
+    "usedBy": 108,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/qrcHUXM58k6UZG4mHyR0/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiJjOTcxZDNmYzI4ODc0MWZhOWYyZmY5ZmM0MGVlODFiNSIsImZpbGVuYW1lIjoiMDQ0ZTMxMTQtNzUwYy00YzRiLWJkOGMtODZjOWMyMGJlNDg0Lm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": false,
+    "description": "Young female voice. Great for Narration.",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Hector - Chill",
+    "id": "P2XZFxJZRuLkcEmvDnhT",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "confident",
+    "useCase": "conversational",
+    "usedBy": 95,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/P2XZFxJZRuLkcEmvDnhT/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIyNzExNzI1ZDY1OTE0ODUyOTRjZGViNTNjZmVkYTgzMiIsImZpbGVuYW1lIjoiZmFkY2JjMmQtNTE2Ny00NzA4LThiMjItNDQ2MWFlZDk0ZWYxLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": true,
+    "description": "Mexican American, no accent subtly midwestern.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Ross - Chill",
+    "id": "3iiStphdvgUy5uqHXWlG",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "chill",
+    "useCase": "characters_animation",
+    "usedBy": 89,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f3a9325454fd4a9e88153683d4a0df3e/voices/3iiStphdvgUy5uqHXWlG/b33add58-2723-4f10-83ce-fc327b9a0373.mp3",
+    "free": false,
+    "description": "A polished, articulate, and authoritative voice with confident delivery and clear diction, ideal for broadcasting, news presentation.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Gurvan - Chill",
+    "id": "lJBPSIX80514wB9gHFPI",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "fr",
+    "desc": "classy",
+    "useCase": "social_media",
+    "usedBy": 89,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/73d5f79f222f4e2294a6474a2941ee46/voices/lJBPSIX80514wB9gHFPI/8adb9c10-0583-4452-9453-1539c00131ca.mp3",
+    "free": true,
+    "description": "Young male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Minbitt - Cute",
+    "id": "FVWKzBg4YHtWyzhv4jbA",
+    "gender": "female",
+    "age": "young",
+    "accent": "korean",
+    "language": "en",
+    "desc": "cute",
+    "useCase": "characters_animation",
+    "usedBy": 84,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/2fa49b6f83c04311a799eb8dc1f7d737/voices/FVWKzBg4YHtWyzhv4jbA/77dafb12-02eb-4119-a905-9a5c31163998.mp3",
+    "free": true,
+    "description": "Young female voice.",
+    "found": [
+      "characters_animation + female young",
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Godzz - Chill",
+    "id": "J0zAgz6JCM6cH6SX2zmr",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "ml",
+    "desc": "deep",
+    "useCase": "conversational",
+    "usedBy": 83,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b13b984dcda048f29a979fb8bcbb6771/voices/J0zAgz6JCM6cH6SX2zmr/53092cca-d815-4745-86da-d3eb43b96013.mp3",
+    "free": true,
+    "description": "A natural, authentic voice with a relaxed, everyday conversational tone.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Dena - Cute",
+    "id": "0uJDWfKdENWzAXijK877",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "american",
+    "language": "en",
+    "desc": "casual",
+    "useCase": "narrative_story",
+    "usedBy": 68,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/6a5786dcbe244396953c7cdbde18010f/voices/0uJDWfKdENWzAXijK877/6db3e34b-431b-4943-a846-3faef01b17bc.mp3",
+    "free": true,
+    "description": "Romantic Love, hot as our star!",
+    "found": [
+      "search: cute"
+    ]
+  },
+  {
+    "name": "Thanh Min - Life Podcast",
+    "id": "KpuFGaJPBK3Pkur4S6Fp",
+    "gender": "female",
+    "age": "young",
+    "accent": "southern",
+    "language": "vi",
+    "desc": "calm",
+    "useCase": "characters_animation",
+    "usedBy": 65,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e3a85dbc36084ff8936f526ec8356c4f/voices/KpuFGaJPBK3Pkur4S6Fp/906aef97-5ecf-47cb-a946-3996e794f322.mp3",
+    "free": true,
+    "description": "A Southern Vietnamese female voice—loud, clear, and free of regional accents or speech impediments. This recording is based on content from ",
+    "found": [
+      "characters_animation + female young"
+    ]
+  },
+  {
+    "name": "Santi - Chill",
+    "id": "CUCGmQrwA66ryAChHtA8",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "australian",
+    "language": "en",
+    "desc": "calm",
+    "useCase": "informative_educational",
+    "usedBy": 61,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f96aa07cec1e4846b0e1e9c23b0d2e37/voices/CUCGmQrwA66ryAChHtA8/a8b793a8-ffea-4d1c-85c3-836def9ec391.mp3",
+    "free": true,
+    "description": "A calm, soothing, and reassuring speaking style with clear pronunciation and a gentle, steady delivery.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Swastik M - Raw & Real Stories for Kids",
+    "id": "VXrVA5ICBdxC3ymFJeUr",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "hi",
+    "desc": "modulated",
+    "useCase": "narrative_story",
+    "usedBy": 56,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/VXrVA5ICBdxC3ymFJeUr/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI1MTRkOTRlOTI0MWM0OGU4Yjc5MDUzNzU3MjljNDM2ZiIsImZpbGVuYW1lIjoicUptd3V6NXpnMEpIS2pnWTdnb0oubXAzIiwidGltZXN0YW1wIjoxNzk1NTIxNjAwMDAwMDAwfQ%3D%3D",
+    "free": true,
+    "description": "Authentic, Warm, Desi — Swastik M tells Hindi bedtime tales the way a chacha does on a village charpai, a male tone with little pauses, 'haa",
+    "found": [
+      "search: kid / child"
+    ]
+  },
+  {
+    "name": "Sixta - Chill",
+    "id": "xV8qsc2tu99kSlaJdvGK",
+    "gender": "female",
+    "age": "middle_aged",
+    "accent": "colombian",
+    "language": "es",
+    "desc": "chill",
+    "useCase": "conversational",
+    "usedBy": 51,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/0ac2c981713b4555be0e8396e7b13060/voices/xV8qsc2tu99kSlaJdvGK/LZQpAUoZkgHzLGTPfmN6.mp3",
+    "free": true,
+    "description": "A great voice for a natural, UGC-style character.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Mahmoud Awad - Chill",
+    "id": "3ljraVWsSjoBSqgicTmv",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "egyptian",
+    "language": "ar",
+    "desc": "confident",
+    "useCase": "social_media",
+    "usedBy": 51,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/3ljraVWsSjoBSqgicTmv/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI4ZWQ2ODljYTZiODg0YTI0OWY0ZTU3MmY5YTRmM2ZlZiIsImZpbGVuYW1lIjoiYWQ5ZmQ1ZjQtMDIyNi00OTM2LWEzNDUtNTUyNGFlMTMzYjAwLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": false,
+    "description": "An authentic Egyptian voice.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Mangú - Chill & Expressive",
+    "id": "M2kKqApYXGJGBf6TR37c",
+    "gender": "male",
+    "age": "young",
+    "accent": "dominican",
+    "language": "es",
+    "desc": "chill",
+    "useCase": "conversational",
+    "usedBy": 48,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/a6d8a7e291d34bf584502c74e4d48a04/voices/M2kKqApYXGJGBf6TR37c/e497b26a-24d1-4636-bf73-3f1378ee6bf2.mp3",
+    "free": true,
+    "description": "A measured, unhurried delivery, featuring a crackly vocal fry, pronounced rising and falling inflections, and a slight nasal quality. Approa",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Flinky - Squeaky & Bouncy",
+    "id": "yebYg8zh4t5MVQiYjHNo",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "cute",
+    "useCase": "entertainment_tv",
+    "usedBy": 48,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b28cc4a9d0384cf9857840644b429281/voices/yebYg8zh4t5MVQiYjHNo/D60tBCAKb8Mw5OFGfyYG.mp3",
+    "free": true,
+    "description": "A squeaky, lively character voice for playful garden creatures, tiny hoppers, and cheerful sidekicks, full of zippy energy and mischief. Ide",
+    "found": [
+      "search: chibi / squeaky"
+    ]
+  },
+  {
+    "name": "Kuya Shadow - Chill",
+    "id": "Adgw3DHQ1zvgrKKiHsCQ",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "fil",
+    "desc": "chill",
+    "useCase": "conversational",
+    "usedBy": 37,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/a3a3fbcfa2fc4ec481b3d277b309068a/voices/Adgw3DHQ1zvgrKKiHsCQ/bb1e1ff8-0d4b-480c-820f-d981b8a46c14.mp3",
+    "free": false,
+    "description": "Chill, calm, and comforting. Sounds like your typical Kuya.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Pawel Rz - Chill",
+    "id": "dGOCXrG2aErNK7lSWll0",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "pl",
+    "desc": "classy",
+    "useCase": "narrative_story",
+    "usedBy": 37,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/e711f9b7b38f4a1f9f01eebea143bfc3/voices/dGOCXrG2aErNK7lSWll0/c36fb1ca-f85d-4e8b-838f-c3f14941f01e.mp3",
+    "free": true,
+    "description": "Polish male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Osato Umweni - Chill",
+    "id": "PFnEp0d5QKq6baWI3azv",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "nigerian",
+    "language": "en",
+    "desc": "confident",
+    "useCase": "narrative_story",
+    "usedBy": 33,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/959d79ae61624ea09224b4f4f794d23a/voices/PFnEp0d5QKq6baWI3azv/8620118f-737b-4331-b058-f53902ce8d56.mp3",
+    "free": true,
+    "description": "Lively Nigerian Voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Luiz - Chill",
+    "id": "K9JDP3lEcZBmoQSdeU0R",
+    "gender": "male",
+    "age": "young",
+    "accent": "brazilian",
+    "language": "pt",
+    "desc": "chill",
+    "useCase": "narrative_story",
+    "usedBy": 32,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/K9JDP3lEcZBmoQSdeU0R/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiI0MTE4ZWY0YjYwNDQ0MjU1OTAzODE4ODcyNzdhNDExOCIsImZpbGVuYW1lIjoiMzVmNTg5MDMtMjEwYS00YzcyLTllYzktNTJkM2UyNTcxMDdhLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": false,
+    "description": "Voice of the channel creator. Brazilian Portuguese, casual and instructional tone, moderate pace, in the style of a gaming and tech tutorial",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Ozan - Chill",
+    "id": "KP3X6rVkkKf1t9i4cXBg",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "tr",
+    "desc": "sad",
+    "useCase": "narrative_story",
+    "usedBy": 28,
+    "preview": "https://api.us.elevenlabs.io/v1/voices/KP3X6rVkkKf1t9i4cXBg/previews/audio?payload=eyJ2b2ljZV9zb3VyY2UiOiJjdXN0b20iLCJ3b3Jrc3BhY2VfaWQiOiIxYTI0Yzc5MTViMTE0ZTliOWIyOTg0NmMwZGI4NmM5ZCIsImZpbGVuYW1lIjoiMTBiZTRkYTEtMjk2OS00N2ViLTk0MjAtMGU3MDU5NGQ1YjdjLm1wMyIsInRpbWVzdGFtcCI6MTc5NTUyMTYwMDAwMDAwMH0%3D",
+    "free": true,
+    "description": "Young Turkish male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Olan - Chill",
+    "id": "Ltvzue4kkxBCs7JAvbwa",
+    "gender": "male",
+    "age": "young",
+    "accent": "french",
+    "language": "en",
+    "desc": "casual",
+    "useCase": "narrative_story",
+    "usedBy": 24,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/3238f39141f74163bc45a8e7c41be6dd/voices/Ltvzue4kkxBCs7JAvbwa/eb9e4166-c7b0-4c4b-b96c-e393ee0d465b.mp3",
+    "free": false,
+    "description": "An exciting, dynamic, and expressive voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Lola - Children Adventures",
+    "id": "yWJ7hVkexxVG70fCINyw",
+    "gender": "female",
+    "age": "young",
+    "accent": "standard",
+    "language": "de",
+    "desc": "pleasant",
+    "useCase": "narrative_story",
+    "usedBy": 15,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/0a53258044834171a20d693794566080/voices/yWJ7hVkexxVG70fCINyw/ybNbb1hdeKSEG8ICUvur.mp3",
+    "free": true,
+    "description": "A lively, expressive female voice full of warmth, curiosity, and adventurous spirit. Perfect for children's stories, fairy tales and excitin",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Ladislav Král - Chill",
+    "id": "wQPQPWwTljqqgpd6fIu1",
+    "gender": "male",
+    "age": "young",
+    "accent": "moravian",
+    "language": "cs",
+    "desc": "casual",
+    "useCase": "conversational",
+    "usedBy": 9,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/f08a8981c6d140e28ece2bfe58bb301d/voices/wQPQPWwTljqqgpd6fIu1/dd5c80c7-ebc6-42dd-805d-a28280fed4a7.mp3",
+    "free": true,
+    "description": "My world is where I can help with my voice.\n",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Damian - Chill",
+    "id": "qSuBcH1ia78L5JhakkPK",
+    "gender": "male",
+    "age": "young",
+    "accent": "standard",
+    "language": "pl",
+    "desc": "crisp",
+    "useCase": "social_media",
+    "usedBy": 5,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/2f944c9698fd4101815a04caf0c31ba0/voices/qSuBcH1ia78L5JhakkPK/c086d6d5-588a-4263-a2d9-29c2158986da.mp3",
+    "free": false,
+    "description": "Young Polish male voice.",
+    "found": [
+      "search: child"
+    ]
+  },
+  {
+    "name": "Bjarne - Children & Youth Educational",
+    "id": "Z3mqRN1LKvyW8dFlHjTJ",
+    "gender": "male",
+    "age": "middle_aged",
+    "accent": "standard",
+    "language": "de",
+    "desc": "upbeat",
+    "useCase": "informative_educational",
+    "usedBy": 0,
+    "preview": "https://storage.googleapis.com/eleven-public-prod/database/workspace/b28cc4a9d0384cf9857840644b429281/voices/Z3mqRN1LKvyW8dFlHjTJ/rSr9cESUacO7kmkqbyhs.mp3",
+    "free": true,
+    "description": "Warm, friendly, kind, and approachable voice in simple, accessible language with a light, relaxed, and encouraging tone. Ideal for e-learnin",
+    "found": [
+      "search: child"
+    ]
+  }
+]

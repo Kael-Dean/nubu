@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .btn { position: absolute; display: flex; align-items: center; gap: 18px; padding: 18px 40px 24px 26px; font-size: 54px; font-weight: 700; border-radius: 999px; line-height: 1.45; }
+  .btn.alt { background: var(--accent-deep); color: #fff; }
+  .glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(200,160,255,0.45), rgba(200,160,255,0) 65%); }
+  .msg { position: absolute; font-size: 76px; font-weight: 700; line-height: 1.45; text-align: center; text-shadow: 0 6px 24px rgba(20,0,50,.6); }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: closing — soft glow behind a centred Nubu, purple hearts rising, call-to-action buttons pop in.
+// cfg: { buttons:[{t,icon,text,x,y,alt}], messages:[{t,until,text,x,y,w}], glow:{x,y,r} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, G = cfg.glow || { x: 960, y: 470, r: 520 };
+    c.glow = NB.el('div', 'glow', c.world); NB.css(c.glow, { left: G.x - G.r + 'px', top: G.y - G.r + 'px', width: G.r * 2 + 'px', height: G.r * 2 + 'px' });
+    c.heartsUpd = NB.hearts(c.world, { n: 22, seed: 5, x0: 40, x1: c.W - 40, y0: 0, y1: c.H, speed: 70, at: c.start, alpha: 0.8, min: 30, max: 84 });
+    c.btns = (cfg.buttons || []).map((b) => { const e = NB.el('div', 'card btn' + (b.alt ? ' alt' : ''), c.ui, `${NB.icon(b.icon, 64, b.alt ? '#ffd23f' : undefined)}<span>${b.text}</span>`); NB.css(e, { left: b.x + 'px', top: b.y + 'px' }); return { e, b }; });
+    c.msgs = (cfg.messages || []).map((m) => { const e = NB.el('div', 'msg', c.ui, m.text); NB.css(e, { left: m.x + 'px', top: m.y + 'px', width: (m.w || 600) + 'px' }); return { e, m }; });
+  },
+  update(t, c) {
+    c.heartsUpd(t);
+    const br = 1 + 0.04 * Math.sin(t * 1.4);
+    c.glow.style.transform = `scale(${br})`;
+    c.btns.forEach(({ e, b }) => NB.enter(e, t, b.t, { dy: 40, scale: 0.85, back: true, dur: 0.5, exitAt: b.until, extra: ` translateY(${Math.sin(t * 1.8 + b.x) * 4}px)` }));
+    c.msgs.forEach(({ e, m }) => NB.enter(e, t, m.t, { dy: 30, exitAt: m.until }));
+  },
+});
+</script>
+</body></html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: transparent; overflow: hidden; }
+  body { font-family: "Leelawadee UI", "Leelawadee", Tahoma, sans-serif; -webkit-font-smoothing: antialiased; }
+  #sub { position: absolute; display: none; text-align: center; color: #fff; font-weight: 700;
+    background: rgba(20, 7, 46, 0.82); border-radius: 20px; line-height: 1.5; padding: 8px 30px 14px;
+    box-shadow: 0 10px 30px rgba(6, 0, 20, 0.35); white-space: nowrap; }
+  #tag { position: absolute; display: none; align-items: center; gap: 10px; color: rgba(255,255,255,0.92);
+    background: rgba(18, 6, 42, 0.72); border-radius: 999px; padding: 3px 18px 6px 14px; line-height: 1.5; white-space: nowrap; }
+  #tag .dot { width: 12px; height: 12px; border-radius: 50%; background: #a970ff; flex: none; }
+  #meas { position: absolute; visibility: hidden; white-space: nowrap; font-weight: 700; }
+</style></head>
+<body>
+<div id="sub"></div><div id="tag"><span class="dot"></span><span class="tx"></span></div><span id="meas"></span>
+<script>
+// Renders one UI state (subtitle and/or source tag) on a transparent full frame.
+// Subtitles are always laid out centred on x = W/2; ffmpeg slides the whole subtitle layer sideways.
+window.renderState = async function (s) {
+  document.body.style.width = s.W + 'px'; document.body.style.height = s.H + 'px';
+  const sub = document.getElementById('sub'), tag = document.getElementById('tag'), meas = document.getElementById('meas');
+  sub.style.display = 'none'; tag.style.display = 'none';
+  await document.fonts.ready;
+  if (s.sub) {
+    const fs = s.sub.fontSize || 46;
+    meas.style.fontSize = fs + 'px'; sub.style.fontSize = fs + 'px';
+    const toks = s.sub.tokens;
+    const width = (arr) => { meas.textContent = arr.join(' '); return meas.getBoundingClientRect().width; };
+    let lines = [toks];
+    if (width(toks) > s.sub.maxW - 60 && toks.length > 1) {
+      let best = null;
+      for (let i = 1; i < toks.length; i++) {
+        const a = toks.slice(0, i), b = toks.slice(i);
+        const m = Math.max(width(a), width(b));
+        if (!best || m < best.m) best = { m, a, b };
+      }
+      lines = [best.a, best.b];
+    }
+    sub.style.whiteSpace = 'nowrap'; sub.style.width = 'auto';
+    if (lines.some((l) => width(l) > s.sub.maxW - 60)) {
+      // a single phrase is too long: let Chromium's Thai dictionary line-breaker wrap it
+      sub.style.whiteSpace = 'normal'; sub.style.wordBreak = 'normal';
+      sub.style.width = s.sub.maxW + 'px';
+      sub.textContent = toks.join(' ');
+    } else sub.innerHTML = lines.map((l) => l.join(' ')).join('<br>');
+    sub.style.display = 'block';
+    const r = sub.getBoundingClientRect();
+    sub.style.left = (s.W / 2 - r.width / 2) + 'px';
+    sub.style.top = (s.sub.bottom - r.height) + 'px';
+  }
+  if (s.tag) {
+    tag.querySelector('.tx').textContent = s.tag.text;
+    tag.style.fontSize = (s.tag.fontSize || 22) + 'px';
+    tag.style.display = 'flex';
+    const r = tag.getBoundingClientRect();
+    tag.style.left = s.tag.x + 'px';
+    tag.style.top = (s.tag.top != null ? s.tag.top : s.H - s.tag.bottom - r.height) + 'px';
+  }
+  const out = {};
+  if (s.sub) { const r = sub.getBoundingClientRect(); out.sub = { x: r.left, y: r.top, w: r.width, h: r.height }; }
+  if (s.tag) { const r = tag.getBoundingClientRect(); out.tag = { x: r.left, y: r.top, w: r.width, h: r.height }; }
+  return out;
+};
+</script>
+</body></html>

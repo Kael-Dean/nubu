@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .row { position: absolute; display: flex; gap: 22px; align-items: stretch; }
+  .tile { position: relative; width: 270px; padding: 24px 18px 26px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .tile .icw { position: relative; width: 150px; height: 150px; }
+  .tile .badge { position: absolute; right: -14px; bottom: -6px; width: 66px; height: 66px; }
+  .tile .lb { margin-top: 14px; font-size: 44px; font-weight: 700; line-height: 1.45; }
+  .tile .sb { font-size: 34px; line-height: 1.5; color: var(--ink-soft); }
+  .tile.no { box-shadow: 0 0 0 5px var(--warn), 0 24px 60px rgba(8,0,28,.38); }
+  .tile.ok { box-shadow: 0 0 0 5px var(--ok), 0 24px 60px rgba(8,0,28,.38); }
+  .title { position: absolute; font-size: 54px; font-weight: 700; line-height: 1.45; }
+  .foot { position: absolute; display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.14); border: 2px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 8px 30px 12px; font-size: 40px; font-weight: 700; line-height: 1.5; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: iconrow — tiles with an icon + ✓/✗ badge pop in one by one; optional title and footer note.
+// cfg: { title, titleAt, tiles:[{t, icon, label, sub, mark:'ok'|'no'|null}], row:{x,y}, foot:{t,text,x,y} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, R = cfg.row || { x: 100, y: 230 };
+    if (cfg.title) { c.title = NB.el('div', 'title', c.ui, cfg.title); NB.css(c.title, { left: R.x + 'px', top: R.y - 110 + 'px' }); }
+    const row = NB.el('div', 'row', c.ui); NB.css(row, { left: R.x + 'px', top: R.y + 'px', width: R.w ? R.w + 'px' : 'auto', flexWrap: 'wrap' });
+    c.tiles = cfg.tiles.map((ti) => {
+      const e = NB.el('div', 'card tile', row,
+        `<div class="icw">${NB.icon(ti.icon, 150)}${ti.mark ? `<div class="badge">${NB.icon(ti.mark === 'ok' ? 'check' : 'cross', 66)}</div>` : ''}</div><div class="lb">${ti.label}</div>${ti.sub ? `<div class="sb">${ti.sub}</div>` : ''}`);
+      if (cfg.tileW) e.style.width = cfg.tileW + 'px';
+      return { e, ti, badge: e.querySelector('.badge') };
+    });
+    if (cfg.foot) { c.foot = NB.el('div', 'foot', c.ui, `${NB.icon(cfg.foot.icon || 'comment', 44, '#d6b4ff')}<span>${cfg.foot.text}</span>`); NB.css(c.foot, { left: (cfg.foot.x ?? R.x) + 'px', top: (cfg.foot.y ?? R.y + 460) + 'px' }); }
+  },
+  update(t, c) {
+    if (c.title) NB.enter(c.title, t, c.cfg.titleAt ?? c.start + 0.05, { dy: 24 });
+    for (const x of c.tiles) {
+      NB.enter(x.e, t, x.ti.t, { dy: 50, scale: 0.9, back: true, dur: 0.5 });
+      const mt = x.ti.markAt ?? x.ti.t + 0.3;
+      if (x.badge) NB.enter(x.badge, t, mt, { dy: 0, scale: 0.3, back: true, dur: 0.35 });
+      const ring = NB.ease.outCubic(NB.p(t, mt, 0.3));
+      if (x.ti.mark) x.e.style.boxShadow = `0 0 0 ${5 * ring}px ${x.ti.mark === 'ok' ? 'var(--ok)' : 'var(--warn)'}, 0 24px 60px rgba(8,0,28,.38)`;
+    }
+    if (c.foot) NB.enter(c.foot, t, c.cfg.foot.t, { dy: 30 });
+  },
+});
+</script>
+</body></html>

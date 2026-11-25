@@ -1,0 +1,104 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .hero { padding: 30px 46px 38px; }
+  .hero .kick { font-size: 32px; font-weight: 700; color: var(--accent-deep); line-height: 1.5; }
+  .hero .title { font-size: 104px; font-weight: 700; line-height: 1.35; color: var(--ink); white-space: nowrap; }
+  .chips { display: flex; gap: 18px; margin-top: 10px; }
+  .chip { background: #efe6ff; color: var(--accent-deep); font-size: 50px; font-weight: 700; border-radius: 22px; padding: 4px 28px 12px; line-height: 1.45; }
+  .topics { display: flex; gap: 20px; }
+  .topic { display: flex; align-items: center; gap: 16px; background: #fff; color: var(--ink); border-radius: 24px; padding: 14px 30px 16px 16px; font-size: 46px; font-weight: 700; line-height: 1.5; box-shadow: 0 16px 40px rgba(8,0,28,.35); }
+  .topic .ic { width: 84px; height: 84px; border-radius: 16px; background: #f1e9ff; display: flex; align-items: center; justify-content: center; }
+  .photo { border-radius: 26px; box-shadow: 0 24px 60px rgba(8,0,28,.45); border: 4px solid rgba(255,255,255,0.85); }
+  .bgphoto { position: absolute; inset: 0; overflow: hidden; }
+  .bgphoto img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+  .bgphoto .grade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(70, 30, 140, 0.30), rgba(40, 10, 90, 0.35)); mix-blend-mode: multiply; }
+  .bgphoto .grade2 { position: absolute; inset: 0; background: rgba(150, 100, 255, 0.22); mix-blend-mode: color; }
+  .bgphoto .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 40%;
+    background: linear-gradient(180deg, rgba(18,6,42,0) 0%, rgba(18,6,42,0.85) 40%, rgba(18,6,42,0.97) 62%, #12062a 100%); }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: card — headline card that flips in, date chips one by one, topic icons; optional photo:
+//   stock.kind 'image' + cfg.photoMode 'background' → full-bleed graded photo (push-in, drifts up) until cfg.photoUntil
+//   no stock → drawn stadium graphic in a frame (cfg.photo rect)
+function stadiumSVG(w, h) {
+  let s = `<svg width="${w}" height="${h}" viewBox="0 0 700 380" preserveAspectRatio="xMidYMid slice">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b0b3d"/><stop offset="1" stop-color="#4b2190"/></linearGradient>
+  <radialGradient id="glow" cx="50%" cy="60%" r="50%"><stop offset="0" stop-color="#d9b8ff" stop-opacity=".9"/><stop offset="1" stop-color="#d9b8ff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="beam" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e8d6ff" stop-opacity=".55"/><stop offset="1" stop-color="#e8d6ff" stop-opacity="0"/></linearGradient></defs>
+  <rect width="700" height="380" fill="url(#sky)"/><g id="beams"></g>
+  <ellipse cx="350" cy="250" rx="300" ry="90" fill="url(#glow)"/>
+  <path d="M60 260 Q60 190 350 180 Q640 190 640 260 L640 300 Q350 330 60 300Z" fill="#2a1158"/>
+  <path d="M90 258 Q100 210 350 202 Q600 210 610 258 Q350 280 90 258Z" fill="#6a3bc4"/>
+  <ellipse cx="350" cy="250" rx="210" ry="30" fill="#8e62e6"/><ellipse cx="350" cy="250" rx="150" ry="18" fill="#bfa2ff" opacity=".7"/>
+  <rect x="0" y="300" width="700" height="80" fill="#140630"/>`;
+  for (let i = 0; i < 26; i++) s += `<rect x="${70 + i * 22}" y="${292 + (i % 3) * 3}" width="8" height="4" rx="2" fill="#ffe7a8" opacity=".7"/>`;
+  return s + `</svg>`;
+}
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui;
+    c.bgMode = c.stock && c.stock.kind === 'image' && (cfg.photoMode || 'background') === 'background';
+    if (c.bgMode) {
+      const b = NB.el('div', 'bgphoto', c.world);
+      c.bgImg = NB.el('img', '', b); c.bgImg.src = c.stock.image;
+      NB.el('div', 'grade', b); NB.el('div', 'grade2', b); NB.el('div', 'bottom', b);
+      c.bgPhoto = b;
+      if (cfg.photoH) NB.css(b, { height: cfg.photoH + 'px', bottom: 'auto' });
+      if (c.stock.credit) { c.credit = NB.el('div', 'credit', ui, c.stock.credit); const cp2 = cfg.creditPos || { x: 40, y: (cfg.photoH || c.H) - 60 }; NB.css(c.credit, { left: cp2.x + 'px', top: cp2.y + 'px', fontSize: (cfg.creditSize || 22) + 'px', textShadow: '0 2px 6px rgba(0,0,0,.6)' }); }
+      c.world.insertBefore(b, c.world.children[1]);
+    } else {
+      const ph = cfg.photo || { x: 100, y: 110, w: 820, h: 445 };
+      c.slot = NB.stockSlot(ui, { x: ph.x, y: ph.y, w: ph.w, h: ph.h, r: 26 }, null, c);
+      c.slot.box.classList.add('photo');
+      c.slot.box.innerHTML = stadiumSVG(ph.w, ph.h);
+      c.beams = c.slot.box.querySelector('#beams');
+    }
+    const cp = (c.bgMode ? cfg.cardPos : cfg.cardPosFallback) || cfg.cardPos || { x: 1000, y: 90 };
+    const card = NB.el('div', 'card hero', ui);
+    NB.css(card, { left: cp.x + 'px', top: cp.y + 'px', transformOrigin: '0% 50%' });
+    NB.el('div', 'kick', card, cfg.kicker || '');
+    NB.el('div', 'title', card, cfg.title);
+    const chips = NB.el('div', 'chips', card);
+    c.chips = (cfg.chips || []).map((ch) => ({ e: NB.el('div', 'chip', chips, ch.text), at: ch.at }));
+    c.card = card;
+    const tpos = cfg.topicsPos || { x: 100, y: 600 };
+    const tp = NB.el('div', 'topics abs', ui); NB.css(tp, { left: tpos.x + 'px', top: tpos.y + 'px', flexDirection: cfg.topicsDir || 'row', alignItems: 'flex-start' });
+    c.topics = (cfg.topics || []).map((x) => ({ e: NB.el('div', 'topic', tp, `<div class="ic">${NB.icon(x.icon, 50)}</div><div>${x.text}</div>`), at: x.at }));
+  },
+  update: async (t, c) => {
+    const cfg = c.cfg;
+    const at = cfg.cardAt ?? c.start + 0.1;
+    const p = NB.p(t, at, 0.7), e = NB.ease.outCubic(p);
+    c.card.style.opacity = String(NB.clamp(p * 2.5));
+    c.card.style.transform = `perspective(1400px) rotateY(${-75 * (1 - e)}deg) translateX(${-40 * (1 - e)}px)`;
+    c.chips.forEach((ch) => NB.enter(ch.e, t, ch.at, { dy: 30, scale: 0.8, back: true, dur: 0.45 }));
+    c.topics.forEach((x) => NB.enter(x.e, t, x.at, { dy: 40, scale: 0.9, back: true, dur: 0.45 }));
+    if (c.bgMode) {
+      const span = (cfg.photoUntil ?? c.end) - c.start;
+      const q = NB.ease.inOutSine(NB.p(t, c.start, span + 0.6));
+      // slow push-in drifting up toward the facade
+      c.bgImg.style.transformOrigin = '38% 40%';
+      c.bgImg.style.transform = `translateY(${-24 * q}px) scale(${1.03 + 0.06 * q})`;
+      const out = cfg.photoUntil != null ? NB.ease.inOutSine(NB.p(t, cfg.photoUntil, 0.6)) : 0;
+      c.bgPhoto.style.opacity = String(1 - out);
+      if (c.credit) c.credit.style.opacity = String(NB.ease.outCubic(NB.p(t, c.start + 0.3, 0.4)) * (1 - out));
+    } else {
+      NB.enter(c.slot.box, t, c.start + 0.25, { dy: 0, dx: -50, dur: 0.6, exitAt: cfg.photoUntil, exitDy: 0 });
+      if (c.beams) {
+        let s = '';
+        for (let i = 0; i < 4; i++) {
+          const a = Math.sin(t * 0.6 + i * 1.7) * 18 + (i - 1.5) * 16;
+          s += `<polygon points="${350 + (i - 1.5) * 60},250 ${350 + (i - 1.5) * 60 - 40 + a * 6},-20 ${350 + (i - 1.5) * 60 + 40 + a * 6},-20" fill="url(#beam)" opacity="${0.35 + 0.25 * Math.sin(t * 1.3 + i)}"/>`;
+        }
+        c.beams.innerHTML = s;
+      }
+    }
+  },
+});
+</script>
+</body></html>

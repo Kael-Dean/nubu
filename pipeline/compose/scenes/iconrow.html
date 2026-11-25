@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .stack { position: absolute; }
+  .tile { width: max-content; display: flex; align-items: center; gap: 26px; padding: 18px 44px 20px 24px; }
+  .tile .icw { position: relative; width: 128px; height: 128px; flex: none; }
+  .tile .mk { position: absolute; }
+  .tile .lb { font-size: 54px; font-weight: 700; line-height: 1.4; }
+  .tile .sb { font-size: 38px; font-weight: 500; line-height: 1.45; color: var(--ink-soft); }
+  .title { position: absolute; font-family: var(--font-display); font-weight: var(--display-weight); font-size: 64px; line-height: 1.35; }
+  .foot { position: absolute; display: flex; align-items: center; gap: 14px; padding: 6px 30px 12px 20px; font-size: 42px; font-weight: 700; line-height: 1.45; color: var(--ink);
+    background: oklch(0.86 0.06 302 / 0.94); white-space: nowrap;
+    clip-path: polygon(0 6%, 2% 0, 98% 4%, 100% 0, 99% 50%, 100% 96%, 98% 100%, 2% 95%, 0 100%, 1% 50%); }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: iconrow — a loose stack of stickers (icon + label). On its cue a marker either crosses the icon out
+// (mark:'no') or ticks it on a highlighter blob (mark:'ok'). Optional footer note on a strip of tape.
+// cfg: { title, titleAt, tiles:[{t, icon, label, sub, mark:'ok'|'no'|null, markAt}], row:{x,y}, foot:{t,text,icon,x,y} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, R = cfg.row || { x: 100, y: 230 };
+    if (cfg.title) { c.title = NB.el('div', 'title', c.ui, cfg.title); NB.css(c.title, { left: R.x + 'px', top: R.y - 110 + 'px' }); }
+    const st = NB.el('div', 'stack', c.ui); NB.css(st, { left: R.x + 'px', top: R.y + 'px' });
+    const indent = [0, 0, 0, 0];
+    c.tiles = cfg.tiles.map((ti, i) => {
+      let mk = '';
+      if (ti.mark === 'no') mk = `<svg class="ic mk" width="150" height="150" viewBox="0 0 100 100" style="left:-11px;top:-11px">${NB.icons.cross()}</svg>`;
+      if (ti.mark === 'ok') mk = `<svg class="ic mk" width="96" height="96" viewBox="0 0 100 100" style="left:62px;top:56px">${NB.icons.check()}</svg>`;
+      const e = NB.el('div', 'sticker tile', st,
+        `<div class="icw">${NB.icon(ti.icon, 128)}${mk}</div><div><div class="lb">${ti.label}</div>${ti.sub ? `<div class="sb">${ti.sub}</div>` : ''}</div>`);
+      e.style.marginLeft = indent[i % 4] + 'px';
+      return { e, ti, mk: e.querySelector('.mk') };
+    });
+    c.items = c.tiles.map((x) => ({ e: x.e, t: x.ti.t, until: x.ti.until }));
+    if (cfg.foot) {
+      c.foot = NB.el('div', 'foot', c.ui, `${NB.icon(cfg.foot.icon || 'comment', 52)}<span>${cfg.foot.text}</span>`);
+      c.foot.querySelectorAll('.fa').forEach((p) => p.style.fill = 'var(--paper)');
+      c.foot._rot = -2;
+      NB.css(c.foot, { left: (cfg.foot.x ?? R.x) + 'px', top: (cfg.foot.y ?? R.y + 460) + 'px' });
+    }
+  },
+  afterFonts(c) {
+    c.tiles.forEach((x, i) => NB.sticker(x.e, { seed: 110 + i, r: 20, rot: [-1.6, 1.2, -0.6, 1.8][i % 4] }));
+    // place tiles: each new one under the previous
+    NB.layoutStack(c.items, 22);
+    c.items.forEach((it, i) => { it.e.style.left = c.tiles[i].e.style.marginLeft; it.e.style.marginLeft = '0px'; });
+  },
+  update(t, c) {
+    if (c.title) NB.enter(c.title, t, c.cfg.titleAt ?? c.start + 0.05, { dy: 18 });
+    for (const x of c.tiles) {
+      NB.enter(x.e, t, x.ti.t, { dx: -26, dy: 0, scale: 1.05, drot: 3, exitAt: x.ti.until });
+      if (x.mk) {
+        const mt = x.ti.markAt ?? x.ti.t + 0.3;
+        NB.draw(x.mk, t, mt, 0.32);
+        const blob = x.mk.querySelector('.fa');
+        if (blob) { const e = NB.ease.outExpo(NB.p(t, mt - 0.05, 0.25)); blob.style.opacity = String(e); blob.style.transformOrigin = '50px 50px'; blob.style.transform = `scale(${0.85 + 0.15 * e})`; }
+      }
+    }
+    if (c.foot) NB.enter(c.foot, t, c.cfg.foot.t, { dy: 0, dx: -20, scale: 1.04, drot: 2 });
+  },
+});
+</script>
+</body></html>

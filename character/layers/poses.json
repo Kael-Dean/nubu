@@ -1,0 +1,155 @@
+{
+  "note": "Arm poses for the FRONT view are transforms of the arm_L / arm_R layers (canvas 1080x1269). rotation in degrees, positive = clockwise (y down), applied about the shoulder pivot, then uniform scale about the pivot, then translate. Canvas needs ~150px side margin for extended poses. Arms sit ABOVE headphones and face in z-order. Moved arms get a soft drop shadow (offset 8,14 px, blur ~9, colour rgb(110,70,60), alpha 0.34).",
+  "pivots": {
+    "arm_L": [
+      175,
+      790
+    ],
+    "arm_R": [
+      905,
+      790
+    ]
+  },
+  "shadow": {
+    "dx": 8,
+    "dy": 14,
+    "blur": 9,
+    "color": [
+      110,
+      70,
+      60
+    ],
+    "alpha": 0.34
+  },
+  "poses": {
+    "rest": {
+      "arm_L": {
+        "rot": 0,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "arm_R": {
+        "rot": 0,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "suggestedFace": {
+        "eyes": "open",
+        "mouth": "a_small"
+      }
+    },
+    "wave": {
+      "arm_L": {
+        "rot": 0,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "arm_R": {
+        "rot": -95,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "animate": "arm_R rot -95 +/- 15 deg, ~3 Hz",
+      "suggestedFace": {
+        "eyes": "open",
+        "mouth": "happy"
+      }
+    },
+    "cheer": {
+      "arm_L": {
+        "rot": 115,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "arm_R": {
+        "rot": -115,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "suggestedFace": {
+        "eyes": "laugh",
+        "mouth": "laugh"
+      }
+    },
+    "hold_cheeks": {
+      "arm_L": {
+        "rot": 0,
+        "scale": 0.7,
+        "tx": 128,
+        "ty": -131
+      },
+      "arm_R": {
+        "rot": 0,
+        "scale": 0.7,
+        "tx": -127,
+        "ty": -131
+      },
+      "suggestedFace": {
+        "eyes": "swoon",
+        "mouth": "swoon"
+      }
+    },
+    "point": {
+      "arm_L": {
+        "rot": 0,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "arm_R": {
+        "rot": -35,
+        "scale": 1.15,
+        "tx": 0,
+        "ty": 0
+      },
+      "suggestedFace": {
+        "eyes": "open",
+        "mouth": "a_wide"
+      }
+    },
+    "cover_mouth": {
+      "status": "DROPPED (proposed): shoulder->mouth is 402px but the arm reaches ~200px, so any single continuous arm looks like an elephant trunk; AI attempts v1/v2 also failed. Use gasp or hold_cheeks.",
+      "arm_L": {
+        "rot": 0,
+        "scale": 1,
+        "tx": 0,
+        "ty": 0
+      },
+      "arm_R": {
+        "rot": -25,
+        "scale": 0.85,
+        "tx": -392,
+        "ty": -156
+      },
+      "suggestedFace": {
+        "eyes": "shock",
+        "mouth": "shock"
+      }
+    },
+    "gasp": {
+      "arm_L": {
+        "rot": 0,
+        "scale": 0.7,
+        "tx": 279,
+        "ty": -116
+      },
+      "arm_R": {
+        "rot": 0,
+        "scale": 0.7,
+        "tx": -277,
+        "ty": -116
+      },
+      "suggestedFace": {
+        "eyes": "shock",
+        "mouth": "shock"
+      },
+      "note": "replacement for cover_mouth: two small paws flank the mouth below the cheeks; reachable because shoulder->paw distance (~250px) is close to arm reach (~200px)"
+    }
+  }
+}

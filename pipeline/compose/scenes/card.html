@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .hero { padding: 40px 52px 34px 48px; }
+  .hero .title { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 112px; line-height: 1.25; letter-spacing: -0.015em; white-space: nowrap; padding-top: 0.06em; }
+  .hero .dates { display: flex; align-items: baseline; gap: 30px; margin-top: 8px; font-size: 56px; font-weight: 700; line-height: 1.5; }
+  .hero .dates .sep { width: 10px; height: 10px; border-radius: 50%; background: var(--ink-soft); transform: translateY(-14px); }
+  .tape { position: absolute; left: -26px; top: -30px; padding: 4px 26px 8px; font-size: 32px; font-weight: 700; line-height: 1.45; color: var(--ink);
+    background: oklch(0.86 0.06 302 / 0.92); white-space: nowrap;
+    clip-path: polygon(0 6%, 3% 0, 97% 4%, 100% 0, 99% 50%, 100% 96%, 97% 100%, 3% 95%, 0 100%, 1% 50%); }
+  .topics { display: flex; gap: 20px; }
+  .topic { position: relative; display: flex; align-items: center; gap: 18px; padding: 12px 34px 14px 18px; font-size: 50px; font-weight: 700; line-height: 1.5; white-space: nowrap; }
+  .bgphoto { position: absolute; inset: 0; overflow: hidden; }
+  .bgphoto img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+  .bgphoto .grade { position: absolute; inset: 0; background: oklch(0.32 0.12 302 / 0.25); mix-blend-mode: multiply; }
+  .bgphoto .grade2 { position: absolute; inset: 0; background: oklch(0.6 0.15 302 / 0.16); mix-blend-mode: color; }
+  .bgphoto .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
+    background: linear-gradient(180deg, oklch(0.255 0.085 302 / 0) 0%, var(--th-bg) 100%); }
+  .photo { border-radius: 18px; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: card — headline ticket sticker with dates, topic stickers; optional photo:
+//   stock.kind 'image' + cfg.photoMode 'background' → full-bleed graded photo (push-in) until cfg.photoUntil, credit slip stays with it
+//   no stock → drawn stadium graphic in a frame (cfg.photo rect)
+function stadiumSVG(w, h) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 700 380" preserveAspectRatio="xMidYMid slice">
+  <rect width="700" height="380" style="fill:var(--th-bg-2)"/>
+  <path d="M60 260 Q60 190 350 180 Q640 190 640 260 L640 300 Q350 330 60 300Z" style="fill:var(--th-line)"/>
+  <ellipse cx="350" cy="250" rx="210" ry="30" style="fill:var(--th-main)"/>
+  <rect x="0" y="300" width="700" height="80" style="fill:var(--th-bg)"/></svg>`;
+}
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui;
+    c.bgMode = c.stock && c.stock.kind === 'image';
+    if (c.bgMode) {
+      // a real, mounted photo: near-natural colour, paper border + tape, credit slip on the print
+      const F = cfg.photoFrame || { x: 70, y: 250, w: 940, h: 728, rot: -1.2 };
+      c.photo = NB.stockSlot(c.world, Object.assign({ frame: true }, F), c.stock, c);
+      c.credit = c.photo.credit;
+    } else {
+      const ph = cfg.photo || { x: 100, y: 110, w: 820, h: 445 };
+      c.slot = NB.stockSlot(ui, { x: ph.x, y: ph.y, w: ph.w, h: ph.h, r: 18 }, null, c);
+      c.slot.box.classList.add('photo');
+      c.slot.box.innerHTML = stadiumSVG(ph.w, ph.h);
+    }
+    const cp = (c.bgMode ? cfg.cardPos : cfg.cardPosFallback) || cfg.cardPos || { x: 1000, y: 90 };
+    const card = NB.el('div', 'sticker hero', ui);
+    NB.css(card, { left: cp.x + 'px', top: cp.y + 'px', transformOrigin: '30% 60%' });
+    const ttl = NB.el('div', 'title', card, cfg.title); if (cfg.titleSize) ttl.style.fontSize = cfg.titleSize + 'px';
+    const dates = NB.el('div', 'dates', card);
+    c.chips = (cfg.chips || []).map((ch, i) => {
+      const sep = i ? NB.el('span', 'sep', dates) : null;
+      return { e: NB.el('span', '', dates, NB.hl(ch.text, 20 + i)), sep, at: ch.at };
+    });
+    if (cfg.kicker) { c.tape = NB.el('div', 'tape', card, cfg.kicker); c.tape._rot = -4; }
+    c.card = card;
+    const tpos = cfg.topicsPos || { x: 100, y: 600 };
+    const tp = NB.el('div', 'topics abs', ui); NB.css(tp, { left: tpos.x + 'px', top: tpos.y + 'px', flexDirection: cfg.topicsDir || 'row', alignItems: 'flex-start' });
+    const indent = [0, 0, 0, 0];
+    c.topics = (cfg.topics || []).map((x, i) => {
+      const e = NB.el('div', 'sticker topic', tp, `${NB.icon(x.icon, 84)}<div>${x.text}</div>`);
+      e.style.position = 'relative'; e.style.marginLeft = indent[i % 4] + 'px';
+      return { e, at: x.at };
+    });
+  },
+  afterFonts(c) {
+    NB.sticker(c.card, { seed: 2, r: 16, rot: -1.4 });
+    c.topics.forEach((x, i) => NB.sticker(x.e, { seed: 30 + i, r: 18 }));
+  },
+  update: async (t, c) => {
+    const cfg = c.cfg;
+    const at = cfg.cardAt ?? c.start + 0.1;
+    NB.enter(c.card, t, at, { dy: -14, scale: 1.07, drot: 4, dur: 0.45, exitAt: cfg.cardUntil });
+    if (c.tape) NB.enter(c.tape, t, at + 0.3, { dy: 0, scale: 1.1, drot: -3, dur: 0.3 });
+    c.chips.forEach((ch) => { if (ch.sep) ch.sep.style.opacity = t >= ch.at ? '1' : '0'; NB.enter(ch.e, t, ch.at, { dy: 10, scale: 1, drot: 0, dur: 0.3 }); NB.swipe(ch.e, t, ch.at + 0.08, 0.3); });
+    c.topics.forEach((x) => NB.enter(x.e, t, x.at, { dx: -26, dy: 0, scale: 1.05, drot: 3, dur: 0.4 }));
+    if (c.bgMode) {
+      NB.enter(c.photo.box, t, c.start, { dy: 18, scale: 1.03, drot: 2, dur: 0.5, exitAt: cfg.photoUntil, exitDur: 0.35 });
+      await c.photo.update(t);
+    } else {
+      NB.enter(c.slot.box, t, c.start + 0.25, { dy: 0, dx: -40, dur: 0.5, exitAt: cfg.photoUntil, exitDy: 0 });
+    }
+  },
+});
+</script>
+</body></html>

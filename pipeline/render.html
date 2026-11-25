@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nubu render</title>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script>
+  // Deterministic clock: Rive's render loop is driven by requestAnimationFrame timestamps,
+  // so we queue rAF callbacks and fire them ourselves with a fake time (window.__step).
+  (function () {
+    let queue = [], id = 0, now = 0;
+    window.requestAnimationFrame = cb => { queue.push(cb); return ++id; };
+    window.cancelAnimationFrame = () => {};
+    window.__step = dtSeconds => {
+      now += dtSeconds * 1000;
+      const q = queue; queue = [];
+      q.forEach(cb => { try { cb(now); } catch (e) { console.error(e); } });
+    };
+  })();
+</script>
+<script src="/node_modules/@rive-app/canvas/rive.js"></script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+  const params = new URLSearchParams(location.search);
+  const W = +(params.get('w') || 690), H = +(params.get('h') || 695);
+  const canvas = document.getElementById('c');
+  canvas.width = W; canvas.height = H; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  rive.RuntimeLoader.setWasmUrl('/node_modules/@rive-app/canvas/rive.wasm');
+  window.__ready = false;
+  const r = new rive.Rive({
+    src: params.get('src') || '/character/rive/export/nubu.riv',
+    canvas,
+    artboard: 'Nubu_Front',
+    stateMachines: 'Main',
+    autoplay: true,
+    autoBind: true,
+    layout: new rive.Layout({ fit: rive.Fit.Contain }),
+    onLoad: () => {
+      const vmi = r.viewModelInstance;
+      window.__set = (name, value) => { const p = vmi && vmi.number(name); if (p) p.value = value; return !!p; };
+      window.__fire = name => { const t = vmi && vmi.trigger(name); if (t) t.trigger(); return !!t; };
+      window.__vm = !!vmi;
+      window.__ready = true;
+    },
+    onLoadError: e => { window.__error = String(e && (e.data || e.message || e)); },
+  });
+</script>
+</body>
+</html>

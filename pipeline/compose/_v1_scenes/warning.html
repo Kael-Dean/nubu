@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .wbox { padding: 30px 40px 36px; border: 6px solid var(--warn); }
+  .wbox .head { display: flex; align-items: center; gap: 20px; font-size: 68px; font-weight: 700; line-height: 1.45; color: var(--warn); }
+  .line { display: flex; align-items: center; gap: 18px; font-size: 54px; font-weight: 700; line-height: 1.45; margin-top: 18px; }
+  .line .b { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--warn); }
+  .line.big { font-size: 84px; color: #fff; background: var(--warn); border-radius: 20px; padding: 6px 28px 14px; width: fit-content; }
+  .tips { position: absolute; display: flex; flex-direction: column; gap: 16px; }
+  .tip { position: relative; display: flex; align-items: center; gap: 18px; padding: 14px 28px 18px 18px; font-size: 50px; font-weight: 700; }
+  .tip .ic { width: 74px; height: 74px; flex: none; }
+  .art { position: absolute; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: warning — red-framed alert box, lines appear in order, a jolt (one short shake) on the key line,
+// optional green tips under it, optional art: 'taxi' (taxi + price tag struck through).
+// cfg: { title, icon, lines:[{t,text,big}], jitterAt, tips:[{t,icon,text}], box:{x,y,w}, tipsBox:{x,y,w}, art:{kind,t,x,y,strikeAt} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, B = cfg.box || { x: 100, y: 90, w: 1150 };
+    const box = NB.el('div', 'card wbox', c.ui); NB.css(box, { left: B.x + 'px', top: B.y + 'px', width: B.w + 'px' });
+    c.head = NB.el('div', 'head', box, `${NB.icon(cfg.icon || 'warn', 78)}<span>${cfg.title}</span>`);
+    c.lines = (cfg.lines || []).map((l) => ({ e: NB.el('div', 'line' + (l.big ? ' big' : ''), box, `${l.big ? '' : '<span class="b"></span>'}<span>${l.text}</span>`), l }));
+    c.box = box;
+    if (cfg.tips) {
+      const T = cfg.tipsBox || { x: 100, y: 600, w: 1150 };
+      const tb = NB.el('div', 'tips', c.ui); NB.css(tb, { left: T.x + 'px', top: T.y + 'px', width: T.w + 'px' });
+      c.tips = cfg.tips.map((tp) => ({ e: NB.el('div', 'card tip', tb, `<div class="ic">${NB.icon(tp.icon || 'check', 74)}</div><div>${tp.text}</div>`), tp }));
+    }
+    if (cfg.art && cfg.art.kind === 'taxi') {
+      const A = cfg.art;
+      const a = NB.el('div', 'art', c.ui); NB.css(a, { left: A.x + 'px', top: A.y + 'px' });
+      a.innerHTML = `<div style="position:relative;width:400px;height:400px">${NB.icon("taxi", 400)}
+        <div class="tag" style="position:absolute;left:280px;top:0px;background:#fff;color:var(--ink);border-radius:18px;padding:4px 24px 10px;font-size:64px;font-weight:700;line-height:1.4;box-shadow:0 12px 30px rgba(6,0,20,.4);transform:rotate(8deg)">฿<span class="strike" style="position:absolute;left:8px;right:8px;top:50%;height:8px;border-radius:4px;background:var(--warn);transform-origin:0 50%"></span></div></div>`;
+      c.art = a; c.strike = a.querySelector('.strike');
+    }
+  },
+  update(t, c) {
+    const cfg = c.cfg;
+    let jx = 0, jr = 0;
+    if (cfg.jitterAt != null && t >= cfg.jitterAt && t < cfg.jitterAt + 0.45) {
+      const q = (t - cfg.jitterAt) / 0.45; jx = Math.sin(q * Math.PI * 7) * 14 * (1 - q); jr = Math.sin(q * Math.PI * 5) * 0.8 * (1 - q);
+    }
+    NB.enter(c.box, t, cfg.boxAt ?? c.start + 0.05, { dy: 40, scale: 0.96, dur: 0.5, extra: ` translateX(${jx}px) rotate(${jr}deg)` });
+    NB.enter(c.head, t, cfg.boxAt ?? c.start + 0.1, { dy: 16 });
+    for (const x of c.lines) NB.enter(x.e, t, x.l.t, { dx: -30, dy: 0, dur: 0.4, scale: x.l.big ? 0.85 : 1, back: !!x.l.big });
+    if (c.tips) for (const x of c.tips) NB.enter(x.e, t, x.tp.t, { dy: 36, dur: 0.45 });
+    if (c.art) {
+      const A = cfg.art;
+      NB.enter(c.art, t, A.t, { dx: 80, dy: 0, dur: 0.6, exitAt: A.until, exitDy: 30, extra: ` translateY(${Math.sin(t * 2.2) * 4}px)` });
+      c.strike.style.transform = `scaleX(${NB.ease.outCubic(NB.p(t, A.strikeAt, 0.35))})`;
+    }
+  },
+});
+</script>
+</body></html>

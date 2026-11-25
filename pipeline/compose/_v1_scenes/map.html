@@ -1,0 +1,274 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  #map { position: absolute; left: 0; top: 0; }
+  .lbl { position: absolute; white-space: nowrap; font-weight: 700; line-height: 1.5; border-radius: 14px; padding: 2px 16px 6px; font-size: 30px; transform-origin: 0 50%; }
+  .lbl.st { background: #fff; color: var(--ink); box-shadow: 0 8px 22px rgba(6,0,20,.35); }
+  .lbl.road { background: none; color: rgba(235,220,255,0.85); font-size: 26px; font-weight: 400; }
+  .lbl.venue { background: var(--accent); color: #fff; font-size: 34px; box-shadow: 0 10px 26px rgba(6,0,20,.45); }
+  .lbl.note { background: #fff1e6; color: #b3470b; border: 3px dashed #f28c28; font-size: 28px; }
+  .lbl .sw { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin-right: 10px; vertical-align: 2px; }
+  .cards { position: absolute; }
+  .mcard { position: relative; width: max-content; max-width: 880px; padding: 14px 30px 18px 22px; display: flex; align-items: center; gap: 18px; font-size: 42px; font-weight: 700; }
+  .mcard .bar { width: 14px; align-self: stretch; border-radius: 7px; }
+  .mcard .small { font-size: 34px; font-weight: 400; color: var(--ink-soft); }
+  .mover { position: absolute; width: 76px; height: 76px; border-radius: 22px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(6,0,20,.45); }
+  .modes { position: absolute; display: flex; gap: 16px; }
+  .mode { width: 104px; height: 104px; border-radius: 26px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(6,0,20,.45); }
+  .inset { border-radius: 26px; border: 4px solid rgba(255,255,255,.9); box-shadow: 0 20px 50px rgba(6,0,20,.5); }
+  .credit-osm { position: absolute; font-size: 18px; color: rgba(255,255,255,.6); }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: map — stylised hand-drawn transit map. Geometry + events come from the config, so any venue works.
+// cfg.map = { size:[w,h], roads:[{id,d,label,labelAt:[x,y]}], lines:[{id,d,color,width,dashed,label}],
+//             stations:[{id,x,y,name,line,side}], venue:{x,y,name}, notes:[{id,x,y,text}] }
+// cfg.camera = [[t,[cx,cy,zoom]],...]  (per layout: camera16x9 / camera9x16)
+// cfg.events = [{t, draw:lineId, dur, train:icon} | {t, station:id} | {t, blink:id} | {t, note:id, shakeAt} | {t, venue:true} | {t, modes:[icon..], at:[t..], near:[x,y]}]
+// cfg.cards  = [{t, text, color, small}]    cfg.cardsBox = {x,y}
+// cfg.inset  = {t0,t1,x,y,w,h} stock clip window (fallback: drawn train window)
+const SVGNS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, parent) { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+
+NB.define({
+  build(c) {
+    const cfg = c.cfg, M = cfg.map;
+    c.focus = c.layout === '9x16' ? (cfg.focus9x16 || [540, 760]) : (cfg.focus || [840, 450]);
+    c.cam = (c.layout === '9x16' ? cfg.camera9x16 : cfg.camera16x9) || cfg.camera;
+    const svg = sv('svg', { id: 'map', width: c.W, height: c.H }, c.world);
+    const defs = sv('defs', {}, svg);
+    const g = sv('g', {}, svg); c.g = g;
+    // land + texture (seeded minor streets, parks, canal)
+    sv('rect', { x: -2000, y: -2000, width: M.size[0] + 4000, height: M.size[1] + 4000, fill: '#1d0b3c' }, g);
+    const r = NB.rng(M.seed || 5);
+    for (let i = 0; i < 9; i++) sv('ellipse', { cx: r() * M.size[0], cy: r() * M.size[1], rx: 60 + r() * 160, ry: 40 + r() * 110, fill: '#25104a' }, g);
+    for (let i = 0; i < 70; i++) {
+      const x = r() * M.size[0], y = r() * M.size[1], a = r() * Math.PI, l = 120 + r() * 380;
+      sv('path', { d: `M${x} ${y} l${Math.cos(a) * l} ${Math.sin(a) * l}`, stroke: '#2f1660', 'stroke-width': 5, 'stroke-linecap': 'round', fill: 'none' }, g);
+    }
+    if (M.canal) sv('path', { d: M.canal, stroke: '#2c2a6e', 'stroke-width': 16, fill: 'none', 'stroke-linecap': 'round' }, g);
+    c.roads = (M.roads || []).map((rd) => {
+      sv('path', { d: rd.d, stroke: '#3e2478', 'stroke-width': 26, fill: 'none', 'stroke-linecap': 'round' }, g);
+      sv('path', { d: rd.d, stroke: '#5a3a9c', 'stroke-width': 12, fill: 'none', 'stroke-linecap': 'round' }, g);
+      return rd;
+    });
+    // transit lines: casing + colour; drawn on via a mask so dashed lines can also "draw"
+    c.lines = {};
+    for (const ln of M.lines) {
+      const m = sv('mask', { id: 'm_' + ln.id, maskUnits: 'userSpaceOnUse', x: -3000, y: -3000, width: M.size[0] + 6000, height: M.size[1] + 6000 }, defs);
+      const mp = sv('path', { d: ln.d, stroke: '#fff', 'stroke-width': 60, fill: 'none', 'stroke-linecap': 'round' }, m);
+      const grp = sv('g', { mask: `url(#m_${ln.id})` }, g);
+      const casing = sv('path', { d: ln.d, stroke: '#12052a', 'stroke-width': (ln.width || 14) + 10, fill: 'none', 'stroke-linecap': 'round', opacity: ln.dashed ? 0.6 : 1 }, grp);
+      const p = sv('path', { d: ln.d, stroke: ln.color, 'stroke-width': ln.width || 14, fill: 'none', 'stroke-linecap': ln.dashed ? 'butt' : 'round', 'stroke-dasharray': ln.dashed ? '34 22' : '' }, grp);
+      const L = mp.getTotalLength();
+      mp.setAttribute('stroke-dasharray', `${L} ${L}`);
+      c.lines[ln.id] = { ln, mp, p, casing, L };
+    }
+    // venue marker
+    const V = M.venue;
+    c.venueG = sv('g', {}, g);
+    // drawn stadium: open oval bowl, running track round the pitch, one covered main grandstand
+    // (cantilever roof) on the west side, four floodlight masts. Map style, not traced.
+    {
+      const vg = c.venueG, X = V.x, Y = V.y;
+      sv('ellipse', { cx: X + 6, cy: Y + 10, rx: 150, ry: 104, fill: '#0c0320', opacity: 0.55 }, vg); // ground shadow
+      sv('ellipse', { cx: X, cy: Y, rx: 150, ry: 102, fill: '#8a63d8', stroke: '#f3ecff', 'stroke-width': 7 }, vg); // outer bowl
+      // seating tiers (rings)
+      sv('ellipse', { cx: X, cy: Y, rx: 128, ry: 84, fill: '#a888ec' }, vg);
+      for (let i = 0; i < 24; i++) { const a = (i / 24) * Math.PI * 2; sv('line', { x1: X + Math.cos(a) * 104, y1: Y + Math.sin(a) * 66, x2: X + Math.cos(a) * 146, y2: Y + Math.sin(a) * 99, stroke: '#7a52c9', 'stroke-width': 3 }, vg); }
+      sv('ellipse', { cx: X, cy: Y, rx: 104, ry: 66, fill: '#c2553f' }, vg); // running track
+      sv('ellipse', { cx: X, cy: Y, rx: 96, ry: 59, fill: 'none', stroke: '#f6d3c8', 'stroke-width': 1.5, opacity: 0.7 }, vg);
+      sv('ellipse', { cx: X, cy: Y, rx: 88, ry: 52, fill: 'none', stroke: '#f6d3c8', 'stroke-width': 1.5, opacity: 0.7 }, vg);
+      sv('rect', { x: X - 62, y: Y - 38, width: 124, height: 76, rx: 6, fill: '#4fb67a' }, vg); // pitch
+      for (let i = 0; i < 6; i++) sv('rect', { x: X - 62 + i * 20.6, y: Y - 38, width: 10.3, height: 76, fill: '#5cc488' }, vg);
+      sv('rect', { x: X - 62, y: Y - 38, width: 124, height: 76, rx: 6, fill: 'none', stroke: '#fff', 'stroke-width': 2.5 }, vg);
+      sv('line', { x1: X, y1: Y - 38, x2: X, y2: Y + 38, stroke: '#fff', 'stroke-width': 2.5 }, vg);
+      sv('circle', { cx: X, cy: Y, r: 12, fill: 'none', stroke: '#fff', 'stroke-width': 2.5 }, vg);
+      // main grandstand (west) with cantilever roof
+      sv('path', { d: `M${X - 128} ${Y - 54} Q${X - 160} ${Y} ${X - 128} ${Y + 54} L${X - 104} ${Y + 40} Q${X - 124} ${Y} ${X - 104} ${Y - 40} Z`, fill: '#4b2a8f' }, vg);
+      sv('path', { d: `M${X - 136} ${Y - 62} Q${X - 172} ${Y} ${X - 136} ${Y + 62} L${X - 100} ${Y + 44} Q${X - 120} ${Y} ${X - 100} ${Y - 44} Z`, fill: '#f3ecff', opacity: 0.92 }, vg);
+      for (let i = -2; i <= 2; i++) sv('line', { x1: X - 146 - Math.abs(i) * 3, y1: Y + i * 22, x2: X - 108 - Math.abs(i) * 2, y2: Y + i * 17, stroke: '#9c84d6', 'stroke-width': 2 }, vg);
+      // floodlight masts at the four corners
+      for (const [mx, my] of [[-124, -84], [124, -84], [-124, 84], [124, 84]]) {
+        sv('circle', { cx: X + mx, cy: Y + my, r: 20, fill: '#fff6d6', opacity: 0.35 }, vg);
+        sv('rect', { x: X + mx - 9, y: Y + my - 6, width: 18, height: 12, rx: 3, fill: '#fff6d6', stroke: '#3b2370', 'stroke-width': 2.5 }, vg);
+      }
+    }
+    c.venueRing = sv('ellipse', { cx: V.x, cy: V.y, rx: 120, ry: 78, fill: 'none', stroke: '#e8d6ff', 'stroke-width': 6 }, g);
+    // station dots
+    c.st = {};
+    for (const s of M.stations) {
+      const col = c.lines[s.line] ? c.lines[s.line].ln.color : '#fff';
+      const ring = sv('circle', { cx: s.x, cy: s.y, r: 22, fill: 'none', stroke: col, 'stroke-width': 6, opacity: 0 }, g);
+      const dot = sv('circle', { cx: s.x, cy: s.y, r: 15, fill: '#fff', stroke: col, 'stroke-width': 8, 'stroke-dasharray': s.dashed ? '8 6' : '' }, g);
+      const lb = NB.el('div', 'lbl st', c.ui, `<span class="sw" style="background:${col}"></span>${s.name}`);
+      if (!s.name) lb.style.display = 'none';
+      c.st[s.id] = { s, ring, dot, lb };
+    }
+    c.venueLbl = NB.el('div', 'lbl venue', c.ui, V.name);
+    c.roadLbls = c.roads.filter((rd) => rd.label).map((rd) => ({ rd, e: NB.el('div', 'lbl road', c.ui, rd.label) }));
+    c.notes = {};
+    for (const n of M.notes || []) c.notes[n.id] = { n, e: NB.el('div', 'lbl note', c.ui, n.text) };
+    // moving icons / mode icons
+    c.movers = {};
+    c.ev = cfg.events || [];
+    for (const ev of c.ev) {
+      if (ev.draw && ev.train) c.movers[ev.draw] = NB.el('div', 'mover', c.ui, NB.icon(ev.train, 56, c.lines[ev.draw].ln.color));
+    }
+    // inset (stock clip or drawn fallback)
+    if (cfg.inset) {
+      const I = c.layout === '9x16' && cfg.inset9x16 ? cfg.inset9x16 : cfg.inset;
+      c.inset = NB.stockSlot(c.ui, { x: I.x, y: I.y, w: I.w, h: I.h, r: 26 }, c.stock, c);
+      if (!I.full) c.inset.box.classList.add('inset');
+      c.insetCfg = I;
+      if (!c.stock) {
+        c.inset.box.style.background = 'linear-gradient(180deg,#2b1460,#130630)';
+        c.insetArt = NB.el('div', 'abs', c.inset.box); NB.css(c.insetArt, { inset: '0' });
+      }
+    }
+    // mode icons sit above the inset footage
+    for (const ev of c.ev) if (ev.modes) {
+      const box = NB.el('div', 'modes', c.ui);
+      ev.els = ev.modes.map((m) => NB.el('div', 'mode', box, NB.icon(m, 80)));
+      ev.box = box;
+    }
+    // cards (top-left stage)
+    const cb = (c.layout === '9x16' ? cfg.cardsBox9x16 : cfg.cardsBox) || { x: 90, y: 80 };
+    const box = NB.el('div', 'cards', c.ui); NB.css(box, { left: cb.x + 'px', top: cb.y + 'px' });
+    c.cards = (cfg.cards || []).map((cd) => {
+      const e = NB.el('div', 'card mcard', box, `<div class="bar" style="background:${cd.color || 'var(--accent)'}"></div><div>${cd.text}${cd.small ? `<div class="small">${cd.small}</div>` : ''}</div>`);
+      if (c.layout === '9x16') e.style.fontSize = '46px';
+      return { e, cd };
+    });
+    c.stackItems = c.cards.map(({ e, cd }) => ({ e, t: cd.t, until: cd.until }));
+    if (cfg.credit) { const cr = NB.el('div', 'credit-osm', c.ui, cfg.credit); NB.css(cr, { right: '24px', top: '14px' }); }
+  },
+
+  update: async (t, c) => {
+    const cfg = c.cfg, M = cfg.map;
+    const [cx, cy, z] = NB.keys(t, c.cam);
+    const [fx, fy] = c.focus;
+    c.g.setAttribute('transform', `translate(${fx - cx * z} ${fy - cy * z}) scale(${z})`);
+    const P = (x, y) => [fx + (x - cx) * z, fy + (y - cy) * z];
+    // lines: default hidden unless drawn by an event (or ln.always)
+    for (const id in c.lines) {
+      const L = c.lines[id];
+      let prog = L.ln.always ? 1 : 0;
+      for (const ev of c.ev) if (ev.draw === id) prog = Math.max(prog, NB.ease.inOutSine(NB.p(t, ev.t, ev.dur || 1.5)));
+      L.mp.setAttribute('stroke-dashoffset', String(L.L * (1 - prog)));
+      L.prog = prog;
+      const w = (L.ln.width || 14);
+      L.p.setAttribute('stroke-width', String(w / Math.max(0.55, z) * 0.75));
+      L.casing.setAttribute('stroke-width', String((w + 10) / Math.max(0.55, z) * 0.75));
+    }
+    // movers ride along the line while it draws, then sit at the end briefly
+    for (const ev of c.ev) {
+      if (ev.draw && c.movers[ev.draw]) {
+        const L = c.lines[ev.draw], el = c.movers[ev.draw];
+        const p = NB.p(t, ev.t, ev.dur || 1.5);
+        const pt = L.mp.getPointAtLength(L.L * NB.ease.inOutSine(p));
+        const [sx, sy] = P(pt.x, pt.y);
+        const vis = t >= ev.t && t < ev.t + (ev.dur || 1.5) + (ev.hold ?? 1.2);
+        const fade = Math.min(NB.p(t, ev.t, 0.25), 1 - NB.p(t, ev.t + (ev.dur || 1.5) + (ev.hold ?? 1.2) - 0.3, 0.3));
+        el.style.visibility = vis ? 'visible' : 'hidden';
+        el.style.opacity = String(fade);
+        el.style.transform = `translate(${sx - 38}px, ${sy - 92}px)`;
+      }
+    }
+    // stations: appear when their line has drawn past them, or by explicit station event
+    for (const id in c.st) {
+      const S = c.st[id], s = S.s;
+      let appear = null;
+      for (const ev of c.ev) if (ev.station === id) appear = ev.t;
+      const lineProg = c.lines[s.line] ? c.lines[s.line].prog : 0;
+      const onLine = s.along != null ? lineProg >= s.along : false;
+      if (appear == null && onLine) appear = -1;
+      const a = appear == null ? 0 : (appear < 0 ? 1 : NB.ease.outCubic(NB.p(t, appear, 0.35)));
+      S.dot.setAttribute('opacity', String(a));
+      S.dot.setAttribute('r', String(15 / Math.max(0.6, z) * 0.8));
+      S.dot.setAttribute('stroke-width', String(8 / Math.max(0.6, z) * 0.8));
+      const [sx, sy] = P(s.x, s.y);
+      const side = s.side || 'right';
+      const off = 26;
+      const lb = S.lb;
+      const w = lb.offsetWidth, h = lb.offsetHeight;
+      let lx = side === 'left' ? sx - off - w : side === 'top' || side === 'bottom' ? sx - w / 2 : sx + off;
+      let ly = side === 'top' ? sy - off - h : side === 'bottom' ? sy + off : sy - h / 2;
+      const la = appear == null ? 0 : NB.ease.outCubic(NB.p(t, (appear < 0 ? -10 : appear) + 0.1, 0.4));
+      lb.style.opacity = String(la);
+      lb.style.visibility = la > 0 ? 'visible' : 'hidden';
+      // blink (pulse ring + label pop)
+      let pulse = 0;
+      for (const ev of c.ev) if (ev.blink === id) {
+        const q = (t - ev.t);
+        if (q >= 0 && q < 1.6) pulse = Math.max(pulse, Math.sin(Math.min(1, q / 1.6) * Math.PI));
+        if (q >= 0 && q < 1.6) {
+          const k = (q % 0.8) / 0.8;
+          S.ring.setAttribute('r', String((18 + 40 * k) / Math.max(0.6, z)));
+          S.ring.setAttribute('opacity', String((1 - k) * 0.9));
+        }
+      }
+      if (pulse === 0) S.ring.setAttribute('opacity', '0');
+      lb.style.transform = `translate(${lx}px, ${ly}px) scale(${1 + 0.08 * pulse})`;
+      lb.style.background = pulse > 0.05 ? '#ffffff' : '';
+      lb.style.boxShadow = pulse > 0.05 ? `0 0 0 ${4 * pulse}px ${c.lines[s.line] ? c.lines[s.line].ln.color : '#fff'}, 0 8px 22px rgba(6,0,20,.35)` : '';
+    }
+    // venue
+    const V = M.venue;
+    let vAt = null; for (const ev of c.ev) if (ev.venue) vAt = ev.t;
+    const va = vAt == null ? 1 : NB.ease.outCubic(NB.p(t, vAt, 0.5));
+    c.venueG.setAttribute('opacity', String(va));
+    const vr = ((t * 0.7) % 1);
+    c.venueRing.setAttribute('rx', String(120 + 70 * vr)); c.venueRing.setAttribute('ry', String(78 + 46 * vr));
+    c.venueRing.setAttribute('opacity', String((1 - vr) * 0.5 * va));
+    const [vx, vy] = P(V.x, V.y);
+    const vw = c.venueLbl.offsetWidth;
+    c.venueLbl.style.opacity = String(va);
+    c.venueLbl.style.transform = `translate(${vx - vw / 2}px, ${vy - 78 * z - 76}px)`;
+    // roads
+    for (const R of c.roadLbls) { const [x, y] = P(R.rd.labelAt[0], R.rd.labelAt[1]); R.e.style.transform = `translate(${x}px, ${y}px) rotate(${R.rd.labelRot || 0}deg)`; }
+    // notes (e.g. "ยังไม่เปิด") with one shake
+    for (const id in c.notes) {
+      const N = c.notes[id];
+      let at = null, shake = null; for (const ev of c.ev) if (ev.note === id) { at = ev.t; shake = ev.shakeAt; }
+      const [x, y] = P(N.n.x, N.n.y);
+      const a = at == null ? 0 : NB.ease.outCubic(NB.p(t, at, 0.4));
+      let dx = 0;
+      if (shake != null && t >= shake && t < shake + 0.5) { const q = (t - shake) / 0.5; dx = Math.sin(q * Math.PI * 6) * 12 * (1 - q); }
+      N.e.style.opacity = String(a);
+      N.e.style.visibility = a > 0 ? 'visible' : 'hidden';
+      N.e.style.transform = `translate(${x - N.e.offsetWidth / 2 + dx}px, ${y + 20 * (1 - a)}px)`;
+    }
+    // mode icons near a map point
+    for (const ev of c.ev) if (ev.modes) {
+      const [x, y] = P(ev.near[0], ev.near[1]);
+      ev.box.style.left = (x - (ev.modes.length * 120 - 16) / 2) + 'px'; ev.box.style.top = (y - 52) + 'px';
+      ev.els.forEach((e, i) => NB.enter(e, t, ev.at[i], { dy: 30, scale: 0.6, back: true, dur: 0.45 }));
+    }
+    // cards
+    NB.layoutStack(c.stackItems);
+    c.cards.forEach(({ e, cd }) => NB.enter(e, t, cd.t, { dx: -40, dy: 0, dur: 0.5, exitAt: cd.until, exitDy: 0 }));
+    // inset clip window
+    if (c.inset) {
+      const I = c.insetCfg;
+      NB.enter(c.inset.box, t, I.t0, { dy: 30, scale: 0.94, dur: 0.45, exitAt: I.t1, exitDy: 20 });
+      if (c.insetArt) {
+        // drawn fallback: passing train side with windows sliding by
+        let s = `<svg width="${I.w}" height="${I.h}" viewBox="0 0 ${I.w} ${I.h}">`;
+        const off = ((t - I.t0) * 520) % 240;
+        s += `<rect x="0" y="${I.h * 0.26}" width="${I.w}" height="${I.h * 0.5}" fill="#d6dbe8"/>`;
+        s += `<rect x="0" y="${I.h * 0.66}" width="${I.w}" height="${I.h * 0.05}" fill="#d62d3a"/>`;
+        for (let x = -off; x < I.w + 240; x += 240) s += `<rect x="${x + 30}" y="${I.h * 0.33}" width="150" height="${I.h * 0.24}" rx="14" fill="#3a2a66"/><rect x="${x + 40}" y="${I.h * 0.35}" width="60" height="${I.h * 0.08}" rx="6" fill="#ffffff" opacity=".25"/>`;
+        s += `<rect x="0" y="${I.h * 0.82}" width="${I.w}" height="6" fill="#6b5a99"/>`;
+        s += `</svg>`;
+        c.insetArt.innerHTML = s;
+      }
+      await c.inset.update(t);
+    }
+  },
+});
+</script>
+</body></html>

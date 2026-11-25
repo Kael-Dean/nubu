@@ -1,0 +1,78 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  #dots { position: absolute; left: 0; top: 0; }
+  .mini { position: absolute; background: var(--paper); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 16px 30px oklch(0.12 0.05 302 / 0.45), 0 3px 6px oklch(0.12 0.05 302 / 0.3); }
+  .mini .mgrid { position: absolute; inset: 0;
+    background-image: linear-gradient(to right, oklch(0.5 0.05 302 / 0.06) 2px, transparent 2px), linear-gradient(to bottom, oklch(0.5 0.05 302 / 0.06) 2px, transparent 2px);
+    background-size: 40px 40px; }
+  .venue { position: absolute; }
+  .venue .vl { position: absolute; left: 50%; transform: translateX(-50%) rotate(-2deg); font-family: var(--font-display); font-weight: var(--display-weight); font-size: 42px; line-height: 1.3; padding: 4px 22px 10px; color: var(--ink); white-space: nowrap; }
+  .pin { position: absolute; }
+  .mc { width: max-content; display: flex; align-items: center; gap: 18px; padding: 12px 36px 16px 18px; font-size: 52px; font-weight: 700; line-height: 1.45; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: meetup — on a small light map card: people (dots) stream out of the stadium, scatter, then gather at a pin.
+// cfg: { venue:{x,y,label}, pin:{x,y}, outAt, gatherAt, spread, mini:{x,y,w,h,rot}, cards:[{t,icon,text,x,y}] }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, V = cfg.venue, P = cfg.pin, S = cfg.spread ?? 1;
+    if (cfg.mini) {
+      const m = cfg.mini;
+      c.mini = NB.el('div', 'mini', c.ui); NB.css(c.mini, { left: m.x + 'px', top: m.y + 'px', width: m.w + 'px', height: m.h + 'px' });
+      c.mini._rot = m.rot || 0;
+      NB.el('div', 'mgrid', c.mini);
+    }
+    const sc = cfg.mini ? 0.62 : 1;
+    const v = NB.el('div', 'venue', c.ui, `<svg width="${300 * sc}" height="${300 * sc}" viewBox="0 -100 300 300" style="overflow:visible">${NB.stadium(150, 90)}</svg>
+      <div class="vl sticker" style="top:${300 * sc + 4}px">${V.label || ''}</div>`);
+    NB.css(v, { left: V.x - 150 * sc + 'px', top: V.y - 190 * sc + 'px', width: 300 * sc + 'px' });
+    c.venue = v; c.vl = v.querySelector('.vl');
+    c.pin = NB.el('div', 'pin', c.ui, NB.icon('pin', 110)); NB.css(c.pin, { left: P.x - 55 + 'px', top: P.y - 104 + 'px' });
+    c.cv = NB.el('canvas', '', c.ui); c.cv.id = 'dots'; c.cv.width = c.W; c.cv.height = c.H;
+    c.ui.insertBefore(c.cv, c.venue);
+    if (c.mini) c.ui.insertBefore(c.mini, c.cv);
+    const r = NB.rng(31);
+    c.dots = Array.from({ length: cfg.mini ? 70 : 140 }, () => {
+      const a = -Math.PI * 0.9 + r() * Math.PI * 1.8;
+      const d = (180 + r() * 420) * S;
+      return { delay: r() * 1.4, a, sx: V.x + (r() - 0.5) * 50 * sc, sy: V.y + (r() - 0.5) * 24 * sc, mx: V.x + Math.cos(a) * d * 1.2, my: V.y + Math.sin(a) * d * 0.6, gx: P.x + (r() - 0.5) * 120 * sc, gy: P.y + 20 + (r() - 0.5) * 50 * sc, gd: r() * 0.6, size: (6 + r() * 5) * (cfg.mini ? 0.8 : 1), hue: r() };
+    });
+    c.cards = (cfg.cards || []).map((cd) => { const e = NB.el('div', 'sticker mc', c.ui, `${cd.icon ? NB.icon(cd.icon, 80) : ''}<span>${cd.text}</span>`); NB.css(e, { left: cd.x + 'px', top: cd.y + 'px' }); return { e, cd }; });
+  },
+  afterFonts(c) {
+    NB.sticker(c.vl, { seed: 160, r: 14, rot: 0, fill: 'accent', inkEdge: true });
+    c.cards.forEach((x, i) => NB.sticker(x.e, { seed: 170 + i, r: 18 }));
+    c.colA = NB.cssVar('--th-main'); c.colB = NB.cssVar('--th-soft'); c.colInk = NB.cssVar('--ink');
+  },
+  update(t, c) {
+    const cfg = c.cfg;
+    const t0 = c.start + 0.25;
+    if (c.mini) NB.enter(c.mini, t, t0, { dy: 18, scale: 1.03, drot: 2, dur: 0.45 });
+    NB.enter(c.venue, t, t0 + 0.1, { dy: 12, scale: 1, drot: 0, dur: 0.4 });
+    NB.enter(c.pin, t, cfg.gatherAt - 0.2, { dy: -30, scale: 1, drot: 0, dur: 0.4 });
+    c.cards.forEach(({ e, cd }) => NB.enter(e, t, cd.t, { dx: -26, dy: 0, scale: 1.05, drot: 3 }));
+    const g = c.cv.getContext('2d'); g.clearRect(0, 0, c.W, c.H);
+    if (c.mini) { const m = cfg.mini; g.save(); g.beginPath(); g.rect(m.x + 6, m.y + 6, m.w - 12, m.h - 12); g.clip(); }
+    for (const d of c.dots) {
+      const p1 = NB.ease.outCubic(NB.p(t, cfg.outAt + d.delay, 1.6));
+      const p2 = NB.ease.inOutCubic(NB.p(t, cfg.gatherAt + d.gd, 1.3));
+      if (p1 <= 0) continue;
+      let x = d.sx + (d.mx - d.sx) * p1, y = d.sy + (d.my - d.sy) * p1;
+      x += Math.sin(t * 1.3 + d.a * 5) * 4 * (1 - p2); y += Math.cos(t * 1.1 + d.a * 3) * 3 * (1 - p2);
+      x = x + (d.gx - x) * p2; y = y + (d.gy - y) * p2;
+      g.globalAlpha = NB.clamp(p1 * 3);
+      g.fillStyle = c.colInk; g.beginPath(); g.arc(x, y, d.size + 2.5, 0, 6.283); g.fill();
+      g.fillStyle = d.hue > 0.5 ? c.colA : c.colB; g.beginPath(); g.arc(x, y, d.size, 0, 6.283); g.fill();
+    }
+    g.globalAlpha = 1;
+    if (c.mini) g.restore();
+  },
+});
+</script>
+</body></html>

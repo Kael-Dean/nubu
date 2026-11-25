@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  #dots { position: absolute; left: 0; top: 0; }
+  .venue { position: absolute; }
+  .pin { position: absolute; }
+  .mc { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 30px 20px 20px; font-size: 44px; font-weight: 700; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: meetup — purple dots stream out of the venue, scatter, then gather at a meeting pin.
+// cfg: { venue:{x,y,label}, pin:{x,y}, outAt, gatherAt, cards:[{t,icon,text,x,y}] }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, V = cfg.venue, P = cfg.pin;
+    const v = NB.el('div', 'venue', c.ui, `<svg width="300" height="200" viewBox="0 0 300 200"><ellipse cx="150" cy="104" rx="140" ry="88" fill="#8a63d8" stroke="#f3ecff" stroke-width="6"/><ellipse cx="150" cy="104" rx="98" ry="58" fill="#c2553f"/><rect x="92" y="72" width="116" height="64" rx="6" fill="#4fb67a" stroke="#fff" stroke-width="2.5"/><path d="M22 70 Q4 104 22 138 L48 124 Q38 104 48 84Z" fill="#f3ecff"/></svg><div style="text-align:center;font-size:32px;font-weight:700;line-height:1.5">${V.label || ''}</div>`);
+    NB.css(v, { left: V.x - 150 + 'px', top: V.y - 104 + 'px' });
+    c.venue = v;
+    c.pin = NB.el('div', 'pin', c.ui, NB.icon('pin', 130, '#ffd23f')); NB.css(c.pin, { left: P.x - 65 + 'px', top: P.y - 125 + 'px' });
+    c.cv = NB.el('canvas', '', c.ui); c.cv.id = 'dots'; c.cv.width = c.W; c.cv.height = c.H;
+    c.ui.insertBefore(c.cv, c.ui.firstChild);
+    const r = NB.rng(31);
+    c.dots = Array.from({ length: 140 }, () => {
+      const a = -Math.PI * 0.9 + r() * Math.PI * 1.8;
+      const d = 180 + r() * 420;
+      return { delay: r() * 1.4, a, sx: V.x + (r() - 0.5) * 60, sy: V.y + (r() - 0.5) * 30, mx: V.x + Math.cos(a) * d * 1.2, my: V.y + Math.sin(a) * d * 0.6, gx: P.x + (r() - 0.5) * 150, gy: P.y + 40 + (r() - 0.5) * 70, gd: r() * 0.6, size: 6 + r() * 6, hue: r() };
+    });
+    c.cards = (cfg.cards || []).map((cd) => { const e = NB.el('div', 'card mc', c.ui, `${cd.icon ? NB.icon(cd.icon, 64) : ''}<span>${cd.text}</span>`); NB.css(e, { left: cd.x + 'px', top: cd.y + 'px' }); return { e, cd }; });
+  },
+  update(t, c) {
+    const cfg = c.cfg;
+    NB.enter(c.venue, t, c.start + 0.05, { dy: 30, dur: 0.5 });
+    NB.enter(c.pin, t, cfg.gatherAt - 0.2, { dy: -60, scale: 0.6, back: true, dur: 0.5 });
+    c.cards.forEach(({ e, cd }) => NB.enter(e, t, cd.t, { dx: -40, dy: 0 }));
+    const g = c.cv.getContext('2d'); g.clearRect(0, 0, c.W, c.H);
+    for (const d of c.dots) {
+      const p1 = NB.ease.outCubic(NB.p(t, cfg.outAt + d.delay, 1.6));
+      const p2 = NB.ease.inOutCubic(NB.p(t, cfg.gatherAt + d.gd, 1.3));
+      if (p1 <= 0) continue;
+      let x = d.sx + (d.mx - d.sx) * p1, y = d.sy + (d.my - d.sy) * p1;
+      x += Math.sin(t * 1.3 + d.a * 5) * 6 * (1 - p2); y += Math.cos(t * 1.1 + d.a * 3) * 4 * (1 - p2);
+      x = x + (d.gx - x) * p2; y = y + (d.gy - y) * p2;
+      const col = d.hue > 0.5 ? '190,150,255' : '235,215,255';
+      g.fillStyle = `rgba(${col},${0.9 * NB.clamp(p1 * 3)})`;
+      g.beginPath(); g.arc(x, y, d.size, 0, 6.283); g.fill();
+    }
+  },
+});
+</script>
+</body></html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  /* light transit-diagram card on the zine page */
+  .mapcard { position: absolute; background: var(--paper); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 18px 36px oklch(0.12 0.05 302 / 0.45), 0 3px 6px oklch(0.12 0.05 302 / 0.3); }
+  .mapcard .mgrid { position: absolute; inset: 0;
+    background-image: linear-gradient(to right, oklch(0.5 0.05 302 / 0.06) 2px, transparent 2px), linear-gradient(to bottom, oklch(0.5 0.05 302 / 0.06) 2px, transparent 2px);
+    background-size: 48px 48px; }
+  .mapcard svg { position: absolute; left: 0; top: 0; }
+  .mapcard .lbls { position: absolute; inset: 0; }
+  .lbl { position: absolute; left: 0; top: 0; white-space: nowrap; line-height: 1.4; transform-origin: 0 50%; }
+  .lbl.st { color: var(--ink); font-weight: 700; font-size: 44px; background: var(--paper); padding: 0 20px 6px; border-radius: 14px;
+    box-shadow: 0 0 0 3px var(--ink), 0 6px 10px oklch(0.2 0.06 302 / 0.22); }
+  .leader { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+  .lbl.venue { color: var(--ink); font-family: var(--font-display); font-weight: var(--display-weight); font-size: 48px; padding: 4px 26px 10px; line-height: 1.3; }
+  .lbl.note { color: var(--accent); font-weight: 700; font-size: 38px; padding: 2px 20px 8px; }
+  .cards { position: absolute; }
+  .mcard { width: max-content; max-width: 900px; padding: 12px 32px 16px 22px; display: flex; align-items: center; gap: 20px; font-size: 46px; font-weight: 700; line-height: 1.4; }
+  .mcard .small { font-size: 34px; font-weight: 500; color: var(--ink-soft); line-height: 1.45; }
+  .mcard .chip { flex: none; }
+  .mover { position: absolute; left: 0; top: 0; width: 84px; height: 84px; }
+  .modes { position: absolute; display: flex; gap: 18px; }
+  .mode { position: relative; width: 116px; height: 116px; display: flex; align-items: center; justify-content: center; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: map — schematic transit diagram on a light card (0/45/90° lines, real line colours, white stations
+// with ink rims, big haloed labels). Geometry + events come from the config, so any venue works.
+// cfg.map = { size:[w,h], card:{x,y,w,h}, lines:[{id,d,color,width,dashed}], stations:[{id,x,y,name,line,side}],
+//             venue:{x,y,name,labelSide:'below'|'above'}, notes:[{id,x,y,text}] }
+// cfg.camera9x16 = [[t,[cx,cy,zoom]],...] — map point cx,cy is put at cfg.focus9x16 (screen)
+// cfg.events = [{t, draw, dur, train} | {t, station} | {t, blink} | {t, note, shakeAt} | {t, venue:true} | {t, modes, at, screen:[x,y], until}]
+// cfg.cards = [{t, until, text, small, line}]   cfg.labels = [stationIds to label]   cfg.inset = framed footage window
+// Walking / last-mile links (ids starting lm_) are drawn as ink dashes with an arrowhead into the stadium.
+// Labels never sit under a card or the subtitle band: they fade instead.
+const SVGNS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, parent) { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function chipSVG(color, dashed) {
+  return `<svg class="chip" width="64" height="64" viewBox="0 0 64 64"><path d="M6 50 L24 50 L44 18 L60 18" style="fill:none;stroke:${color};stroke-width:12;stroke-linecap:${dashed ? 'butt' : 'round'};stroke-linejoin:round;${dashed ? 'stroke-dasharray:10 7' : ''}"/><circle cx="34" cy="34" r="9" style="fill:var(--paper);stroke:var(--ink);stroke-width:4.5"/></svg>`;
+}
+// Label placement (once per scene, so labels never jump): for each labelled station try 8 positions around the
+// dot (two distances; the far one gets a leader line) and score every camera key of this scene: samples of every
+// line that is on screen in this scene, the other station dots, the stadium and already placed labels must stay out
+// of the label box (+10 px). Lowest score wins; ties keep the configured side.
+function placeLabels(c) {
+  const cfg = c.cfg, M = cfg.map, K = c.K;
+  const cams = c.cam.filter(([t]) => t >= c.start - 0.01 && t <= c.end + 0.01).map(([, v]) => v);
+  if (!cams.length) cams.push(NB.keys(c.start, c.cam));
+  const live = Object.values(c.lines).filter((L) => {
+    if (L.ln.always) return true;
+    return c.ev.some((ev) => ev.draw === L.ln.id && ev.t < c.end);
+  });
+  const samples = [];
+  for (const L of live) { const mv = c.ev.some((ev) => ev.draw === L.ln.id && ev.train); for (let d = 0; d <= L.L; d += 8) { const p = L.mp.getPointAtLength(d); samples.push([p.x, p.y, (L.walk ? 6 : (L.ln.width || 22) / 2 + 4), mv]); } }
+  const dots = M.stations.map((s) => [s.x, s.y]);
+  const V = M.venue;
+  const order = ['right', 'left', 'tr', 'br', 'tl', 'bl', 'top', 'bottom'];
+  const placed = cams.map(() => []);
+  const box = (S, side, far, cam) => {
+    const [cx, cy, z] = cam, ox = c.focus[0] - K.x, oy = c.focus[1] - K.y;
+    const sx = ox + (S.s.x - cx) * z, sy = oy + (S.s.y - cy) * z;
+    const off = far ? 96 : 40, w = S.w, h = S.h, dg = off * 0.72;
+    let x, y;
+    if (side === 'right') { x = sx + off; y = sy - h / 2; } else if (side === 'left') { x = sx - off - w; y = sy - h / 2; }
+    else if (side === 'top') { x = sx - w / 2; y = sy - off - h; } else if (side === 'bottom') { x = sx - w / 2; y = sy + off; }
+    else if (side === 'tr') { x = sx + dg; y = sy - dg - h; } else if (side === 'br') { x = sx + dg; y = sy + dg; }
+    else if (side === 'tl') { x = sx - dg - w; y = sy - dg - h; } else { x = sx - dg - w; y = sy + dg; }
+    return { x0: x, y0: y, x1: x + w, y1: y + h, sx, sy, z };
+  };
+  for (const id in c.st) {
+    const S = c.st[id];
+    if (S.off) continue;
+    const pref = S.side;
+    let best = null;
+    for (const far of [false, true]) for (const side of [pref, ...order.filter((o) => o !== pref)]) {
+      let score = far ? 0.5 : 0;
+      cams.forEach((cam, ci) => {
+        const b = box(S, side, far, cam), m = 10;
+        const [cx, cy, z] = cam, ox = c.focus[0] - K.x, oy = c.focus[1] - K.y;
+        const P = (x, y) => [ox + (x - cx) * z, oy + (y - cy) * z];
+        for (const [x, y, rad, mv] of samples) { const [px, py] = P(x, y), rr = mv ? 50 : rad * z + m; if (px > b.x0 - rr && px < b.x1 + rr && py > b.y0 - rr && py < b.y1 + rr) score += 1; }
+        for (const [x, y] of dots) { const [px, py] = P(x, y), rr = 22 * z + m; if (px > b.x0 - rr && px < b.x1 + rr && py > b.y0 - rr && py < b.y1 + rr) score += 20; }
+        const [vx, vy] = P(V.x, V.y);
+        if (overlap(b, { x0: vx - 150 * z, y0: vy - 190 * z, x1: vx + 150 * z, y1: vy + 190 * z })) score += 30;
+        for (const q of placed[ci]) if (overlap(b, { x0: q.x0 - 12, y0: q.y0 - 12, x1: q.x1 + 12, y1: q.y1 + 12 })) score += 40;
+        if (b.x0 < 16 || b.x1 > K.w - 16 || b.y0 < 12) score += 25;
+      });
+      if (!best || score < best.score) best = { score, side, far };
+    }
+    S.side = best.side; S.far = best.far;
+    cams.forEach((cam, ci) => placed[ci].push(box(S, best.side, best.far, cam)));
+    S.box = (cam) => box(S, S.side, S.far, cam);
+    if (best.far) { S.leader = sv('svg', { class: 'leader', width: K.w, height: K.h }, null); S.lb.parentNode.insertBefore(S.leader, S.lb); S.leaderPath = sv('path', { style: 'fill:none;stroke:var(--ink);stroke-width:3' }, S.leader); }
+  }
+  // venue label: same rule (clear of lines, labels, the card stack and the subtitle band), one side per scene
+  const vw = c.venueLbl.offsetWidth, vh = c.venueLbl.offsetHeight;
+  const vbox = (side, cam) => {
+    const [cx, cy, z] = cam, ox = c.focus[0] - K.x, oy = c.focus[1] - K.y;
+    const vx = ox + (V.x - cx) * z, vy = oy + (V.y - cy) * z;
+    if (side === 'below') return { x0: vx - vw / 2, y0: vy + 112 * z + 6, x1: vx + vw / 2, y1: vy + 112 * z + 6 + vh };
+    if (side === 'right') return { x0: vx + 140 * z + 12, y0: vy - vh / 2 + 30 * z, x1: vx + 140 * z + 12 + vw, y1: vy + vh / 2 + 30 * z };
+    if (side === 'left') return { x0: vx - 140 * z - 12 - vw, y0: vy - vh / 2 + 30 * z, x1: vx - 140 * z - 12, y1: vy + vh / 2 + 30 * z };
+    return { x0: vx - vw / 2 + 40 * z, y0: vy - 100 * z - vh - 8, x1: vx + vw / 2 + 40 * z, y1: vy - 100 * z - 8 };
+  };
+  const floorK = (cfg.labelFloor ?? 1180) - K.y, cardsK = { x0: -999, y0: -999, x1: (c.cardsBox.x - K.x) + 640, y1: (c.cardsBox.y - K.y) + 250 };
+  let vb = null;
+  for (const side of [V.labelSide || 'below', 'below', 'right', 'left', 'above']) {
+    let score = 0;
+    cams.forEach((cam, ci) => {
+      const b = vbox(side, cam), [cx, cy, z] = cam, ox = c.focus[0] - K.x, oy = c.focus[1] - K.y;
+      for (const [x, y, rad] of samples) { const px = ox + (x - cx) * z, py = oy + (y - cy) * z, rr = rad * z + 8; if (px > b.x0 - rr && px < b.x1 + rr && py > b.y0 - rr && py < b.y1 + rr) score += 1; }
+      for (const q of placed[ci]) if (overlap(b, q)) score += 40;
+      if (b.y1 > floorK) score += 60;
+      if (overlap(b, cardsK)) score += 30;
+      if (b.x0 < 16 || b.x1 > K.w - 16) score += 25;
+    });
+    if (!vb || score < vb.score) vb = { side, score };
+  }
+  if (cfg.venueSide) vb.side = cfg.venueSide;
+  c.venueBox = (cam) => vbox(vb.side, cam);
+}
+const overlap = (a, b) => Math.max(0, Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0)) * Math.max(0, Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0));
+
+NB.define({
+  build(c) {
+    const cfg = c.cfg, M = cfg.map;
+    c.focus = cfg.focus9x16 || [540, 860];
+    c.cam = cfg.camera9x16 || cfg.camera;
+    c.floorY = cfg.labelFloor ?? 1180;
+    const K = M.card || { x: 40, y: 250, w: 1000, h: 940 };
+    c.K = K;
+    const card = NB.el('div', 'mapcard', c.world); NB.css(card, { left: K.x + 'px', top: K.y + 'px', width: K.w + 'px', height: K.h + 'px' });
+    c.card = card;
+    NB.el('div', 'mgrid', card);
+    for (const [x, y, a] of [[-20, -14, -8], [K.w - 130, -12, 7]]) { const e = NB.el('div', 'tape', c.world); NB.css(e, { left: K.x + x + 'px', top: K.y + y + 'px', transform: `rotate(${a}deg)` }); }
+    const svg = sv('svg', { width: K.w, height: K.h }, card);
+    const defs = sv('defs', {}, svg);
+    const ah = sv('marker', { id: 'arrow', viewBox: '0 0 10 10', refX: 5, refY: 5, markerWidth: 3.2, markerHeight: 3.2, orient: 'auto-start-reverse' }, defs);
+    sv('path', { d: 'M0 0 L10 5 L0 10 Z', style: 'fill:var(--ink)' }, ah);
+    const g = sv('g', {}, svg); c.g = g;
+    c.lines = {};
+    for (const ln of M.lines) {
+      const walk = /^lm_/.test(ln.id);
+      const m = sv('mask', { id: 'm_' + ln.id, maskUnits: 'userSpaceOnUse', x: -3000, y: -3000, width: 8000, height: 8000 }, defs);
+      const mp = sv('path', { d: ln.d, stroke: '#fff', 'stroke-width': 80, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, m);
+      const grp = sv('g', { mask: `url(#m_${ln.id})` }, g);
+      const halo = sv('path', { d: ln.d, style: `stroke:var(--paper);fill:none;stroke-linecap:round;stroke-linejoin:round` }, grp);
+      const p = sv('path', { d: ln.d, style: walk ? 'stroke:var(--ink);fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 14' : `stroke:${ln.color};fill:none;stroke-linecap:${ln.dashed ? 'butt' : 'round'};stroke-linejoin:round;${ln.dashed ? 'stroke-dasharray:30 18' : ''}` }, grp);
+      let arrow = null;
+      if (walk) { // arrowhead drawn separately so it appears once the walk has arrived
+        arrow = sv('path', { d: ln.d, style: 'stroke:none;fill:none', 'marker-end': 'url(#arrow)' }, g);
+      }
+      const L = mp.getTotalLength();
+      mp.setAttribute('stroke-dasharray', `${L} ${L}`);
+      c.lines[ln.id] = { ln, mp, p, halo, L, walk, arrow };
+    }
+    // venue: drawn stadium (oval bowl, track, pitch in the highlighter colour, one covered stand)
+    const V = M.venue;
+    c.venueG = sv('g', {}, g);
+    c.venueG.innerHTML = NB.stadium(V.x, V.y);
+    // stations
+    c.st = {};
+    const sides = cfg.labelSides || {};
+    const lbls = NB.el('div', 'lbls', card);
+    for (const s of M.stations) {
+      const col = c.lines[s.line] ? c.lines[s.line].ln.color : 'var(--ink)';
+      const ring = sv('circle', { cx: s.x, cy: s.y, r: 22, style: `fill:none;stroke:${col};stroke-width:7;opacity:0` }, g);
+      const dot = sv('circle', { cx: s.x, cy: s.y, r: 16, style: `fill:var(--paper);stroke:var(--ink);stroke-width:7;${s.dashed ? 'stroke-dasharray:7 6' : ''}` }, g);
+      const lb = NB.el('div', 'lbl st', lbls, s.name || '');
+      const off = !s.name || (cfg.labels && !cfg.labels.includes(s.id));
+      if (off) lb.style.display = 'none';
+      c.st[s.id] = { s, ring, dot, lb, off, side: sides[s.id] || s.side || 'right' };
+    }
+    c.venueLbl = NB.el('div', 'lbl venue sticker', lbls, V.name);
+    c.notes = {};
+    if (!cfg.hideNotes) for (const n of M.notes || []) c.notes[n.id] = { n, e: NB.el('div', 'lbl note sticker', lbls, n.text) };
+    c.movers = {};
+    c.ev = cfg.events || [];
+    for (const ev of c.ev) {
+      if (ev.draw && ev.train) { const m = NB.el('div', 'mover', lbls, ev.train === 'train' ? NB.trainBadge(c.lines[ev.draw].ln.color) : NB.trainBadge(c.lines[ev.draw].ln.color).replace(/<g transform[\s\S]*<\/g>/, `<g transform="translate(20 20) scale(.44)">${NB.icons[ev.train]()}</g>`)); m.querySelector('svg').classList.add('ic'); c.movers[ev.draw] = m; }
+    }
+    // framed footage window
+    if (cfg.inset && c.stock) {
+      const I = cfg.inset9x16 || cfg.inset;
+      c.inset = NB.stockSlot(c.ui, { x: I.x, y: I.y, w: I.w, h: I.h, frame: true, rot: I.rot ?? -1.2 }, c.stock, c);
+      c.insetCfg = I;
+    }
+    for (const ev of c.ev) if (ev.modes) {
+      const box = NB.el('div', 'modes', c.ui);
+      ev.els = ev.modes.map((m) => NB.el('div', 'mode sticker', box, NB.icon(m, 84)));
+      ev.box = box;
+    }
+    const cb = cfg.cardsBox9x16 || { x: 60, y: 290 };
+    const box = NB.el('div', 'cards', c.ui); NB.css(box, { left: cb.x + 'px', top: cb.y + 'px' });
+    c.cardsBox = cb;
+    c.cards = (cfg.cards || []).map((cd) => {
+      const L = cd.line && c.lines[cd.line] ? c.lines[cd.line].ln : null;
+      const e = NB.el('div', 'sticker mcard', box, `${L ? chipSVG(L.color, L.dashed) : ''}<div>${cd.text}${cd.small ? `<div class="small">${cd.small}</div>` : ''}</div>`);
+      return { e, cd };
+    });
+    c.stackItems = c.cards.map(({ e, cd }) => ({ e, t: cd.t, until: cd.until }));
+  },
+
+  afterFonts(c) {
+    NB.sticker(c.venueLbl, { seed: 71, r: 14, rot: -2, fill: 'accent', inkEdge: true });
+    for (const id in c.notes) NB.sticker(c.notes[id].e, { seed: 73, r: 10, rot: 3, fill: 'ink' });
+    c.cards.forEach(({ e }, k) => NB.sticker(e, { seed: 80 + k, r: 18 }));
+    for (const ev of c.ev) if (ev.els) ev.els.forEach((e, k) => NB.sticker(e, { seed: 90 + k, r: 26, rot: [-3, 2, -1][k % 3] }));
+    for (const id in c.st) { const S = c.st[id]; S.w = S.lb.offsetWidth; S.h = S.lb.offsetHeight; }
+    placeLabels(c);
+  },
+
+  update: async (t, c) => {
+    const cfg = c.cfg, M = cfg.map, K = c.K;
+    const [cx, cy, z] = NB.keys(t, c.cam);
+    const [fx, fy] = c.focus;
+    // map space → card space (screen minus card origin)
+    const ox = fx - K.x, oy = fy - K.y;
+    c.g.setAttribute('transform', `translate(${ox - cx * z} ${oy - cy * z}) scale(${z})`);
+    const P = (x, y) => [ox + (x - cx) * z, oy + (y - cy) * z];
+    // cards first: their boxes (in card space) are what labels must stay clear of
+    NB.layoutStack(c.stackItems);
+    const blockers = [];
+    c.cards.forEach(({ e, cd }) => {
+      NB.enter(e, t, cd.t, { dx: -30, dy: 0, scale: 1.05, drot: 3, exitAt: cd.until, exitDy: 0 });
+      const vis = t >= cd.t - 0.05 && (cd.until == null || t < cd.until + 0.3);
+      if (vis) blockers.push({ x0: c.cardsBox.x - K.x - 20, y0: c.cardsBox.y - K.y + e.offsetTop - 16, x1: c.cardsBox.x - K.x + e.offsetWidth + 24, y1: c.cardsBox.y - K.y + e.offsetTop + e.offsetHeight + 16 });
+    });
+    for (const ev of c.ev) if (ev.modes && t >= ev.at[0] && (ev.until == null || t < ev.until)) {
+      const [sx, sy] = ev.screen; blockers.push({ x0: sx - 220 - K.x, y0: sy - 70 - K.y, x1: sx + 220 - K.x, y1: sy + 70 - K.y });
+    }
+    blockers.push({ x0: -9999, y0: c.floorY - K.y, x1: 9999, y1: 9999 });
+    const placed = [];
+    const clear = (b) => {
+      const A = (b.x1 - b.x0) * (b.y1 - b.y0);
+      let o = 0;
+      for (const k of blockers) o += overlap(b, k);
+      for (const k of placed) o += overlap(b, k);
+      if (b.x0 < 14 || b.x1 > K.w - 14 || b.y0 < 10) o += A * 0.2;
+      return 1 - NB.clamp(o / (A * 0.06));
+    };
+    // lines (constant on-screen width while the camera zooms)
+    for (const id in c.lines) {
+      const L = c.lines[id];
+      let prog = L.ln.always ? 1 : 0;
+      for (const ev of c.ev) if (ev.draw === id) prog = Math.max(prog, NB.ease.inOutCubic(NB.p(t, ev.t, ev.dur || 1.5)));
+      L.mp.setAttribute('stroke-dashoffset', String(L.L * (1 - prog)));
+      L.prog = prog;
+      const w = (L.ln.width || 22) / z;
+      L.p.style.strokeWidth = String(L.walk ? 9 / z : w);
+      L.halo.style.strokeWidth = String(L.walk ? 0 : w + 8 / z);
+      if (L.walk) { L.p.style.strokeDasharray = `${2 / z} ${14 / z}`; L.arrow.style.opacity = prog >= 0.98 ? '1' : '0'; L.arrow.setAttribute('stroke-width', String(9 / z)); }
+      else if (L.ln.dashed) L.p.style.strokeDasharray = `${30 / z} ${18 / z}`;
+    }
+    // movers
+    c.moverBoxes = [];
+    for (const ev of c.ev) if (ev.draw && c.movers[ev.draw]) {
+      const L = c.lines[ev.draw], el = c.movers[ev.draw];
+      const p = NB.p(t, ev.t, ev.dur || 1.5);
+      const pt = L.mp.getPointAtLength(L.L * NB.ease.inOutCubic(p));
+      const [sx, sy] = P(pt.x, pt.y);
+      const end = ev.t + (ev.dur || 1.5) + (ev.hold ?? 1.0);
+      el.style.visibility = t >= ev.t && t < end ? 'visible' : 'hidden';
+      el.style.opacity = String(Math.min(NB.p(t, ev.t, 0.2), 1 - NB.p(t, end - 0.25, 0.25)));
+      el.style.transform = `translate(${sx - 42}px, ${sy - 42}px)`;
+      c.moverBoxes.push({ x0: sx - 48, y0: sy - 48, x1: sx + 48, y1: sy + 48, on: t >= ev.t && t < end });
+    }
+    // venue
+    const V = M.venue;
+    let vAt = null; for (const ev of c.ev) if (ev.venue) vAt = ev.t;
+    const va = vAt == null ? 1 : NB.ease.outExpo(NB.p(t, vAt, 0.5));
+    c.venueG.setAttribute('opacity', String(va));
+    // "you are here → stadium": the stadium answers with one ring each time a last-mile link arrives
+    // "you are here → stadium": the stadium gives one small nod each time a last-mile link arrives
+    let nod = 0;
+    for (const ev of c.ev) if (ev.draw && /^lm_/.test(ev.draw)) { const q = t - (ev.t + (ev.dur || 1.5)); if (q >= 0 && q < 0.5) nod = Math.max(nod, Math.sin((q / 0.5) * Math.PI)); }
+    c.venueG.setAttribute('transform', `translate(${V.x} ${V.y}) scale(${(0.9 + 0.1 * va) * (1 + 0.05 * nod)}) translate(${-V.x} ${-V.y})`);
+    {
+      const b = c.venueBox([cx, cy, z]);
+      const lx = b.x0, ly = b.y0;
+      const a = va * clear(b);
+      placed.push(b);
+      c.venueLbl.style.opacity = String(a);
+      c.venueLbl.style.visibility = a > 0.01 ? 'visible' : 'hidden';
+      c.venueLbl.style.transform = `translate(${lx}px, ${ly}px) rotate(-2deg)`;
+    }
+    for (const id in c.notes) {
+      const N = c.notes[id];
+      let at = null, shake = null; for (const ev of c.ev) if (ev.note === id) { at = ev.t; shake = ev.shakeAt; }
+      const [x, y] = P(N.n.x, N.n.y);
+      const e = at == null ? 0 : NB.ease.outExpo(NB.p(t, at, 0.4));
+      let dx = 0;
+      if (shake != null && t >= shake && t < shake + 0.45) { const q = (t - shake) / 0.45; dx = Math.sin(q * Math.PI * 5) * 10 * (1 - q); }
+      const w = N.e.offsetWidth, h = N.e.offsetHeight;
+      const b = { x0: x - w / 2, y0: y - h, x1: x + w / 2, y1: y };
+      const a = (at == null ? 0 : NB.clamp(NB.p(t, at, 0.4) * 3)) * clear(b);
+      placed.push(b);
+      N.e.style.opacity = String(a);
+      N.e.style.visibility = a > 0.01 ? 'visible' : 'hidden';
+      N.e.style.transform = `translate(${x - w / 2 + dx}px, ${y - h + 12 * (1 - e)}px) rotate(3deg)`;
+    }
+    for (const id in c.st) {
+      const S = c.st[id], s = S.s;
+      let appear = null;
+      for (const ev of c.ev) if (ev.station === id) appear = ev.t;
+      const a = appear == null ? 0 : NB.ease.outExpo(NB.p(t, appear, 0.35));
+      S.dot.setAttribute('opacity', String(a));
+      S.dot.setAttribute('r', String(17 / z));
+      S.dot.style.strokeWidth = String(7 / z);
+      const [sx, sy] = P(s.x, s.y);
+      const bx = S.box ? S.box([cx, cy, z]) : { x0: sx + 30, y0: sy - S.h / 2 };
+      const L = bx.x0, T = bx.y0, w = S.w, h = S.h;
+      let pulse = 0;
+      for (const ev of c.ev) if (ev.blink === id) {
+        const q = t - ev.t;
+        if (q >= 0 && q < 0.9) { // one pulse
+          pulse = Math.sin((q / 0.9) * Math.PI);
+          const k = NB.ease.outCubic(q / 0.9);
+          S.ring.setAttribute('r', String((20 + 46 * k) / z)); S.ring.setAttribute('opacity', String((1 - k) * 0.95)); S.ring.style.strokeWidth = String(7 / z);
+        }
+      }
+      if (pulse === 0) S.ring.setAttribute('opacity', '0');
+      const b = { x0: L, y0: T, x1: L + w, y1: T + h };
+      let mk = 1; for (const q of c.moverBoxes) if (q.on && overlap(b, q)) mk = 0.0;
+      const la = appear == null || S.off ? 0 : NB.clamp(NB.p(t, appear + 0.08, 0.3) * 3) * clear(b) * (mk ? 1 : 0.25);
+      if (la > 0) placed.push(b);
+      S.lb.style.opacity = String(la);
+      S.lb.style.visibility = la > 0.01 ? 'visible' : 'hidden';
+      const le = NB.ease.outExpo(NB.p(t, (appear ?? 0) + 0.08, 0.35));
+      S.lb.style.transform = `translate(${L}px, ${T + 8 * (1 - le)}px) scale(${1 + 0.06 * pulse})`;
+      if (S.leaderPath) {
+        const ex = Math.max(L, Math.min(L + w, sx)), ey = Math.max(T, Math.min(T + h, sy));
+        const dx = ex - sx, dy = ey - sy, dl = Math.hypot(dx, dy) || 1;
+        S.leaderPath.setAttribute('d', `M${sx + dx / dl * 20} ${sy + dy / dl * 20} L${ex} ${ey}`);
+        S.leader.style.opacity = String(la);
+      }
+    }
+    for (const ev of c.ev) if (ev.modes) {
+      const [x, y] = ev.screen;
+      ev.box.style.left = (x - (ev.modes.length * 134 - 18) / 2) + 'px'; ev.box.style.top = (y - 58) + 'px';
+      ev.els.forEach((e, i) => NB.enter(e, t, ev.at[i], { dy: -10, scale: 1.1, drot: 5, dur: 0.36, exitAt: ev.until }));
+    }
+    if (c.inset) {
+      const I = c.insetCfg;
+      NB.enter(c.inset.box, t, I.t0, { dy: 20, scale: 1.03, drot: 2, dur: 0.4, exitAt: I.t1, exitDy: 16, exitDur: 0.25 });
+      await c.inset.update(t);
+    }
+  },
+});
+</script>
+</body></html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .wordmark { font-weight: 700; font-size: 150px; line-height: 1.2; letter-spacing: -2px; color: #fff; }
+  .kicker { font-size: 34px; font-weight: 700; color: #d9c4ff; letter-spacing: 1px; line-height: 1.5; }
+  .ep { padding: 26px 34px 30px; }
+  .ep .tag { font-size: 26px; font-weight: 700; color: var(--accent-deep); line-height: 1.5; }
+  .ep .t { font-size: 50px; font-weight: 700; line-height: 1.45; }
+  .ep .s { font-size: 32px; line-height: 1.5; color: var(--ink-soft); }
+  .big { font-weight: 700; color: #fff; text-align: center; line-height: 1.4; text-shadow: 0 6px 30px rgba(20,0,50,.6); }
+  .hl { color: #d6b4ff; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: title — channel/episode opener, teaser hook or end card.
+// cfg: { variant:'opener'|'hook'|'endcard', kicker, wordmark, epTag, epTitle, epSub, lines:[...], at:{...} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui, v = cfg.variant || 'opener';
+    c.heartsUpd = NB.hearts(c.world, { n: c.layout === '9x16' ? 16 : 14, seed: 11, x0: 60, x1: c.W - 60, y0: 0, y1: c.H, speed: 55, at: c.start, alpha: 0.55, min: 26, max: 64 });
+    c.els = [];
+    if (v === 'opener') {
+      const g = NB.el('div', 'abs', ui); NB.css(g, { left: '110px', top: '300px', width: '470px' });
+      c.k = NB.el('div', 'kicker', g, cfg.kicker);
+      c.w = NB.el('div', 'wordmark', g, cfg.wordmark);
+      const card = NB.el('div', 'card ep', ui); NB.css(card, { left: '1380px', top: '330px', width: '470px' });
+      NB.el('div', 'tag', card, cfg.epTag);
+      NB.el('div', 't', card, cfg.epTitle);
+      if (cfg.epSub) NB.el('div', 's', card, cfg.epSub);
+      c.card = card;
+    } else {
+      // vertical hook / end card: big centred lines in the upper safe zone
+      const B = cfg.box || { x: 60, y: 300, w: c.W - 120 };
+      const box = NB.el('div', 'abs', ui); NB.css(box, { left: B.x + 'px', top: B.y + 'px', width: B.w + 'px' });
+      c.lines = (cfg.lines || []).map((l) => {
+        const e = NB.el('div', 'big', box, l.html || l.text);
+        e.style.fontSize = (l.size || 96) + 'px';
+        if (l.card) { e.className = 'card'; NB.css(e, { position: 'relative', padding: '18px 34px 22px', margin: '26px auto 0', width: 'fit-content', fontWeight: 700, textAlign: 'center' }); }
+        return { e, at: l.at };
+      });
+    }
+  },
+  update(t, c) {
+    c.heartsUpd(t);
+    const a = c.cfg.at || {};
+    if (c.w) {
+      NB.enter(c.k, t, a.kicker ?? c.start + 0.15, { dy: 24 });
+      NB.enter(c.w, t, a.wordmark ?? c.start + 0.25, { dy: 0, scale: 0.86, back: true, dur: 0.55 });
+      NB.enter(c.card, t, a.card ?? c.start + 0.55, { dx: 60, dy: 0, dur: 0.6 });
+    }
+    if (c.lines) c.lines.forEach((l, i) => NB.enter(l.e, t, l.at ?? c.start + 0.12 + i * 0.25, { dy: 40, back: true, scale: 0.92 }));
+  },
+});
+</script>
+</body></html>

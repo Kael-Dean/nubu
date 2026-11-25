@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .btn { width: max-content; display: flex; align-items: center; gap: 20px; padding: 16px 46px 22px 26px; font-size: 58px; font-weight: 700; line-height: 1.4; }
+  .btn.alt svg.ic .fa { fill: var(--paper); }
+  .msgw { position: absolute; overflow: hidden; padding: 0.12em 0.2em 0.16em; }
+  .msg { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 104px; line-height: 1.26; text-align: center; color: var(--on-bg); text-wrap: balance; padding-top: 0.06em; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: closing — warm sign-off: lines rise out of a mask (same gesture as the hook), two CTA stickers
+// (comment = paper, follow = highlighter), a few cut-paper hearts drifting up.
+// cfg: { buttons:[{t,until,icon,text,x,y,alt}], messages:[{t,until,text,x,y,w}] }
+NB.define({
+  build(c) {
+    const cfg = c.cfg;
+    c.heartsUpd = NB.hearts(c.world, { n: 9, seed: 5, x0: 60, x1: c.W - 60, y0: 0, y1: c.H, speed: 46, at: c.start, alpha: 0.95, min: 40, max: 84 });
+    c.btns = (cfg.buttons || []).map((b) => { const e = NB.el('div', 'sticker btn' + (b.alt ? ' alt' : ''), c.ui, `${NB.icon(b.icon, 76)}<span>${b.text}</span>`); NB.css(e, { left: b.x + 'px', top: b.y + 'px' }); return { e, b }; });
+    c.msgs = (cfg.messages || []).map((m) => {
+      const w = NB.el('div', 'msgw', c.ui); NB.css(w, { left: m.x + 'px', top: m.y + 'px', width: (m.w || 600) + 'px' });
+      const e = NB.el('div', 'msg', w, m.text);
+      return { e, w, m };
+    });
+  },
+  afterFonts(c) { c.btns.forEach(({ e, b }, i) => { if (b.center) e.style.left = (c.W / 2 - e.offsetWidth / 2) + 'px'; NB.sticker(e, { seed: 190 + i, r: 30, rot: b.rot ?? (b.alt ? 2.5 : -2), fill: b.alt ? 'accent' : 'paper' }); }); },
+  update(t, c) {
+    c.heartsUpd(t);
+    c.btns.forEach(({ e, b }) => NB.enter(e, t, b.t, { dy: -10, scale: 1.08, drot: 4, dur: 0.38, exitAt: b.until }));
+    c.msgs.forEach(({ e, w, m }) => {
+      const p = NB.ease.outExpo(NB.p(t, m.t, 0.55));
+      const ex = m.until != null ? NB.ease.inOutSine(NB.p(t, m.until, 0.3)) : 0;
+      e.style.transform = `translateY(${(1 - p) * 105 - ex * 20}%)`;
+      w.style.opacity = String(1 - ex);
+      w.style.visibility = t >= m.t && ex < 1 ? 'visible' : 'hidden';
+    });
+  },
+});
+</script>
+</body></html>

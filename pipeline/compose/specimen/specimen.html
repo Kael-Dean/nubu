@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../scenes/_base.css">
+<style>
+  html, body { width: 2400px; height: auto; overflow: visible; }
+  body { padding: 70px 70px 80px; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
+  .top h1 { font-family: var(--font-body); font-weight: 700; font-size: 44px; line-height: 1.4; color: var(--on-bg); }
+  .top p { font-size: 26px; color: var(--on-bg-soft); line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px; }
+  .col { position: relative; padding: 36px 36px 46px; border-radius: 20px; background: var(--th-bg-2); }
+  .meta { font-size: 26px; line-height: 1.5; color: var(--on-bg-soft); margin-bottom: 26px; min-height: 120px; }
+  .meta b { color: var(--accent); font-weight: 700; font-size: 32px; display: block; }
+  .hook { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 112px; line-height: 1.24; color: var(--on-bg); padding-top: 0.08em; }
+  .hook .word { display: inline-block; color: var(--ink); background: var(--accent); padding: 0.02em 0.2em 0.1em; border-radius: 0.08em; transform: rotate(-2.5deg); }
+  .card.sticker { position: relative; margin-top: 46px; width: fit-content; padding: 34px 44px 30px 40px; color: var(--ink); isolation: isolate; }
+  .card .title { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 92px; line-height: 1.25; padding-top: 0.06em; white-space: nowrap; }
+  .card .dates { display: flex; gap: 22px; font-size: 46px; font-weight: 700; line-height: 1.5; }
+  .card .row { display: flex; align-items: center; gap: 16px; font-size: 44px; font-weight: 700; line-height: 1.45; margin-top: 10px; }
+  .card .sm { font-size: 32px; font-weight: 500; color: var(--ink-soft); line-height: 1.5; }
+  .sub { margin-top: 46px; text-align: center; white-space: nowrap; font-family: var(--font-body); font-weight: 700; font-size: 52px; line-height: 1.62; }
+  .sub .ln { background: oklch(0.2 0.06 302 / 0.94); color: var(--on-bg); padding: 0.06em 0.36em 0.14em; border-radius: 0.16em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .pick { display: inline-block; margin-bottom: 14px; font-size: 26px; font-weight: 700; color: var(--ink); background: var(--accent); padding: 2px 16px 6px; border-radius: 6px; }
+</style></head>
+<body>
+<div class="top"><h1>Nubu type specimen · 3 pairings (Google Fonts, SIL OFL, files in pipeline/compose/fonts)</h1><p>Switch pairing: compose.json "theme": { "font-display", "font-body", "display-weight" }</p></div>
+<div class="grid" id="grid"></div>
+<script src="../lib/track.js"></script>
+<script src="../scenes/_runtime.js"></script>
+<script>
+const P = [
+  { name: 'A · Playpen Sans Thai 800 + IBM Plex Sans Thai Looped', why: 'Hand-drawn but disciplined display; looped body with open counters. Used in EP01.', d: '"Playpen Sans Thai"', b: '"IBM Plex Sans Thai Looped"', w: 800, pick: true },
+  { name: 'B · Chonburi + Noto Sans Thai Looped', why: 'Retro Thai poster display (high contrast, looped); neutral looped body.', d: '"Chonburi"', b: '"Noto Sans Thai Looped"', w: 400 },
+  { name: 'C · Mitr 600 + Noto Sans Thai Looped', why: 'Chunky rounded loopless display, very fast to read; looped body.', d: '"Mitr"', b: '"Noto Sans Thai Looped"', w: 600 },
+];
+const grid = document.getElementById('grid');
+P.forEach((p, i) => {
+  const col = NB.el('div', 'col', grid);
+  col.style.setProperty('--font-display', p.d + ', sans-serif');
+  col.style.setProperty('--font-body', p.b + ', sans-serif');
+  col.style.setProperty('--display-weight', p.w);
+  col.style.fontFamily = 'var(--font-body)';
+  col.innerHTML = `${p.pick ? '<div class="pick">ใช้ในงานนี้</div>' : ''}<div class="meta"><b>${p.name}</b>${p.why}</div>
+    <div class="hook">ไปราชมังฯ <span class="word">ยังไง?</span></div>
+    <div class="card sticker"><div class="title">BTS ราชมังฯ</div><div class="dates"><span class="hli" style="background-size:100% 100%">3 ธ.ค.</span><span class="hli" style="background-size:100% 100%">5 ธ.ค.</span><span class="hli" style="background-size:100% 100%">6 ธ.ค.</span></div>
+      <div class="row">${NB.icon('ticket', 64)}<div>บัตรประชาชน<div class="sm">ใบขับขี่ หรือพาสปอร์ต</div></div></div></div>
+    <div class="sub"><span class="ln">สถานีสายสีส้มหน้าสนาม</span><br><span class="ln">ยังไม่เปิดให้บริการ</span></div>`;
+});
+window.ready = (async () => { await document.fonts.ready; document.querySelectorAll('.card').forEach((c, i) => NB.sticker(c, { seed: 2 + i, r: 16, rot: -1.2 })); return true; })();
+</script>
+</body></html>

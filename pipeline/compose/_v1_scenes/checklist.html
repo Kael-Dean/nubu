@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .panel { padding: 34px 44px 40px; }
+  .panel .head { display: flex; align-items: center; gap: 18px; font-size: 64px; font-weight: 700; line-height: 1.45; margin-bottom: 18px; }
+  .row { display: flex; align-items: center; gap: 24px; padding: 14px 20px 16px; border-radius: 22px; background: #f6f1ff; margin-top: 16px; }
+  .row .ic { flex: none; width: 96px; height: 96px; display: flex; align-items: center; justify-content: center; }
+  .row .tx { flex: 1; font-size: 52px; font-weight: 700; line-height: 1.45; }
+  .row .tx .sub { display: block; font-size: 38px; font-weight: 400; color: var(--ink-soft); }
+  .row .tick { flex: none; width: 70px; height: 70px; }
+  .row.note { background: #fff4d6; border: 3px solid #f0b429; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: checklist — white panel, items slide in and get ticked one by one.
+// cfg: { title, titleIcon, items:[{t, icon, text, sub, tickAt, note}], panel:{x,y,w} }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, P = cfg.panel || { x: 100, y: 80, w: 1150 };
+    const panel = NB.el('div', 'card panel', c.ui); NB.css(panel, { left: P.x + 'px', top: P.y + 'px', width: P.w + 'px' });
+    c.head = NB.el('div', 'head', panel, `${cfg.titleIcon ? NB.icon(cfg.titleIcon, 70) : ''}<span>${cfg.title}</span>`);
+    c.items = cfg.items.map((it) => {
+      const e = NB.el('div', 'row' + (it.note ? ' note' : ''), panel, `<div class="ic">${NB.icon(it.icon, 92)}</div><div class="tx">${it.text}${it.sub ? `<span class="sub">${it.sub}</span>` : ''}</div><div class="tick">${it.tickAt != null ? NB.icon(it.mark || 'check', 70) : ''}</div>`);
+      return { e, it, tick: e.querySelector('.tick') };
+    });
+    c.panel = panel;
+  },
+  update(t, c) {
+    NB.enter(c.panel, t, c.cfg.panelAt ?? c.start + 0.05, { dy: 40, dur: 0.55 });
+    NB.enter(c.head, t, c.cfg.panelAt ?? c.start + 0.15, { dy: 20 });
+    for (const x of c.items) {
+      NB.enter(x.e, t, x.it.t, { dx: -40, dy: 0, dur: 0.45 });
+      if (x.it.tickAt != null) NB.enter(x.tick, t, x.it.tickAt, { dy: 0, scale: 0.4, back: true, dur: 0.35 });
+    }
+  },
+});
+</script>
+</body></html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .wordmark { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 150px; line-height: 1.2; color: var(--on-bg); }
+  .kicker { font-size: 34px; font-weight: 700; color: var(--on-bg-soft); line-height: 1.5; }
+  .ep { padding: 22px 34px 28px; }
+  .ep .t { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 50px; line-height: 1.4; }
+  .ep .s { font-size: 32px; line-height: 1.5; color: var(--ink-soft); }
+  .hook { font-family: var(--font-display); font-weight: var(--display-weight); line-height: 1.22; letter-spacing: -0.012em; color: var(--on-bg); text-wrap: balance; padding-top: 0.12em; }
+  .hook .word { display: inline-block; color: var(--ink); background: var(--accent); padding: 0.02em 0.2em 0.1em; border-radius: 0.08em; transform-origin: 30% 70%; }
+  .reveal { overflow: hidden; padding: 0.1em 0.2em 0.12em; margin: -0.1em -0.2em -0.12em; }
+  .ticket { position: relative; width: fit-content; padding: 14px 40px 20px 36px; font-weight: 700; line-height: 1.45; white-space: nowrap; }
+  .sig { font-weight: 600; line-height: 1.5; color: var(--on-bg-soft); }
+  .sig .hl { color: var(--accent); font-weight: 700; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: title — channel/episode opener, teaser hook or end card.
+// cfg (vertical hook): { variant:'hook', box:{x,y,w}, lines:[{text|html, size, at, hl:'word', card:true, sig:true}] }
+//   first line = the hook in the display face (wraps, balanced; `hl` gets the highlighter swipe),
+//   `card` line = ticket sticker, other lines = small signature line.
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui, v = cfg.variant || 'opener';
+    c.heartsUpd = NB.hearts(c.world, { n: 5, seed: 11, x0: 80, x1: c.W - 80, y0: 0, y1: c.H, speed: 34, at: c.start, alpha: 0.9, min: 40, max: 70 });
+    if (v === 'opener') {
+      const g = NB.el('div', 'abs', ui); NB.css(g, { left: '110px', top: '300px', width: '470px' });
+      c.k = NB.el('div', 'kicker', g, cfg.kicker);
+      c.w = NB.el('div', 'wordmark', g, cfg.wordmark);
+      const card = NB.el('div', 'sticker ep', ui); NB.css(card, { left: '1380px', top: '330px', width: '470px' });
+      NB.el('div', 't', card, cfg.epTitle);
+      if (cfg.epSub) NB.el('div', 's', card, cfg.epSub);
+      c.card = card;
+    } else {
+      const B = cfg.box || { x: 60, y: 300, w: c.W - 120 };
+      const box = NB.el('div', 'abs', ui); NB.css(box, { left: B.x + 'px', top: B.y + 'px', width: B.w + 'px' });
+      c.lines = (cfg.lines || []).map((l, i) => {
+        let html = l.html || l.text;
+        if (l.hl) html = html.replace(l.hl, `<span class="word">${l.hl}</span>`);
+        let e, kind;
+        if (i === 0) {
+          kind = 'hook';
+          const wrap = NB.el('div', 'reveal', box);
+          e = NB.el('div', 'hook', wrap, html);
+          e.style.fontSize = (l.size || 140) + 'px';
+          e._wrap = wrap;
+        } else if (l.card) {
+          kind = 'card';
+          e = NB.el('div', 'sticker ticket', box, html);
+          NB.css(e, { position: 'relative', fontSize: (l.size || 54) + 'px', marginTop: '34px', marginLeft: '6px' });
+        } else {
+          kind = 'sig';
+          e = NB.el('div', 'sig', box, html);
+          NB.css(e, { fontSize: (l.size || 34) + 'px', marginTop: '26px', marginLeft: '10px' });
+        }
+        return { e, at: l.at, kind };
+      });
+    }
+  },
+  afterFonts(c) {
+    if (c.card) NB.sticker(c.card, { seed: 4 });
+    for (const l of c.lines || []) if (l.kind === 'card') {
+      // ticket: perforation 1/5 in from the right
+      NB.sticker(l.e, { seed: 9, r: 14, rot: 1.8 });
+    }
+  },
+  update(t, c) {
+    c.heartsUpd(t);
+    const a = c.cfg.at || {};
+    if (c.w) {
+      NB.enter(c.k, t, a.kicker ?? c.start + 0.15, { dy: 18 });
+      NB.enter(c.w, t, a.wordmark ?? c.start + 0.25, { dy: 0 });
+      NB.enter(c.card, t, a.card ?? c.start + 0.55, { dx: 40, dy: 0 });
+    }
+    if (c.lines) c.lines.forEach((l, i) => {
+      const at = l.at ?? c.start + 0.12 + i * 0.25;
+      if (l.kind === 'hook') {
+        // the hook rises out of a mask, then the highlighter swipes the question word
+        const p = NB.ease.outExpo(NB.p(t, at, 0.5));
+        l.e.style.transform = `translateY(${(1 - p) * 105}%) rotate(${-1.2 * p}deg)`;
+        l.e.style.transformOrigin = '0 100%';
+        l.e.style.visibility = t >= at ? 'visible' : 'hidden';
+        const w = l.e.querySelector('.word');
+        if (w) { const q = NB.ease.outExpo(NB.p(t, at + 0.3, 0.3)); w.style.transform = `rotate(${-2.5 - 3 * (1 - q)}deg) scale(${1.1 - 0.1 * q})`; }
+      } else if (l.kind === 'card') NB.enter(l.e, t, at, { dy: -8, scale: 1.08, drot: 4, dur: 0.38 });
+      else NB.enter(l.e, t, at, { dy: 12, scale: 1, drot: 0, dur: 0.4 });
+    });
+  },
+});
+</script>
+</body></html>

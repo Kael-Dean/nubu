@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .col { position: absolute; }
+  .scard { width: max-content; max-width: 900px; padding: 12px 36px 16px 18px; display: flex; align-items: center; gap: 18px; font-size: 52px; font-weight: 700; line-height: 1.45; }
+  .scard .ic { flex: none; }
+  #lights { position: absolute; left: 0; top: 0; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: sides — footage (or drawn tail-light fallback) is the hero; compact stickers stack top-left and
+// leave the middle of the frame to the picture. Clock items get a stopwatch icon whose hands spin, then settle.
+// cfg: { left:[{t,until,icon,text,hl,clock,spinUntil}], right:[...], leftPos:{x,y}, rightPos:{x,y}, lights:true }
+NB.define({
+  build(c) {
+    const cfg = c.cfg;
+    if (cfg.lights && !c.stockBg) { c.lc = NB.el('canvas', '', c.world); c.lc.id = 'lights'; c.lc.width = c.W; c.lc.height = c.H; c.world.insertBefore(c.lc, c.world.children[1]); }
+    const mk = (list, pos) => {
+      const col = NB.el('div', 'col', c.ui); NB.css(col, { left: pos.x + 'px', top: pos.y + 'px' });
+      return (list || []).map((it) => {
+        const icon = it.clock ? NB.icon('clock', 92, 0, 0) : it.icon ? NB.icon(it.icon === 'check' ? 'tick' : it.icon, 84) : '';
+        const e = NB.el('div', 'sticker scard', col, `<span class="ic">${icon}</span><div>${it.text}</div>`);
+        return { e, it, ck: it.clock ? e.querySelector('.ic') : null };
+      });
+    };
+    c.L = mk(cfg.left, cfg.leftPos || { x: 60, y: 300 });
+    c.R = mk(cfg.right, cfg.rightPos || { x: 1340, y: 150 });
+    c.SL = c.L.map((x) => ({ e: x.e, t: x.it.t, until: x.it.until })); c.SR = c.R.map((x) => ({ e: x.e, t: x.it.t, until: x.it.until }));
+    c.rng = NB.rng(21);
+    c.cars = Array.from({ length: 60 }, () => ({ lane: Math.floor(c.rng() * 4), x: c.rng() * 2400, sp: 18 + c.rng() * 30, ph: c.rng() * 6 }));
+  },
+  afterFonts(c) {
+    [...c.L, ...c.R].forEach((x, i) => NB.sticker(x.e, { seed: 40 + i, r: 18, fill: x.it.hl ? 'accent' : 'paper' }));
+  },
+  update(t, c) {
+    NB.layoutStack(c.SL, 20); NB.layoutStack(c.SR, 20);
+    const all = [...c.L.map((x) => [x, -30]), ...c.R.map((x) => [x, 30])];
+    for (const [x, dx] of all) {
+      NB.enter(x.e, t, x.it.t, { dx, dy: 0, scale: 1.05, drot: 3, exitAt: x.it.until });
+      if (x.it.icon === 'check') NB.draw(x.e, t, x.it.t + 0.2, 0.3);
+      if (x.ck) {
+        // hands race (time flying), then ease to rest
+        const s = x.it.spinUntil ?? c.end;
+        const run = Math.min(t, s) - x.it.t + (t > s ? NB.ease.outCubic(NB.p(t, s, 1.0)) * 0.5 : 0);
+        const a2 = Math.max(0, run) * 9, a1 = a2 / 12;
+        x.ck.innerHTML = NB.icon('clock', 92, a1, a2);
+      }
+    }
+    if (c.lc) {
+      const g = c.lc.getContext('2d'); g.clearRect(0, 0, c.W, c.H);
+      const base = c.H * 0.42;
+      for (const car of c.cars) {
+        const x = ((car.x + t * car.sp) % 2400) - 240;
+        const y = base + car.lane * 60;
+        const r = 9 + car.lane * 3;
+        for (const off of [0, 46 + car.lane * 6]) {
+          g.fillStyle = `rgba(255,95,110,${0.75 + 0.2 * Math.sin(t * 2 + car.ph)})`;
+          g.beginPath(); g.arc(x + off, y, r, 0, 6.283); g.fill();
+        }
+      }
+    }
+  },
+});
+</script>
+</body></html>
