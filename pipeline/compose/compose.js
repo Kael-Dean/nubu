@@ -12,6 +12,7 @@ const { chromium } = require('playwright');
 const FF = require('ffmpeg-static');
 const Track = require('./lib/track.js');
 const Subs = require('./lib/subs.js');
+const Audio = require('./lib/audio.js');
 
 const HERE = __dirname;
 const args = process.argv.slice(2);
@@ -40,6 +41,46 @@ function resolveScene(sc) {
   return s;
 }
 const SCENES = CFG.scenes.map(resolveScene);
+
+// ---------------------------------------------------------------- music sync (compose.json audio.music.beatSync)
+// Analyse the track (tempo, beats, bars, key, energetic in-point), land the in-point on audio.music.start,
+// end the episode on a beat/bar of that grid (≤ audio.maxDuration), let the closing headline leave before the end
+// so the last frames echo the opening, and snap visual cues that are not tied to a spoken word to the nearest beat.
+(function musicSync() {
+  const M = CFG.audio && CFG.audio.music;
+  if (!M || !M.beatSync) return;
+  const Music = require('./lib/music.js');
+  const A = Music.analyze(FF, R(M.file), path.join(CACHE, 'audio'), { skipIntro: M.skipIntro ?? 8, ...(M.inPoint != null ? { inPoint: M.inPoint } : {}) });
+  const start = M.start ?? 1.0;
+  const grid = Music.timelineBeats(A, start, (CFG.audio.maxDuration || CFG.duration) + 4);
+  const al = JSON.parse(fs.readFileSync(R(CFG.alignment), 'utf8')).alignment;
+  const ch = al.characters, st = al.characterStartTimesSeconds, en = al.characterEndTimesSeconds;
+  const voiceEnd = en[en.length - 1];
+  const maxD = CFG.audio.maxDuration || CFG.duration;
+  const inRange = (t) => t >= voiceEnd + 0.4 && t <= maxD;
+  let end = grid.bars.filter(inRange).pop(); let endKind = 'bar';
+  if (end == null) { end = grid.beats.filter(inRange).pop(); endKind = 'beat'; }
+  if (end != null) {
+    CFG.duration = +end.toFixed(3);
+    const last = SCENES[SCENES.length - 1]; last.end = CFG.duration;
+    for (const m of last.messages || []) if (m.until == null && m.t < CFG.duration) m.until = +(CFG.duration - (M.cleanTail ?? 0.4)).toFixed(3);
+  }
+  // word starts (cues within 0.12 s of one are speech-anchored and never move)
+  const words = []; for (let i = 0; i < ch.length; i++) if (!/\s/.test(ch[i]) && (i === 0 || /\s/.test(ch[i - 1]))) words.push(st[i]);
+  const anchored = (t) => words.some((w) => Math.abs(w - t) <= 0.12);
+  const near = (t) => grid.beats.reduce((p, c) => (Math.abs(c - t) < Math.abs(p - t) ? c : p), -99);
+  let snapped = 0, checked = 0;
+  const snap = (o, k) => { const t = o[k]; if (typeof t !== 'number') return; checked++; if (anchored(t)) return; const b = near(t); if (Math.abs(b - t) <= 0.15 && Math.abs(b - t) > 0.005) { o[k] = +b.toFixed(3); snapped++; } };
+  for (const s of SCENES) {
+    for (const k of ['cardAt', 'panelAt', 'boxAt']) snap(s, k);
+    for (const arr of ['cards', 'topics', 'chips', 'tiles', 'left', 'tips', 'buttons']) for (const x of s[arr] || []) snap(x, x.at != null && x.t == null ? 'at' : 't');
+    if (s.type === 'title') for (const l of s.lines || []) snap(l, 'at');
+  }
+  // the stamp ("big" warning line) gets a music drop
+  const drops = []; for (const s of SCENES) for (const l of s.lines || []) if (l.big && typeof l.t === 'number') drops.push(l.t);
+  CFG._music = { A, start, grid, end: CFG.duration, endKind, drops, snapped, checked };
+  log(`music sync: ${A.bpm} BPM, key ${A.key}, in-point ${A.inPoint.toFixed(2)} s → enters at ${start} s; end ${CFG.duration} s (${endKind}); visual cues snapped ${snapped}/${checked}`);
+})();
 
 // ---------------------------------------------------------------- stock prep
 function prepStock(sc, layout, W, H, key) {
@@ -233,10 +274,10 @@ async function renderUiLayers(browser, job, cues) {
 }
 
 // ---------------------------------------------------------------- final composite
-function composite(job, pieces, ui) {
+function composite(job, pieces, ui, mixFile) {
   const list = path.join(CACHE, `${job.name}_bg.txt`);
   fs.writeFileSync(list, pieces.map((p) => `file '${p.file.replace(/\\/g, '/')}'`).join('\n'));
-  const nubuFile = R(CFG.nubu), voice = R(CFG.voice);
+  const nubuFile = R(CFG.nubu), voice = mixFile || R(CFG.voice);
   const g = [];
   // Nubu: trim per segment (keeps lip sync), optional ping-pong idle for silent segments
   const nb = [];
@@ -268,7 +309,8 @@ function composite(job, pieces, ui) {
     else g.push(`[4:a]atrim=start=${seg.from}:end=${seg.to},asetpts=PTS-STARTPTS,aresample=44100,aformat=channel_layouts=mono[a${i}]`);
     au.push(`[a${i}]`);
   });
-  g.push(`${au.join('')}concat=n=${au.length}:v=0:a=1,loudnorm=I=-12.7:TP=-1.5:LRA=11,aresample=48000,apad,atrim=duration=${job.total.toFixed(3)}[a]`);
+  // a prepared mix (compose.json "audio") is already loudness-normalised: pass it through untouched
+  g.push(`${au.join('')}concat=n=${au.length}:v=0:a=1,${mixFile ? '' : 'loudnorm=I=-12.7:TP=-1.5:LRA=11,'}aresample=48000,apad,atrim=duration=${job.total.toFixed(3)}[a]`);
   const script = path.join(CACHE, `${job.name}_graph.txt`);
   fs.writeFileSync(script, g.join(';\n'));
   fs.mkdirSync(path.dirname(job.out), { recursive: true });
@@ -325,7 +367,22 @@ async function runJob(browser, job) {
   const capSec = await capturePieces(browser, job, pieces);
   log(`  scenes captured in ${capSec.toFixed(0)}s`);
   const t1 = Date.now();
-  composite(job, pieces, ui);
+  let mix = null;
+  if (CFG.audio && job.name === 'main') {
+    const t2 = Date.now();
+    mix = Audio.buildAudio({ cfg: CFG, R, cache: CACHE, ff, FF, total: job.total, voice: R(CFG.voice), alignment: R(CFG.alignment), scenes: SCENES, map: (CFG.shared && CFG.shared.map) || {} });
+    fs.writeFileSync(path.join(CACHE, 'audio', 'report.json'), JSON.stringify(mix.report, null, 1));
+    log('  audio: ' + JSON.stringify(mix.report) + ` (${((Date.now() - t2) / 1000).toFixed(0)}s)`);
+  }
+  composite(job, pieces, ui, mix && mix.full);
+  if (mix && CFG.outputs.nomusic) {
+    ff(['-i', job.out, '-i', mix.nomusic, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', R(CFG.outputs.nomusic)], 'no-music version');
+    log('  no-music version → ' + R(CFG.outputs.nomusic));
+  }
+  if (CFG.outputs.preview && job.name === 'main') {
+    ff(['-i', job.out, '-vf', 'scale=720:1280:flags=lanczos', '-c:v', 'libx264', '-preset', 'slow', '-crf', '27', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', R(CFG.outputs.preview)], 'phone preview');
+    log('  phone preview → ' + R(CFG.outputs.preview) + ' (' + (fs.statSync(R(CFG.outputs.preview)).size / 1048576).toFixed(1) + ' MB)');
+  }
   log(`  composited → ${job.out} in ${((Date.now() - t1) / 1000).toFixed(0)}s (job total ${((Date.now() - T0) / 1000).toFixed(0)}s)`);
 }
 

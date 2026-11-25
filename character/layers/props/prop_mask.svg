@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300">
+<defs>
+  <linearGradient id="mk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4fbff"/><stop offset="0.55" stop-color="#dcecf7"/><stop offset="1" stop-color="#b9d3e6"/></linearGradient>
+  <radialGradient id="mkhi" cx="0.45" cy="0.3" r="0.6"><stop offset="0" stop-color="#fff" stop-opacity="0.8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <filter id="mksh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#6e463c" flood-opacity="0.32"/></filter>
+</defs>
+<path d="M115,80 C70,70 40,60 18,40" fill="none" stroke="#e6eef5" stroke-width="7" stroke-linecap="round"/>
+<path d="M115,170 C70,178 40,160 22,128" fill="none" stroke="#e6eef5" stroke-width="7" stroke-linecap="round"/>
+<path d="M405,80 C450,70 480,60 502,40" fill="none" stroke="#e6eef5" stroke-width="7" stroke-linecap="round"/>
+<path d="M405,170 C450,178 480,160 498,128" fill="none" stroke="#e6eef5" stroke-width="7" stroke-linecap="round"/>
+<g filter="url(#mksh)">
+  <path d="M110,70 Q260,40 410,70 L420,190 Q260,250 100,190Z" fill="url(#mk)" stroke="#a9c3d6" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M110,70 Q260,40 410,70 L420,190 Q260,250 100,190Z" fill="url(#mkhi)"/>
+  <path d="M108,108 Q260,86 412,108" fill="none" stroke="#a7c1d4" stroke-width="3"/>
+  <path d="M104,140 Q260,124 416,140" fill="none" stroke="#a7c1d4" stroke-width="3"/>
+  <path d="M102,170 Q260,165 418,170" fill="none" stroke="#a7c1d4" stroke-width="2.5" stroke-opacity="0.8"/>
+  <path d="M150,62 Q260,46 370,62" fill="none" stroke="#c9d6df" stroke-width="5" stroke-linecap="round"/>
+</g></svg>

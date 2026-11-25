@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="184" viewBox="0 0 184 184">
+<defs>
+  <radialGradient id="balllookupL" cx="0.62" cy="0.32" r="0.78">
+    <stop offset="0" stop-color="#3a3536"/>
+    <stop offset="0.4" stop-color="#151213"/>
+    <stop offset="0.85" stop-color="#0a0809"/>
+    <stop offset="1" stop-color="#1c1010"/>
+  </radialGradient>
+  <radialGradient id="rimlookupL" cx="0.3" cy="0.85" r="0.55">
+    <stop offset="0" stop-color="#b04a3c" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#b04a3c" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="waterlookupL" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bfe3ff" stop-opacity="0"/>
+    <stop offset="0.6" stop-color="#bfe3ff" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#e8f6ff" stop-opacity="0.7"/>
+  </linearGradient>
+  <radialGradient id="droplookupL" cx="0.4" cy="0.35" r="0.7">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+    <stop offset="0.5" stop-color="#d8eeff" stop-opacity="0.85"/>
+    <stop offset="1" stop-color="#9fc8ee" stop-opacity="0.8"/>
+  </radialGradient>
+  <filter id="softlookupL" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.8"/></filter>
+</defs>
+  <circle cx="96" cy="84" r="50" fill="url(#balllookupL)"/>
+  <circle cx="96" cy="84" r="50" fill="url(#rimlookupL)"/>
+      <ellipse cx="100" cy="58" rx="15" ry="11" fill="#fff"/>
+      <circle cx="120" cy="74" r="5.5" fill="#fff" fill-opacity="0.95"/>
+      <circle cx="78" cy="106" r="3.5" fill="#fff" fill-opacity="0.6"/></svg>

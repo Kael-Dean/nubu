@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .cal { position: absolute; perspective: 1600px; }
+  .page { position: absolute; left: 0; width: 100%; border-radius: 22px; background: var(--paper); box-shadow: 0 14px 24px oklch(0.12 0.05 302 / .32);
+          transform-origin: 50% 0; backface-visibility: hidden; overflow: hidden; }
+  .page .bar { height: 96px; background: var(--th-main); }
+  .page .yr { font-family: var(--font-display); font-weight: var(--display-weight); color: var(--ink); text-align: center; line-height: 1.1; letter-spacing: -0.01em; }
+  .page .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; padding: 0 44px; }
+  .page .grid i { height: 18px; border-radius: 5px; background: var(--paper-2); }
+  .page .grid i.on { background: var(--accent); }
+  .rings { position: absolute; left: 0; top: -26px; width: 100%; display: flex; justify-content: space-around; padding: 0 60px; z-index: 5; }
+  .rings b { width: 22px; height: 58px; border-radius: 11px; background: var(--ink); box-shadow: inset -5px 0 0 oklch(0.45 0.05 302); }
+  .ev { padding: 14px 26px 18px 18px; display: flex; align-items: center; gap: 16px; font-weight: 700; line-height: 1.4; }
+  .endline { font-family: var(--font-display); font-weight: var(--display-weight); color: var(--on-bg); line-height: 1.3; text-wrap: balance; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: years — a ring-bound desk calendar flips year by year; icon stickers for what happened pop in below.
+// cfg: { cal:{x,y,w,h,size}, years:[{y,at}], events:[{t,icon,text,until}], eventsBox:{x,y,w,cols}, finale:{t,text,hl,size,y}, exitAt }
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui;
+    const C = cfg.cal || { x: 250, y: 300, w: 580, h: 430 };
+    const cal = NB.el('div', 'cal', ui); NB.css(cal, { left: C.x + 'px', top: C.y + 'px', width: C.w + 'px', height: C.h + 'px' });
+    const mk = (y) => {
+      const p = NB.el('div', 'page', cal); NB.css(p, { top: 0, height: C.h + 'px' });
+      NB.el('div', 'bar', p);
+      const yr = NB.el('div', 'yr', p, String(y)); yr.style.fontSize = (C.size || 190) + 'px';
+      const g = NB.el('div', 'grid', p, Array.from({ length: 28 }, () => '<i></i>').join(''));
+      return { p, cells: [...g.children] };
+    };
+    c.pages = (cfg.years || []).map((o) => ({ ...mk(o.y), at: o.at, y: o.y }));
+    NB.el('div', 'rings', cal, '<b></b><b></b><b></b><b></b>');
+    c.cal = cal;
+    const E = cfg.eventsBox || { x: 80, y: C.y + C.h + 50, w: 920, cols: 2 };
+    const box = NB.el('div', 'abs', ui); NB.css(box, { left: E.x + 'px', top: E.y + 'px', width: E.w + 'px', display: 'grid', gridTemplateColumns: `repeat(${E.cols || 2}, auto)`, justifyContent: 'start', gap: '20px 22px' });
+    c.evs = (cfg.events || []).map((e) => {
+      const el = NB.el('div', 'sticker ev', box, `${NB.icon(e.icon, e.iconSize || 76)}<span>${e.text}</span>`);
+      NB.css(el, { position: 'relative', fontSize: (e.size || 42) + 'px', width: 'fit-content' });
+      return { el, ...e };
+    });
+    if (cfg.finale) {
+      let html = cfg.finale.text; if (cfg.finale.hl) html = html.replace(cfg.finale.hl, NB.hl(cfg.finale.hl, 5));
+      c.endEl = NB.el('div', 'abs endline', ui, html);
+      NB.css(c.endEl, { left: (cfg.finale.x ?? 80) + 'px', top: (cfg.finale.y ?? E.y) + 'px', width: (cfg.finale.w ?? 900) + 'px', fontSize: (cfg.finale.size || 84) + 'px' });
+    }
+  },
+  afterFonts(c) {
+    c.evs.forEach((e, i) => NB.sticker(e.el, { seed: 30 + i, rot: [-1.5, 1.2, -0.8, 1.8][i % 4], fill: e.accent ? 'accent' : 'paper' }));
+  },
+  update(t, c) {
+    const cfg = c.cfg, ex = cfg.exitAt;
+    NB.enter(c.cal, t, cfg.calAt ?? c.start, { dy: 30, scale: 1.04, drot: -2, dur: 0.5, exitAt: ex });
+    // which page is on top: the last one whose time has come; the one before it flips up and away
+    const P = c.pages;
+    let cur = 0; for (let i = 0; i < P.length; i++) if (t >= P[i].at) cur = i;
+    P.forEach((pg, i) => {
+      let rot = 0, vis = false, z = 0;
+      if (i === cur) { vis = true; z = 2; }
+      if (i === cur + 1) { vis = true; z = 1; }            // next page waits underneath
+      if (i === cur - 0 && cur + 1 < P.length) {
+        const fp = NB.p(t, P[cur + 1].at - 0.42, 0.42);    // flip the current page away just before the next year arrives
+        rot = -175 * NB.ease.inOutCubic(fp);
+      }
+      pg.p.style.visibility = vis ? 'visible' : 'hidden';
+      pg.p.style.zIndex = String(z);
+      pg.p.style.transform = `rotateX(${rot}deg)`;
+      pg.p.style.filter = `brightness(${1 - 0.25 * Math.abs(Math.sin(rot * Math.PI / 180))})`;
+      // days get crossed off while the page is showing
+      const span = (P[i + 1] ? P[i + 1].at : c.end) - pg.at;
+      const k = Math.floor(NB.clamp((t - pg.at) / Math.max(0.3, span)) * pg.cells.length);
+      pg.cells.forEach((cell, j) => cell.classList.toggle('on', j < k));
+    });
+    c.evs.forEach((e) => NB.enter(e.el, t, e.t, { dy: -10, scale: 1.12, drot: 5, dur: 0.38, exitAt: e.until ?? (cfg.finale ? cfg.finale.t - 0.2 : ex) }));
+    if (c.endEl) { NB.enter(c.endEl, t, cfg.finale.t, { dy: 20, drot: 0, exitAt: ex }); NB.swipe(c.endEl, t, cfg.finale.t + 0.35); }
+  },
+});
+</script>
+</body></html>

@@ -6,6 +6,10 @@
 ช่อง YouTube/TikTok/IG ภาษาไทย — Nubu ก้อนขนฟูหนวดผีเสื้อ เล่าข่าวเคป็อป/ประวัติ/what if แบบเพื่อนเม้ามอย
 รายละเอียดเต็ม: `docs/CHANNEL-BRIEF.md` · การตัดสินใจ: `docs/DECISIONS.md`
 
+## 🎬 ซีนแบบหนัง
+ท่อนที่ควรเล่าเป็น "ซีนเหมือนในหนัง" (flashback / ช่วงพีค / cold open / what-if) → ใช้สกิล `lemo-opuscar`
+เรนเดอร์เป็นคลิปสั้นแล้ววางเป็น stock ใน compose — ทำตาม `docs/CINEMATIC-SCENES.md` · library: `~/lemo-opuscar`
+
 ## ตอนนี้อยู่ขั้นไหน
 - [x] Channel brief ฉบับร่าง
 - [x] ตัดสินใจสไตล์ตัวละคร → 2.5D ใน Rive
@@ -86,8 +90,16 @@
 - EP01: `episodes/ep01_bts_rajamangala/render/nubu_bts/nubu_talk.webm` (พื้นโปร่งใส) + `_preview.mp4` · cues ใน `render/cues.json` (outfit 1 ตั้งแต่ต้น, "หลังคอนเสิร์ต" = expression 8) · สคริปต์ใหม่ `pipeline/acting.js`
 - ยังไม่ทำ: ระบบประกอบภาพ (ฉากหลัง/แผนที่/ซับ/แหล่งข่าว/ทีเซอร์ 9:16)
 
+## 2026-11-25 (night) — EP02 "2,797 วัน" + Rive round 8
+- **Rive round 8** (`character/rive/export/round8/nubu.riv`): expression 9 teary (ตาซึ้งสั่น) · 10 lookup (มองขึ้นสงสัย) · 11 happycry (ตา ^^ + น้ำตาไหลวน) · pose 6 hug (มือแนบอก) · 7 listen (จับหูฟัง โยกช้า) · 8 open_arms (กางแขนโยก) · 9 hold_light (ชูแท่งไฟม่วงทั่วไป โบก) · VM ใหม่ `prop` (0 ไม่มี / 1 หน้ากากอนามัย) · expression 9–11 ไม่กะพริบ (เงื่อนไข ≥6 เดิม)
+  - ภาพวาดจาก SVG: `scripts/svg-face-fx.js` → `character/layers/face/eyes/eye_teary|lookup_*.png`, `face/fx/fx_tear*.png`, `layers/props/prop_mask|glowstick.png` · พรีวิวโดยไม่ใช้ Rive: `scripts/preview-pose.js specs.json out.png`
+  - **บทเรียน:** ตั้งค่า x/y ผ่าน MCP ตอน editor อยู่โหมด Animate ไม่ติด (เป็นค่าชั่วคราว) → ต้องให้ผู้ใช้สลับเป็น Design ก่อน · group_editor สร้างกลุ่มพร้อม offset (−690,−1371) ต้องตั้ง 0,0 เอง
+- เสียง: `pipeline/speed-voice.js <in> <out> 1.08` (rubberband คงคีย์ + สเกล alignment) · EP02 ดิบ 2:54 → 2:41
+- ฉากใหม่ใน compositor: `counter` (ตัวนับ odometer + สนามวาดพร้อมแสงม่วงคลื่น), `years` (ปฏิทินพลิกปี + สติกเกอร์ไอคอน), `photos` (ภาพมีไลเซนส์ในกรอบ print + เครดิต) · ไอคอนใหม่ใน `_runtime.js` (mask, laptop, chip, music, globe, hourglass, cap, briefcase, house, family, calendar, glowstick)
+  - **ระวังชื่อคีย์ชนกับคีย์ของฉาก** (`label`, `end`, `start` เป็นของ scene) → counter ใช้ `unit`, years ใช้ `finale`
+
 ## 2026-11-25 (late) — EP01 short 9:16 delivered (v7)
-- Final: `exports/ep01_9x16.mp4` (1:56, 1080×1920). Backups v1–v6 in `exports/`.
+- Final: `exports/ep01_9x16.mp4` (1:33, voice 1.25x, music gap 4 LU / duck 5 dB = channel reference settings, template `pipeline/compose/templates/ep01_reference_compose.json`; 1.15x backup `exports/ep01_9x16_v17_speed115.mp4`, voice backups voice/v3_speed1x, v4_speed115).
 - Compositor: `pipeline/compose/` (README inside) + `episodes/ep01_bts_rajamangala/compose.json`. Fonts pairing A (Playpen Sans Thai + IBM Plex Sans Thai Looped), zine theme, transit-diagram map, centred subtitles (x=540, column 120–960).
 - Voice tail spliced (new share/follow CTA); old take in `voice/v2_before_tail/`. `pipeline/tts.mjs` now supports `--prev`.
 - Talk motion: spring-smoothed bob/tilt (`pipeline/talk-motion.js` defaults); Rive pose 250 ms / expression 120 ms blends.

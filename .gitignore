@@ -6,3 +6,7 @@ node_modules/
 
 /episodes/
 /exports/
+
+# Pixabay audio: licence forbids redistributing the raw files (repo may be public) - keep local / OneDrive
+/assets/audio/music/*.mp3
+/assets/audio/sfx/*.mp3

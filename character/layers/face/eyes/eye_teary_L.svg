@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="184" viewBox="0 0 184 184">
+<defs>
+  <radialGradient id="balltearyL" cx="0.62" cy="0.32" r="0.78">
+    <stop offset="0" stop-color="#3a3536"/>
+    <stop offset="0.4" stop-color="#151213"/>
+    <stop offset="0.85" stop-color="#0a0809"/>
+    <stop offset="1" stop-color="#1c1010"/>
+  </radialGradient>
+  <radialGradient id="rimtearyL" cx="0.3" cy="0.85" r="0.55">
+    <stop offset="0" stop-color="#b04a3c" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#b04a3c" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="watertearyL" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bfe3ff" stop-opacity="0"/>
+    <stop offset="0.6" stop-color="#bfe3ff" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#e8f6ff" stop-opacity="0.7"/>
+  </linearGradient>
+  <radialGradient id="droptearyL" cx="0.4" cy="0.35" r="0.7">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+    <stop offset="0.5" stop-color="#d8eeff" stop-opacity="0.85"/>
+    <stop offset="1" stop-color="#9fc8ee" stop-opacity="0.8"/>
+  </radialGradient>
+  <filter id="softtearyL" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.8"/></filter>
+</defs>
+  <circle cx="91" cy="92" r="53" fill="url(#balltearyL)"/>
+  <circle cx="91" cy="92" r="53" fill="url(#rimtearyL)"/>
+      <path d="M44,102 Q91,159 138,102 Q91,139 44,102Z" fill="url(#watertearyL)"/>
+      <path d="M50,122 Q91,147 132,122" fill="none" stroke="#f4fbff" stroke-opacity="0.85" stroke-width="3.2" stroke-linecap="round"/>
+      <ellipse cx="108" cy="70" rx="17" ry="13" fill="#fff" transform="rotate(-25 108 70)"/>
+      <circle cx="71" cy="106" r="7.5" fill="#fff" fill-opacity="0.95"/>
+      <circle cx="117" cy="98" r="3.8" fill="#fff" fill-opacity="0.9"/>
+      <g filter="url(#softtearyL)"><path d="M47,132 q-9,12 0,22 q9,-10 0,-22Z" fill="url(#droptearyL)" stroke="#a8cbe8" stroke-width="1"/></g></svg>

@@ -1,0 +1,1276 @@
+{
+  "episode": "ep01_bts_rajamangala",
+  "theme": {
+    "_note": "Band theme tokens (CSS custom properties, OKLCH). EP01 = BTS purple; next band: change hue 302 + accent.",
+    "th-bg": "oklch(0.255 0.085 302)",
+    "th-bg-2": "oklch(0.30 0.10 302)",
+    "th-line": "oklch(0.385 0.11 302)",
+    "th-main": "oklch(0.60 0.19 302)",
+    "th-soft": "oklch(0.85 0.075 302)",
+    "accent": "oklch(0.91 0.165 103)",
+    "ink": "oklch(0.215 0.06 302)",
+    "ink-soft": "oklch(0.43 0.06 302)",
+    "paper": "oklch(0.975 0.008 302)",
+    "paper-2": "oklch(0.905 0.022 302)",
+    "on-bg": "oklch(0.97 0.012 302)",
+    "on-bg-soft": "oklch(0.86 0.04 302)"
+  },
+  "layout": "9x16",
+  "fps": 30,
+  "duration": 93.24,
+  "voice": "voice/voice.mp3",
+  "alignment": "voice/alignment.json",
+  "nubu": "render/nubu_bts/nubu_talk.webm",
+  "stockDir": "../../assets/stock",
+  "cache": "render/compose_cache",
+  "outputs": {
+    "main": "../../exports/ep01_9x16.mp4",
+    "contact": "../../exports/ep01_contact.png",
+    "nomusic": "../../exports/ep01_9x16_nomusic.mp4",
+    "preview": "../../exports/ep01_preview_phone.mp4"
+  },
+  "subs": {
+    "maxChars": 40,
+    "softChars": 22,
+    "minDur": 1.5,
+    "breakBefore": [
+      "ใครได้บัตร",
+      "ดูคลิปนี้",
+      "ทางที่คน",
+      "แบบแรก",
+      "ลงสถานีรามคำแหง",
+      "ใครมาจาก",
+      "แบบที่สอง",
+      "ลงสถานีแยก",
+      "ถ้าชื่อไม่ตรง",
+      "ห้ามนำเข้า",
+      "ของอื่นๆ",
+      "แล้วก็ชาร์จ",
+      "นัดจุดรวม",
+      "ตกลงราคา",
+      "ใครไม่ได้บัตร",
+      "จะไปรอบไหน",
+      "เจอกันคลิปหน้า",
+      "อย่าลืมแชร์",
+      "แล้วถ้าอยาก",
+      "ติดตามนูบุ"
+    ],
+    "glue": [
+      "ที่ราชมัง แล้ว"
+    ],
+    "hide": [
+      "นูบุอยู่ตรงนี้เป็นเพื่อนเสมอ"
+    ],
+    "split": {
+      "แล้วถ้าอยากรับรู้ข่าวสารอะไรเกี่ยวกับเคป็อปอีก": [
+        "แล้วถ้าอยากรับรู้ข่าวสาร",
+        "อะไรเกี่ยวกับเคป็อปอีก"
+      ]
+    }
+  },
+  "layouts": {
+    "9x16": {
+      "W": 1080,
+      "H": 1920,
+      "nubuModes": {
+        "big": {
+          "cx": 540,
+          "bottom": 1915,
+          "h": 761,
+          "subCx": 540,
+          "subBottom": 1140
+        },
+        "mid": {
+          "cx": 540,
+          "bottom": 2035,
+          "h": 685,
+          "subCx": 540,
+          "subBottom": 1386
+        },
+        "small": {
+          "cx": 540,
+          "bottom": 2035,
+          "h": 685,
+          "subCx": 540,
+          "subBottom": 1386
+        }
+      },
+      "subs": {
+        "maxW": 840,
+        "bottom": 1415,
+        "fontSize": 64,
+        "maxRight": 960
+      },
+      "tag": {
+        "x": 80,
+        "top": 226,
+        "fontSize": 28
+      }
+    },
+    "16x9": {
+      "W": 1920,
+      "H": 1080,
+      "nubuModes": {
+        "big": {
+          "cx": 960,
+          "bottom": 840,
+          "h": 780,
+          "subCx": 960,
+          "subBottom": 1016
+        },
+        "mid": {
+          "cx": 960,
+          "bottom": 840,
+          "h": 680,
+          "subCx": 960,
+          "subBottom": 1016
+        },
+        "small": {
+          "right": 1896,
+          "bottom": 1060,
+          "h": 594,
+          "subCx": 760,
+          "subBottom": 1016
+        }
+      },
+      "subs": {
+        "maxW": 1150,
+        "bottom": 1016,
+        "fontSize": 46
+      },
+      "tag": {
+        "x": 40,
+        "bottom": 14,
+        "fontSize": 22
+      }
+    }
+  },
+  "nubuKeys": [
+    {
+      "t": 0,
+      "mode": "big"
+    },
+    {
+      "t": 2.18,
+      "mode": "small",
+      "dur": 0.6
+    },
+    {
+      "t": 73.342,
+      "mode": "big",
+      "dur": 0.6
+    }
+  ],
+  "tags": [
+    {
+      "from": 8.068,
+      "to": 13.662,
+      "text": "ที่มา: Spacebar"
+    },
+    {
+      "from": 13.662,
+      "to": 32.642,
+      "text": "ที่มา: Live Nation Tero"
+    },
+    {
+      "from": 39.293,
+      "to": 58.622,
+      "text": "ที่มา: ไทยทิคเก็ตเมเจอร์"
+    },
+    {
+      "from": 62.21,
+      "to": 73.342,
+      "text": "ที่มา: Spacebar"
+    }
+  ],
+  "shared": {
+    "map": {
+      "type": "map",
+      "focus9x16": [
+        540,
+        860
+      ],
+      "cardsBox9x16": {
+        "x": 80,
+        "y": 290
+      },
+      "map": {
+        "size": [
+          1000,
+          1300
+        ],
+        "card": {
+          "x": 40,
+          "y": 250,
+          "w": 1000,
+          "h": 920
+        },
+        "lines": [
+          {
+            "id": "bts",
+            "d": "M 60 160 H 560",
+            "color": "#79b928",
+            "width": 22
+          },
+          {
+            "id": "arl",
+            "d": "M 300 160 V 400 L 420 520 V 1300",
+            "color": "#b5132e",
+            "width": 22
+          },
+          {
+            "id": "orange",
+            "d": "M 420 600 H 560 L 640 680 H 880",
+            "color": "#f47d20",
+            "width": 20,
+            "dashed": true
+          },
+          {
+            "id": "yellow",
+            "d": "M 880 120 V 900 L 780 1000 V 1300",
+            "color": "#f3c300",
+            "width": 22
+          },
+          {
+            "id": "lm_ramk",
+            "d": "M 420 600 L 520 700 L 572 790"
+          },
+          {
+            "id": "lm_huamak",
+            "d": "M 420 960 H 510 L 545 925"
+          },
+          {
+            "id": "lm_lamsali",
+            "d": "M 880 680 V 740 L 792 828"
+          }
+        ],
+        "stations": [
+          {
+            "id": "phayathai",
+            "x": 300,
+            "y": 160,
+            "name": "พญาไท",
+            "line": "arl",
+            "side": "br"
+          },
+          {
+            "id": "ramk",
+            "x": 420,
+            "y": 600,
+            "name": "รามคำแหง",
+            "line": "arl",
+            "side": "left"
+          },
+          {
+            "id": "huamak",
+            "x": 420,
+            "y": 960,
+            "name": "หัวหมาก",
+            "line": "arl",
+            "side": "left"
+          },
+          {
+            "id": "orange_st",
+            "x": 700,
+            "y": 680,
+            "name": "",
+            "line": "orange",
+            "dashed": true
+          },
+          {
+            "id": "lamsali",
+            "x": 880,
+            "y": 680,
+            "name": "แยกลำสาลี",
+            "line": "yellow",
+            "side": "tl"
+          }
+        ],
+        "venue": {
+          "x": 660,
+          "y": 880,
+          "name": "ราชมังฯ",
+          "labelSide": "below"
+        },
+        "notes": [
+          {
+            "id": "notopen",
+            "x": 700,
+            "y": 652,
+            "text": "ยังไม่เปิด"
+          }
+        ]
+      },
+      "camera9x16": [
+        [
+          6.863,
+          [
+            640,
+            780,
+            1.1
+          ]
+        ],
+        [
+          13.644,
+          [
+            640,
+            780,
+            1.18
+          ]
+        ],
+        [
+          13.662,
+          [
+            520,
+            640,
+            0.62
+          ]
+        ],
+        [
+          17.839,
+          [
+            520,
+            640,
+            0.62
+          ]
+        ],
+        [
+          18.639,
+          [
+            340,
+            330,
+            0.95
+          ]
+        ],
+        [
+          20.001,
+          [
+            400,
+            560,
+            0.95
+          ]
+        ],
+        [
+          21.123,
+          [
+            520,
+            800,
+            0.95
+          ]
+        ],
+        [
+          21.841,
+          [
+            520,
+            800,
+            0.95
+          ]
+        ],
+        [
+          22.641,
+          [
+            520,
+            640,
+            0.62
+          ]
+        ],
+        [
+          24.638,
+          [
+            525,
+            645,
+            0.63
+          ]
+        ],
+        [
+          25.521,
+          [
+            760,
+            740,
+            0.85
+          ]
+        ],
+        [
+          32.642,
+          [
+            765,
+            745,
+            0.87
+          ]
+        ]
+      ],
+      "events": [
+        {
+          "t": 6.964,
+          "venue": true
+        },
+        {
+          "t": 10.69,
+          "draw": "orange",
+          "dur": 1.122
+        },
+        {
+          "t": 11.123,
+          "station": "orange_st"
+        },
+        {
+          "t": 11.436,
+          "note": "notopen",
+          "shakeAt": 12.08
+        },
+        {
+          "t": 18.556,
+          "station": "phayathai"
+        },
+        {
+          "t": 18.685,
+          "draw": "arl",
+          "dur": 2.318,
+          "train": "train",
+          "hold": 0.478
+        },
+        {
+          "t": 19.679,
+          "station": "ramk"
+        },
+        {
+          "t": 19.78,
+          "blink": "ramk"
+        },
+        {
+          "t": 20.479,
+          "draw": "lm_ramk",
+          "dur": 0.718
+        },
+        {
+          "t": 20.884,
+          "station": "huamak"
+        },
+        {
+          "t": 20.994,
+          "blink": "huamak"
+        },
+        {
+          "t": 21.362,
+          "draw": "lm_huamak",
+          "dur": 0.396
+        },
+        {
+          "t": 21.887,
+          "draw": "bts",
+          "dur": 1.04
+        },
+        {
+          "t": 22.908,
+          "blink": "phayathai"
+        },
+        {
+          "t": 26.238,
+          "draw": "yellow",
+          "dur": 1.196,
+          "train": "train",
+          "hold": 0.322
+        },
+        {
+          "t": 27.039,
+          "station": "lamsali"
+        },
+        {
+          "t": 27.14,
+          "blink": "lamsali"
+        },
+        {
+          "t": 28.732,
+          "draw": "lm_lamsali",
+          "dur": 1.04,
+          "train": "taxi",
+          "hold": 0.644
+        },
+        {
+          "t": 29.725,
+          "modes": [
+            "taxi",
+            "moto",
+            "bus"
+          ],
+          "at": [
+            29.725,
+            30.526,
+            30.912
+          ],
+          "screen": [
+            540,
+            1010
+          ],
+          "until": 31.197
+        }
+      ],
+      "labelFloor": 1160
+    }
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "label": "1 hook",
+      "type": "title",
+      "start": 0,
+      "end": 2.18,
+      "variant": "hook",
+      "box": {
+        "x": 80,
+        "y": 300,
+        "w": 840
+      },
+      "lines": [
+        {
+          "text": "ไปราชมังฯ ยังไง?",
+          "size": 150,
+          "at": 0.064,
+          "hl": "ยังไง?"
+        },
+        {
+          "text": "BTS ราชมังฯ 3, 5, 6 ธ.ค.",
+          "size": 56,
+          "card": true,
+          "at": 0.598
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "label": "2 tickets",
+      "type": "card",
+      "start": 2.18,
+      "end": 6.891,
+      "title": "BTS ราชมังฯ",
+      "cardAt": 2.64,
+      "cardPos": {
+        "x": 80,
+        "y": 850
+      },
+      "cardPosFallback": {
+        "x": 60,
+        "y": 760
+      },
+      "photo": {
+        "x": 60,
+        "y": 290,
+        "w": 860,
+        "h": 440
+      },
+      "photoMode": "frame",
+      "photoUntil": 5.4,
+      "creditSize": 26,
+      "chips": [
+        {
+          "text": "3 ธ.ค.",
+          "at": 2.916
+        },
+        {
+          "text": "5 ธ.ค.",
+          "at": 3.156
+        },
+        {
+          "text": "6 ธ.ค.",
+          "at": 3.404
+        }
+      ],
+      "topicsPos": {
+        "x": 80,
+        "y": 290
+      },
+      "topicsDir": "column",
+      "topics": [
+        {
+          "icon": "train",
+          "text": "การเดินทาง",
+          "at": 5.566
+        },
+        {
+          "icon": "ticket",
+          "text": "ของที่ห้ามลืม",
+          "at": 5.842
+        },
+        {
+          "icon": "taxi",
+          "text": "คนเยอะ และระวังค่ารถ",
+          "at": 6.109
+        }
+      ],
+      "cardUntil": 5.4,
+      "photoFrame": {
+        "x": 70,
+        "y": 250,
+        "w": 940,
+        "h": 728,
+        "rot": -1.2
+      },
+      "titleSize": 104,
+      "stock": {
+        "kind": "image",
+        "file": "rajamangala_slyronit_2024.jpg",
+        "crop": "1200:923:0:330",
+        "w": 912,
+        "h": 700,
+        "blur": 0,
+        "grade": "eq=contrast=1.05:saturation=1.05,colorbalance=bs=0.02",
+        "credit": "ภาพ: Slyronit / Wikimedia Commons (CC BY-SA 4.0)",
+        "note": "crop keeps the sponsor banners and the emblem on the right out of frame"
+      }
+    },
+    {
+      "id": "s3",
+      "label": "3 no station",
+      "inherit": "map",
+      "start": 6.891,
+      "end": 13.664,
+      "pushOrigin": "46% 45%",
+      "cards": [
+        {
+          "t": 8.068,
+          "text": "ยังไม่มีสถานีหน้าสนาม",
+          "until": 10.644
+        },
+        {
+          "t": 10.69,
+          "text": "สายสีส้ม",
+          "line": "orange"
+        }
+      ],
+      "labels": [],
+      "venueSide": "right"
+    },
+    {
+      "id": "s4",
+      "label": "4 ARL + BTS",
+      "inherit": "map",
+      "start": 13.664,
+      "end": 24.638,
+      "push": 0.02,
+      "cards": [
+        {
+          "t": 13.763,
+          "until": 16.164,
+          "text": "ทุกเส้นทาง ต้องต่อรถอีกช่วง"
+        },
+        {
+          "t": 16.256,
+          "until": 17.839,
+          "text": "ทางที่คนนิยมมีสองแบบ"
+        },
+        {
+          "t": 17.922,
+          "text": "แบบแรก · แอร์พอร์ต เรล ลิงก์",
+          "line": "arl",
+          "until": 21.841
+        },
+        {
+          "t": 21.887,
+          "text": "มาจาก BTS",
+          "line": "bts"
+        }
+      ],
+      "inset": {
+        "t0": 16.256,
+        "t1": 17.922,
+        "x": 80,
+        "y": 290,
+        "w": 920,
+        "h": 860,
+        "rot": -1.2
+      },
+      "hideNotes": true,
+      "labels": [
+        "phayathai",
+        "ramk",
+        "huamak"
+      ],
+      "venueSide": "below",
+      "stock": {
+        "kind": "video",
+        "file": "skytrain_bkk_vertical_38607538.mp4",
+        "from": 3,
+        "dur": 2.6,
+        "at": 16.256,
+        "w": 892,
+        "h": 832,
+        "blur": 0,
+        "crop": "830:774:250:700",
+        "grade": "eq=contrast=1.06:saturation=1.04,colorbalance=rs=0.01:bs=0.03",
+        "note": "crop keeps the billboard with a face (left) out of frame"
+      }
+    },
+    {
+      "id": "s5",
+      "label": "5 yellow line",
+      "inherit": "map",
+      "start": 24.638,
+      "end": 32.642,
+      "push": 0.02,
+      "cards": [
+        {
+          "t": 24.72,
+          "until": 31.124,
+          "text": "แบบที่สอง · MRT",
+          "line": "yellow"
+        },
+        {
+          "t": 31.197,
+          "text": "เช็กแอปแผนที่<br>ก่อนออกเดินทาง"
+        }
+      ],
+      "inset": {
+        "t0": 29.596,
+        "t1": 31.16,
+        "x": 80,
+        "y": 290,
+        "w": 920,
+        "h": 860,
+        "rot": 1.2
+      },
+      "hideNotes": true,
+      "labels": [
+        "lamsali"
+      ],
+      "venueSide": "below",
+      "stock": {
+        "kind": "video",
+        "file": "traffic_th_vertical_29900216.mp4",
+        "from": 4,
+        "dur": 2.4,
+        "at": 29.596,
+        "w": 892,
+        "h": 832,
+        "blur": 0,
+        "crop": "1080:1007:0:500",
+        "grade": "eq=contrast=1.06:saturation=1.04,colorbalance=rs=0.01:bs=0.03"
+      }
+    },
+    {
+      "id": "s6",
+      "label": "6 traffic",
+      "type": "sides",
+      "start": 32.642,
+      "end": 39.293,
+      "lights": true,
+      "leftPos": {
+        "x": 80,
+        "y": 290
+      },
+      "left": [
+        {
+          "t": 33.47,
+          "until": 36.404,
+          "icon": "car",
+          "text": "ถนนรามคำแหงมักติดหนัก"
+        },
+        {
+          "t": 35.172,
+          "until": 36.404,
+          "icon": "warn",
+          "text": "ที่จอดรถก็จำกัด"
+        },
+        {
+          "t": 36.45,
+          "clock": true,
+          "text": "เผื่อเวลาไปเยอะๆ",
+          "spinUntil": 38.723
+        },
+        {
+          "t": 37.508,
+          "icon": "check",
+          "text": "ไปเร็วกว่าไปไม่ทัน",
+          "hl": true
+        }
+      ],
+      "stockAs": "background",
+      "stockFrame": {
+        "x": 70,
+        "y": 250,
+        "w": 940,
+        "h": 900,
+        "rot": -1
+      },
+      "stock": {
+        "kind": "video",
+        "file": "street_bkk_vertical_40839098.mp4",
+        "from": 0,
+        "speed": 0.6,
+        "w": 912,
+        "h": 872,
+        "blur": 0,
+        "crop": "1080:1033:0:850",
+        "grade": "eq=contrast=1.06:saturation=1.04,colorbalance=rs=0.01:bs=0.03"
+      }
+    },
+    {
+      "id": "s7a",
+      "label": "7 checklist",
+      "type": "checklist",
+      "start": 39.293,
+      "end": 45.724,
+      "title": "ของที่ห้ามลืม",
+      "titleIcon": "ticket",
+      "panel": {
+        "x": 80,
+        "y": 300,
+        "w": 840
+      },
+      "panelAt": 39.321,
+      "items": [
+        {
+          "t": 40.287,
+          "icon": "ticket",
+          "text": "บัตรคอนเสิร์ต",
+          "tickAt": 40.719
+        },
+        {
+          "t": 41.124,
+          "icon": "idcard",
+          "text": "บัตรประชาชน",
+          "tickAt": 42.881
+        },
+        {
+          "t": 43.709,
+          "icon": "warn",
+          "text": "ชื่อตรงกับชื่อภาษาอังกฤษบนบัตร",
+          "note": true
+        }
+      ]
+    },
+    {
+      "id": "s7b",
+      "label": "7 name must match",
+      "type": "warning",
+      "start": 45.724,
+      "end": 48.898,
+      "title": "ถ้าชื่อไม่ตรง",
+      "icon": "warn",
+      "box": {
+        "x": 80,
+        "y": 300,
+        "w": 840
+      },
+      "boxAt": 45.742,
+      "jitterAt": 47.684,
+      "lines": [
+        {
+          "t": 46.524,
+          "text": "เข้างานไม่ได้"
+        },
+        {
+          "t": 47.619,
+          "text": "ไม่คืนเงิน",
+          "big": true
+        }
+      ]
+    },
+    {
+      "id": "s7c",
+      "label": "7 camera / battery / cash",
+      "type": "iconrow",
+      "start": 48.898,
+      "end": 58.622,
+      "row": {
+        "x": 80,
+        "y": 300
+      },
+      "tileW": 419,
+      "tiles": [
+        {
+          "t": 48.962,
+          "icon": "camera",
+          "label": "กล้องถ่ายรูป",
+          "mark": "no",
+          "markAt": 51.005,
+          "until": 55.2
+        },
+        {
+          "t": 51.971,
+          "icon": "phone",
+          "label": "กล้องมือถือได้",
+          "mark": "ok",
+          "markAt": 52.403,
+          "until": 55.2
+        },
+        {
+          "t": 55.458,
+          "icon": "battery",
+          "label": "ชาร์จแบตให้เต็ม"
+        },
+        {
+          "t": 56.994,
+          "icon": "cash",
+          "label": "พกเงินสดติดตัว"
+        }
+      ]
+    },
+    {
+      "id": "s8a",
+      "label": "8 meet-up point",
+      "type": "meetup",
+      "start": 58.622,
+      "end": 62.21,
+      "venue": {
+        "x": 610,
+        "y": 950,
+        "label": "ราชมังฯ"
+      },
+      "pin": {
+        "x": 900,
+        "y": 1060
+      },
+      "outAt": 58.724,
+      "gatherAt": 60.61,
+      "cards": [
+        {
+          "t": 59.395,
+          "text": "คนจะออกพร้อมกัน",
+          "icon": "warn",
+          "x": 80,
+          "y": 300
+        },
+        {
+          "t": 60.61,
+          "text": "นัดจุดรวมไว้ก่อน",
+          "icon": "pin",
+          "x": 80,
+          "y": 430
+        }
+      ],
+      "stockAs": "background",
+      "stockFrame": {
+        "x": 70,
+        "y": 250,
+        "w": 940,
+        "h": 760,
+        "rot": 1.2
+      },
+      "mini": {
+        "x": 470,
+        "y": 790,
+        "w": 540,
+        "h": 370,
+        "rot": -1
+      },
+      "spread": 0.26,
+      "stock": {
+        "kind": "video",
+        "file": "crowd_walk_night_4122942.mp4",
+        "from": 6,
+        "w": 912,
+        "h": 732,
+        "blur": 0,
+        "crop": "1290:1035:480:0",
+        "grade": "eq=contrast=1.06:saturation=1.04,colorbalance=rs=0.01:bs=0.03"
+      }
+    },
+    {
+      "id": "s8b",
+      "label": "8 fares",
+      "type": "warning",
+      "start": 62.21,
+      "end": 73.342,
+      "title": "ระวังเรื่องค่ารถ",
+      "icon": "warn",
+      "box": {
+        "x": 80,
+        "y": 300,
+        "w": 840
+      },
+      "boxAt": 62.238,
+      "lines": [
+        {
+          "t": 63.968,
+          "text": "โดนเรียกค่ารถเกินที่ตกลง",
+          "until": 66.884
+        },
+        {
+          "t": 67.068,
+          "text": "แท็กซี่บางคันไม่กดมิเตอร์"
+        }
+      ],
+      "art": {
+        "kind": "taxi",
+        "t": 64.483,
+        "until": 68.798,
+        "x": 300,
+        "y": 720,
+        "strikeAt": 65.283,
+        "size": 400
+      },
+      "tipsBox": {
+        "x": 80,
+        "y": 720,
+        "w": 840
+      },
+      "tips": [
+        {
+          "t": 69.028,
+          "icon": "check",
+          "text": "ตกลงราคาให้ชัดก่อนขึ้น"
+        },
+        {
+          "t": 70.684,
+          "icon": "phone",
+          "text": "ใช้แอปที่เห็นราคาก่อน"
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "label": "9 closing",
+      "type": "closing",
+      "start": 73.342,
+      "end": 93.24,
+      "glow": {
+        "x": 540,
+        "y": 1350,
+        "r": 620
+      },
+      "messages": [
+        {
+          "t": 74.18,
+          "until": 78.476,
+          "text": "วันที่รอมานาน",
+          "x": 120,
+          "y": 420,
+          "w": 840
+        },
+        {
+          "t": 78.623,
+          "until": 81.76,
+          "text": "นูบุอยู่ตรงนี้<br>เป็นเพื่อนเสมอ",
+          "x": 120,
+          "y": 380,
+          "w": 840
+        },
+        {
+          "t": 91.043,
+          "text": "เจอกันคลิปหน้า",
+          "x": 120,
+          "y": 420,
+          "w": 840
+        }
+      ],
+      "buttons": [
+        {
+          "t": 83.453,
+          "until": 90.804,
+          "icon": "comment",
+          "text": "คอมเมนต์บอกนูบุ",
+          "y": 380,
+          "center": true,
+          "rot": -2
+        },
+        {
+          "t": 84.962,
+          "until": 90.804,
+          "icon": "heart",
+          "text": "แชร์ให้เพื่อนอาร์มี่",
+          "y": 545,
+          "center": true,
+          "rot": 1.5
+        },
+        {
+          "t": 89.507,
+          "until": 90.804,
+          "icon": "bell",
+          "text": "ติดตามนูบุ",
+          "y": 710,
+          "center": true,
+          "alt": true,
+          "rot": -1.5
+        }
+      ]
+    }
+  ],
+  "contact": [
+    {
+      "label": "1 hook",
+      "t": 1.518
+    },
+    {
+      "label": "2 tickets",
+      "t": 3.68
+    },
+    {
+      "label": "3 no station",
+      "t": 12.484
+    },
+    {
+      "label": "4 ARL+BTS",
+      "t": 23.442
+    },
+    {
+      "label": "5 yellow",
+      "t": 31.676
+    },
+    {
+      "label": "6 traffic",
+      "t": 38.244
+    },
+    {
+      "label": "7 checklist",
+      "t": 44.96
+    },
+    {
+      "label": "7 warning",
+      "t": 48.318
+    },
+    {
+      "label": "7 icons",
+      "t": 58.08
+    },
+    {
+      "label": "8 meet-up",
+      "t": 61.76
+    },
+    {
+      "label": "8 fares",
+      "t": 71.604
+    },
+    {
+      "label": "9 CTAs",
+      "t": 90.077
+    },
+    {
+      "label": "9 bye",
+      "t": 92
+    }
+  ],
+  "themeDeco": {
+    "_note": "Zine page decoration for this band. kinds: heart, heartline, star, starline, ticket, stamp, squiggle, dots. Positions are 1080x1920 screen px (centre).",
+    "stamp": "7",
+    "frameInset": 30,
+    "doodles": [
+      {
+        "kind": "heartline",
+        "x": 160,
+        "y": 128,
+        "size": 64,
+        "rot": -10
+      },
+      {
+        "kind": "star",
+        "x": 560,
+        "y": 112,
+        "size": 44
+      },
+      {
+        "kind": "ticket",
+        "x": 860,
+        "y": 150,
+        "size": 112,
+        "rot": -12,
+        "alpha": 0.5
+      },
+      {
+        "kind": "stamp",
+        "x": 1002,
+        "y": 430,
+        "size": 98,
+        "rot": 12,
+        "alpha": 0.7
+      },
+      {
+        "kind": "heart",
+        "x": 1012,
+        "y": 700,
+        "size": 54,
+        "rot": 12,
+        "alpha": 0.75
+      },
+      {
+        "kind": "starline",
+        "x": 1004,
+        "y": 980,
+        "size": 56
+      },
+      {
+        "kind": "squiggle",
+        "x": 1010,
+        "y": 1250,
+        "size": 76,
+        "rot": 70,
+        "alpha": 0.5
+      },
+      {
+        "kind": "dots",
+        "x": 44,
+        "y": 860,
+        "size": 50,
+        "alpha": 0.5
+      },
+      {
+        "kind": "heart",
+        "x": 112,
+        "y": 1650,
+        "size": 70,
+        "rot": -14,
+        "alpha": 0.7
+      },
+      {
+        "kind": "starline",
+        "x": 968,
+        "y": 1560,
+        "size": 60
+      },
+      {
+        "kind": "ticket",
+        "x": 960,
+        "y": 1800,
+        "size": 116,
+        "rot": 14,
+        "alpha": 0.45
+      },
+      {
+        "kind": "star",
+        "x": 100,
+        "y": 1846,
+        "size": 42
+      }
+    ]
+  },
+  "audio": {
+    "_note": "Music bed ducks under speech (alignment); SFX are synthesized in lib/audio.js and placed on the visual cues (strongest cue per minGap window). Final mix = one static gain to targetLUFS + limiter at -1.6 dBFS.",
+    "targetLUFS": -14,
+    "music": {
+      "file": "../../assets/audio/music/fassounds-lofi-kawaii-423846.mp3",
+      "licence": "Pixabay Content License",
+      "gapBelowVoiceLu": 4,
+      "duckDb": 5,
+      "noDuckUntil": 0,
+      "fadeIn": 0.3,
+      "fadeOut": 1,
+      "beatSync": true,
+      "start": 1,
+      "skipIntro": 8,
+      "dropBefore": 0.45,
+      "cleanTail": 0.4
+    },
+    "sfx": {
+      "minGap": 1.5,
+      "belowVoiceDb": 10,
+      "files": {
+        "buzz": {
+          "file": "../../assets/audio/sfx/wrong-47985.mp3",
+          "maxSec": 0.4
+        }
+      },
+      "kindDb": {
+        "buzz": -2
+      }
+    },
+    "maxDuration": 93.74,
+    "sting": {
+      "intro": "../../assets/audio/brand/nubu_sting_soft.wav",
+      "outro": "../../assets/audio/brand/nubu_sting_outro_soft.wav",
+      "introAt": 0,
+      "belowVoiceDb": 6,
+      "outroEndPad": 1.55,
+      "introGainDb": -13
+    },
+    "voiceEq": "deesser=i=0.4,equalizer=f=3300:t=q:w=1.2:g=-4,highshelf=f=7000:g=-3,afade=t=in:d=0.15"
+  }
+}

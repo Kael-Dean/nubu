@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="60" viewBox="0 0 40 60">
+<defs>
+  <radialGradient id="ballt" cx="0.62" cy="0.32" r="0.78">
+    <stop offset="0" stop-color="#3a3536"/>
+    <stop offset="0.4" stop-color="#151213"/>
+    <stop offset="0.85" stop-color="#0a0809"/>
+    <stop offset="1" stop-color="#1c1010"/>
+  </radialGradient>
+  <radialGradient id="rimt" cx="0.3" cy="0.85" r="0.55">
+    <stop offset="0" stop-color="#b04a3c" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#b04a3c" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="watert" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bfe3ff" stop-opacity="0"/>
+    <stop offset="0.6" stop-color="#bfe3ff" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#e8f6ff" stop-opacity="0.7"/>
+  </linearGradient>
+  <radialGradient id="dropt" cx="0.4" cy="0.35" r="0.7">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+    <stop offset="0.5" stop-color="#d8eeff" stop-opacity="0.85"/>
+    <stop offset="1" stop-color="#9fc8ee" stop-opacity="0.8"/>
+  </radialGradient>
+  <filter id="softt" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.8"/></filter>
+</defs>
+  <path d="M20,3 C25,16 34,28 34,39 A14,14 0 0 1 6,39 C6,28 15,16 20,3Z" fill="url(#dropt)" stroke="#8fbde6" stroke-width="1.6"/>
+  <ellipse cx="14" cy="36" rx="3.5" ry="6" fill="#fff" fill-opacity="0.9"/></svg>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+<style>
+  .print { position: absolute; background: var(--paper); border-radius: 6px; box-shadow: 0 16px 26px oklch(0.12 0.05 302 / .38); }
+  .print .pic { position: absolute; overflow: hidden; border-radius: 3px; background: var(--paper-2); }
+  .print .pic img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+  .print .pic .memory { position: absolute; inset: 0; background: oklch(0.72 0.06 60 / .22); mix-blend-mode: multiply; }
+  .print .pic .glow { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 40%, transparent 55%, oklch(0.2 0.06 302 / .45)); }
+  .print .cap { position: absolute; left: 0; right: 0; text-align: center; font-family: var(--font-display); font-weight: var(--display-weight); color: var(--ink); line-height: 1.3; }
+  .print .tape { z-index: 2; }
+  .print .credit { z-index: 3; font-size: 20px; }
+  .label { padding: 12px 30px 16px; font-weight: 700; line-height: 1.4; }
+  .big { font-family: var(--font-display); font-weight: var(--display-weight); color: var(--on-bg); line-height: 1.25; text-wrap: balance; }
+  .name { padding: 8px 22px 12px; font-family: var(--font-display); font-weight: var(--display-weight); line-height: 1.3; white-space: nowrap; }
+</style></head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: photos — licensed photos pinned like prints (paper border, tape, slow push-in, credit slip), plus labels.
+// cfg: { items:[{src, t, until, frame:{x,y,w,h,rot}, credit, caption, capSize, focus:'50% 30%', tone:'memory'|'color', zoom}],
+//        labels:[{t,until,text,x,y,size,w,accent,big,hl}], names:[{t,text}], namesBox:{x,y,w}, exitAt }
+// src is relative to the repo root (e.g. "assets/licensed-media/x.jpg"); pages load from pipeline/compose/scenes/.
+NB.define({
+  build(c) {
+    const cfg = c.cfg, ui = c.ui;
+    c.items = (cfg.items || []).map((it, i) => {
+      const F = it.frame, capH = it.caption ? (it.capH || 78) : 18;
+      const pr = NB.el('div', 'print', ui);
+      NB.css(pr, { left: F.x + 'px', top: F.y + 'px', width: F.w + 'px', height: F.h + 'px' });
+      pr._rot = F.rot ?? (i % 2 ? 1.4 : -1.2);
+      const pic = NB.el('div', 'pic', pr); NB.css(pic, { left: '16px', top: '16px', width: F.w - 32 + 'px', height: F.h - 16 - capH + 'px' });
+      const img = NB.el('img', '', pic); img.src = '../../../' + it.src; img.style.objectPosition = it.focus || '50% 35%';
+      if (it.tone === 'memory') { NB.el('div', 'memory', pic); img.style.filter = 'saturate(0.7) contrast(1.02) sepia(0.18)'; }
+      NB.el('div', 'glow', pic);
+      if (it.caption) { const cp = NB.el('div', 'cap', pr, it.caption); NB.css(cp, { bottom: '14px', fontSize: (it.capSize || 40) + 'px' }); }
+      const tp = it.tape ?? [[-10, -18, -8], [F.w - 140, -14, 7]];
+      for (const [x, y, a] of tp) { const e = NB.el('div', 'tape', pr); NB.css(e, { left: x + 'px', top: y + 'px', transform: 'rotate(' + a + 'deg)' }); }
+      if (it.credit) { const cr = NB.el('div', 'credit', pr, it.credit); NB.css(cr, { left: '28px', top: (F.h - capH - 60) + 'px', maxWidth: F.w - 56 + 'px' }); }
+      return { pr, img, it };
+    });
+    c.labels = (cfg.labels || []).map((l) => {
+      let html = l.text; if (l.hl) html = html.replace(l.hl, NB.hl(l.hl, 7));
+      const e = NB.el('div', l.big ? 'abs big' : 'sticker label', ui, html);
+      NB.css(e, { left: l.x + 'px', top: l.y + 'px', fontSize: (l.size || (l.big ? 80 : 44)) + 'px' });
+      if (l.w) e.style.width = l.w + 'px';
+      return { e, ...l };
+    });
+    if (cfg.names) {
+      const N = cfg.namesBox || { x: 80, y: 980, w: 920 };
+      const row = NB.el('div', 'abs', ui); NB.css(row, { left: N.x + 'px', top: N.y + 'px', width: N.w + 'px', display: 'flex', flexWrap: 'wrap', gap: '16px 18px' });
+      c.names = cfg.names.map((n) => { const e = NB.el('div', 'sticker name', row, n.text); NB.css(e, { position: 'relative', fontSize: (n.size || 50) + 'px' }); return { e, ...n }; });
+    }
+  },
+  afterFonts(c) {
+    c.labels.forEach((l, i) => { if (!l.big) NB.sticker(l.e, { seed: 50 + i, fill: l.accent ? 'accent' : 'paper' }); });
+    (c.names || []).forEach((n, i) => NB.sticker(n.e, { seed: 70 + i, fill: i % 2 ? 'soft' : 'paper', rot: [-3, 2, -1.5, 2.5][i % 4] }));
+  },
+  update(t, c) {
+    const ex = c.cfg.exitAt;
+    for (const { pr, img, it } of c.items) {
+      NB.enter(pr, t, it.t, { dy: 26, scale: 1.05, drot: 3, dur: 0.5, exitAt: it.until ?? ex, exitDur: 0.35, exitDy: 30 });
+      const end = it.until ?? c.end;
+      const p = NB.p(t, it.t, Math.max(0.5, end - it.t));
+      img.style.transform = `scale(${(it.zoom || 1.04) + 0.07 * NB.ease.inOutSine(p)}) translateY(${-1.2 * NB.ease.inOutSine(p)}%)`;
+    }
+    for (const l of c.labels) { NB.enter(l.e, t, l.t, { dy: l.big ? 18 : -8, scale: l.big ? 1 : 1.1, drot: l.big ? 0 : 4, dur: 0.38, exitAt: l.until ?? ex }); if (l.hl) NB.swipe(l.e, t, l.t + 0.3); }
+    for (const n of c.names || []) NB.enter(n.e, t, n.t, { dy: -10, scale: 1.18, drot: 6, dur: 0.32, exitAt: n.until ?? ex });
+  },
+});
+</script>
+</body></html>
