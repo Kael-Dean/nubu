@@ -17,9 +17,12 @@ if (!voiceId || !text) { console.error("need --voice and --text/--text-file"); p
 const client = new ElevenLabsClient();
 // --prev "<text spoken right before>" helps the model match intonation when re-recording only part of a script
 const previousText = opt("prev");
-const res = await client.textToSpeech.convertWithTimestamps(voiceId, { text, modelId, languageCode, outputFormat: "mp3_44100_128", ...(previousText ? { previousText } : {}) });
+const nextText = opt("next");   // text spoken right after (helps the model end the phrase naturally)
+// --speed 0.7–1.2: ElevenLabs native delivery speed (natural, unlike time-stretching afterwards)
+const speed = opt("speed") ? +opt("speed") : null;
+const res = await client.textToSpeech.convertWithTimestamps(voiceId, { text, modelId, languageCode, outputFormat: "mp3_44100_128", ...(previousText ? { previousText } : {}), ...(nextText ? { nextText } : {}), ...(speed ? { voiceSettings: { speed } } : {}) });
 mkdirSync(outDir, { recursive: true });
 writeFileSync(path.join(outDir, "voice.mp3"), Buffer.from(res.audioBase64, "base64"));
 const a = res.alignment || res.normalizedAlignment || null;
-writeFileSync(path.join(outDir, "alignment.json"), JSON.stringify({ voiceId, modelId, languageCode, text, alignment: res.alignment ?? null, normalizedAlignment: res.normalizedAlignment ?? null }, null, 1));
+writeFileSync(path.join(outDir, "alignment.json"), JSON.stringify({ voiceId, modelId, languageCode, speed, text, alignment: res.alignment ?? null, normalizedAlignment: res.normalizedAlignment ?? null }, null, 1));
 console.log(JSON.stringify({ out: outDir, chars: text.length, hasAlignment: !!a, alignedChars: a ? a.characters.length : 0, durationSec: a ? a.characterEndTimesSeconds.at(-1) : null }));

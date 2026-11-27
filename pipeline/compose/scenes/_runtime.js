@@ -226,7 +226,7 @@
     const api = { box: mount || box, pic: box, active: !!stock, fallback: null };
     if (stock) {
       const img = NB.el('img', 'stockimg', box);
-      if (!rect.frame) { NB.el('div', 'tint', box); NB.el('div', 'tint2', box); }
+      if (!rect.frame && stock.tint !== false) { NB.el('div', 'tint', box); NB.el('div', 'tint2', box); }
       if (stock.credit) {
         const cr = NB.el('div', 'credit', mount || parent, stock.credit);
         if (mount) NB.css(cr, { right: '30px', top: '30px' });
@@ -238,7 +238,7 @@
       api.update = async (t) => {
         let src;
         if (stock.kind === 'video') {
-          const i = Math.min(stock.frames.length - 1, Math.max(0, Math.floor((t - (stock.at ?? ctx.start)) * (stock.fps || 30))));
+          const i = Math.min(stock.frames.length - 1, Math.max(0, Math.round((t - (stock.at ?? ctx.start)) * (stock.fps || 30))));
           src = stock.frames[i];
         } else {
           src = stock.image;
@@ -448,6 +448,8 @@
       const shade = NB.el('div', 'abs', sb.box);
       NB.css(shade, { inset: '0', background: payload.scene.stockShade || 'linear-gradient(180deg, oklch(0.2 0.08 302 / 0.35) 0%, oklch(0.2 0.08 302 / 0.5) 60%, oklch(0.2 0.08 302 / 0.9) 100%)' });
       ctx.stockBg = sb;
+      // optional extra top shade (for text over footage) that can fade out before the cut: scene.topShade {background, until, fade}
+      if (payload.scene.topShade) { ctx.topShade = NB.el('div', 'abs', sb.box); NB.css(ctx.topShade, { inset: '0', background: payload.scene.topShade.background }); }
     }
     if (def.build) await def.build(ctx);
     await document.fonts.ready;
@@ -478,6 +480,7 @@
       if (c.stockBg.framed) NB.enter(c.stockBg.box, t, c.start, { dy: 16, scale: 1.02, drot: 1.5, dur: 0.5, exitAt: u });
       else c.stockBg.box.style.opacity = String(u != null ? 1 - NB.ease.inOutSine(NB.p(t, u, 0.6)) : 1);
       await c.stockBg.update(t);
+      if (c.topShade) { const T = c.scene.topShade; c.topShade.style.opacity = String(T.until != null ? 1 - NB.ease.inOutSine(NB.p(t, T.until, T.fade ?? 0.6)) : 1); }
     }
     if (def.update) await def.update(t, c);
   };

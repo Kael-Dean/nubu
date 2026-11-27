@@ -1,0 +1,752 @@
+{
+ "source": "master_fullbody_apose_2x_nobg.webp",
+ "canvas": [
+  2759,
+  4096
+ ],
+ "joints": {
+  "headPivot": [
+   1400,
+   640
+  ],
+  "neckBase": [
+   1400,
+   760
+  ],
+  "shoulderR": [
+   990,
+   960
+  ],
+  "elbowR": [
+   835,
+   1415
+  ],
+  "wristR": [
+   740,
+   1772
+  ],
+  "shoulderL": [
+   1810,
+   960
+  ],
+  "elbowL": [
+   1965,
+   1415
+  ],
+  "wristL": [
+   2060,
+   1772
+  ],
+  "hipR": [
+   1225,
+   1950
+  ],
+  "kneeR": [
+   1155,
+   2950
+  ],
+  "ankleR": [
+   1076,
+   3560
+  ],
+  "hipL": [
+   1570,
+   1950
+  ],
+  "kneeL": [
+   1672,
+   2950
+  ],
+  "ankleL": [
+   1708,
+   3560
+  ],
+  "pelvis": [
+   1400,
+   1880
+  ],
+  "chest": [
+   1400,
+   1150
+  ],
+  "spine": [
+   1400,
+   1600
+  ]
+ },
+ "drawOrder": [
+  "latR",
+  "latL",
+  "thighR",
+  "shinR",
+  "thighL",
+  "shinL",
+  "shoeR",
+  "shoeL",
+  "pelvis",
+  "armL",
+  "handL",
+  "torso",
+  "capL",
+  "head",
+  "armR",
+  "handR",
+  "capR"
+ ],
+ "pieces": {
+  "head": {
+   "file": "head.png",
+   "x": 1174,
+   "y": 174,
+   "w": 441,
+   "h": 495
+  },
+  "torso": {
+   "file": "torso.png",
+   "x": 1048,
+   "y": 540,
+   "w": 710,
+   "h": 1290
+  },
+  "armR": {
+   "file": "armR.png",
+   "x": 666,
+   "y": 762,
+   "w": 465,
+   "h": 1062
+  },
+  "armL": {
+   "file": "armL.png",
+   "x": 1669,
+   "y": 762,
+   "w": 465,
+   "h": 1062
+  },
+  "handR": {
+   "file": "hands/handR_relaxed.png",
+   "x": 581,
+   "y": 1617,
+   "w": 267,
+   "h": 401,
+   "bindTo": "handR"
+  },
+  "handL": {
+   "file": "hands/handL_relaxed.png",
+   "x": 1953,
+   "y": 1724,
+   "w": 267,
+   "h": 294,
+   "bindTo": "handL",
+   "note": "mirror of handR_relaxed without tattoos"
+  },
+  "pelvis": {
+   "file": "pelvis.png",
+   "x": 1023,
+   "y": 1700,
+   "w": 754,
+   "h": 385
+  },
+  "legR": {
+   "file": "legR.png",
+   "x": 841,
+   "y": 1950,
+   "w": 555,
+   "h": 1875
+  },
+  "legL": {
+   "file": "legL.png",
+   "x": 1396,
+   "y": 1950,
+   "w": 559,
+   "h": 1875
+  },
+  "shoeR": {
+   "file": "shoeR.png",
+   "x": 839,
+   "y": 3491,
+   "w": 391,
+   "h": 335
+  },
+  "shoeL": {
+   "file": "shoeL.png",
+   "x": 1570,
+   "y": 3491,
+   "w": 387,
+   "h": 338
+  },
+  "thighR": {
+   "file": "thighR.png",
+   "x": 956,
+   "y": 1950,
+   "w": 440,
+   "h": 1080
+  },
+  "shinR": {
+   "file": "shinR.png",
+   "x": 841,
+   "y": 2867,
+   "w": 456,
+   "h": 958
+  },
+  "thighL": {
+   "file": "thighL.png",
+   "x": 1396,
+   "y": 1950,
+   "w": 450,
+   "h": 1087
+  },
+  "shinL": {
+   "file": "shinL.png",
+   "x": 1497,
+   "y": 2864,
+   "w": 458,
+   "h": 961
+  },
+  "capR": {
+   "file": "capR.png",
+   "x": 850,
+   "y": 770,
+   "w": 271,
+   "h": 271,
+   "bindTo": "clavR"
+  },
+  "capL": {
+   "file": "capL.png",
+   "x": 1672,
+   "y": 756,
+   "w": 293,
+   "h": 293,
+   "bindTo": "clavL"
+  },
+  "latR": {
+   "file": "latR.png",
+   "x": 876,
+   "y": 776,
+   "w": 307,
+   "h": 417,
+   "bindTo": "chest",
+   "note": "behind torso+arms; show (opacity 1) only while the arm is raised > ~30°"
+  },
+  "latL": {
+   "file": "latL.png",
+   "x": 1621,
+   "y": 776,
+   "w": 312,
+   "h": 417,
+   "bindTo": "chest",
+   "note": "behind torso+arms; show (opacity 1) only while the arm is raised > ~30°"
+  }
+ },
+ "face": {
+  "head_blank": {
+   "file": "head_blank.png",
+   "x": 1174,
+   "y": 174,
+   "w": 441,
+   "h": 495
+  },
+  "eyeR": {
+   "file": "face/eyeR_neutral.png",
+   "x": 1290,
+   "y": 415,
+   "w": 89,
+   "h": 39
+  },
+  "eyeL": {
+   "file": "face/eyeL_neutral.png",
+   "x": 1432,
+   "y": 408,
+   "w": 87,
+   "h": 37
+  },
+  "mouth": {
+   "file": "face/mouth_neutral.png",
+   "x": 1335,
+   "y": 537,
+   "w": 155,
+   "h": 61
+  },
+  "browR": {
+   "file": "face/browR_neutral.png",
+   "x": 1312,
+   "y": 376,
+   "w": 71,
+   "h": 27
+  }
+ },
+ "faceSwaps": {
+  "eyeR_open": {
+   "file": "face/swap_eyeR_open.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1295,
+   "y": 417,
+   "w": 78,
+   "h": 34
+  },
+  "eyeL_open": {
+   "file": "face/swap_eyeL_open.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1437,
+   "y": 409,
+   "w": 77,
+   "h": 34
+  },
+  "eyeR_surprised": {
+   "file": "face/swap_eyeR_surprised.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1301,
+   "y": 409,
+   "w": 67,
+   "h": 51
+  },
+  "eyeL_surprised": {
+   "file": "face/swap_eyeL_surprised.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1441,
+   "y": 401,
+   "w": 68,
+   "h": 51
+  },
+  "eyeR_happy": {
+   "file": "face/swap_eyeR_happy.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1301,
+   "y": 423,
+   "w": 66,
+   "h": 22
+  },
+  "eyeL_happy": {
+   "file": "face/swap_eyeL_happy.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1442,
+   "y": 415,
+   "w": 66,
+   "h": 22
+  },
+  "eyeR_closed": {
+   "file": "face/swap_eyeR_closed.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1302,
+   "y": 426,
+   "w": 65,
+   "h": 16
+  },
+  "eyeL_closed": {
+   "file": "face/swap_eyeL_closed.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1443,
+   "y": 419,
+   "w": 65,
+   "h": 15
+  },
+  "eyeR_sleepy": {
+   "file": "face/swap_eyeR_sleepy.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1298,
+   "y": 419,
+   "w": 73,
+   "h": 31
+  },
+  "eyeL_sleepy": {
+   "file": "face/swap_eyeL_sleepy.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1439,
+   "y": 411,
+   "w": 73,
+   "h": 31
+  },
+  "eyeR_wink_open": {
+   "file": "face/swap_eyeR_wink_open.png",
+   "slot": "eyeR",
+   "centerX": 1334,
+   "centerY": 434,
+   "x": 1298,
+   "y": 417,
+   "w": 72,
+   "h": 34
+  },
+  "eyeL_wink_closed": {
+   "file": "face/swap_eyeL_wink_closed.png",
+   "slot": "eyeL",
+   "centerX": 1475,
+   "centerY": 426,
+   "x": 1445,
+   "y": 417,
+   "w": 60,
+   "h": 19
+  },
+  "browR_neutral": {
+   "file": "face/swap_browR_neutral.png",
+   "slot": "browR",
+   "centerX": 1347,
+   "centerY": 389,
+   "x": 1309,
+   "y": 377,
+   "w": 77,
+   "h": 24
+  },
+  "browL_neutral": {
+   "file": "face/swap_browL_neutral.png",
+   "slot": "browL",
+   "centerX": 1478,
+   "centerY": 382,
+   "x": 1440,
+   "y": 370,
+   "w": 77,
+   "h": 25
+  },
+  "browR_raised": {
+   "file": "face/swap_browR_raised.png",
+   "slot": "browR",
+   "centerX": 1347,
+   "centerY": 389,
+   "x": 1310,
+   "y": 371,
+   "w": 74,
+   "h": 37
+  },
+  "browL_raised": {
+   "file": "face/swap_browL_raised.png",
+   "slot": "browL",
+   "centerX": 1478,
+   "centerY": 382,
+   "x": 1441,
+   "y": 364,
+   "w": 74,
+   "h": 36
+  },
+  "browR_angry": {
+   "file": "face/swap_browR_angry.png",
+   "slot": "browR",
+   "centerX": 1347,
+   "centerY": 389,
+   "x": 1309,
+   "y": 373,
+   "w": 76,
+   "h": 32
+  },
+  "browL_angry": {
+   "file": "face/swap_browL_angry.png",
+   "slot": "browL",
+   "centerX": 1478,
+   "centerY": 382,
+   "x": 1440,
+   "y": 366,
+   "w": 76,
+   "h": 32
+  },
+  "browR_worried": {
+   "file": "face/swap_browR_worried.png",
+   "slot": "browR",
+   "centerX": 1347,
+   "centerY": 389,
+   "x": 1312,
+   "y": 372,
+   "w": 70,
+   "h": 35
+  },
+  "browL_worried": {
+   "file": "face/swap_browL_worried.png",
+   "slot": "browL",
+   "centerX": 1478,
+   "centerY": 382,
+   "x": 1443,
+   "y": 365,
+   "w": 70,
+   "h": 35
+  },
+  "browR_cocky": {
+   "file": "face/swap_browR_cocky.png",
+   "slot": "browR",
+   "centerX": 1347,
+   "centerY": 389,
+   "x": 1309,
+   "y": 377,
+   "w": 77,
+   "h": 25
+  },
+  "browL_cocky": {
+   "file": "face/swap_browL_cocky.png",
+   "slot": "browL",
+   "centerX": 1478,
+   "centerY": 382,
+   "x": 1440,
+   "y": 369,
+   "w": 77,
+   "h": 26
+  },
+  "mouth_smile_closed": {
+   "file": "face/swap_mouth_smile_closed.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1350,
+   "y": 549,
+   "w": 122,
+   "h": 34
+  },
+  "mouth_smile_bunny": {
+   "file": "face/swap_mouth_smile_bunny.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1349,
+   "y": 540,
+   "w": 124,
+   "h": 52
+  },
+  "mouth_laugh": {
+   "file": "face/swap_mouth_laugh.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1350,
+   "y": 529,
+   "w": 123,
+   "h": 74
+  },
+  "mouth_surprised_O": {
+   "file": "face/swap_mouth_surprised_O.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1388,
+   "y": 541,
+   "w": 47,
+   "h": 51
+  },
+  "mouth_talk_A": {
+   "file": "face/swap_mouth_talk_A.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1354,
+   "y": 536,
+   "w": 115,
+   "h": 61
+  },
+  "mouth_talk_E": {
+   "file": "face/swap_mouth_talk_E.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1365,
+   "y": 532,
+   "w": 93,
+   "h": 68
+  },
+  "mouth_talk_O": {
+   "file": "face/swap_mouth_talk_O.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1382,
+   "y": 538,
+   "w": 59,
+   "h": 56
+  },
+  "mouth_talk_MBP": {
+   "file": "face/swap_mouth_talk_MBP.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1356,
+   "y": 547,
+   "w": 111,
+   "h": 38
+  },
+  "mouth_sad": {
+   "file": "face/swap_mouth_sad.png",
+   "slot": "mouth",
+   "centerX": 1411,
+   "centerY": 566,
+   "x": 1359,
+   "y": 543,
+   "w": 105,
+   "h": 46
+  }
+ },
+ "faceSlots": {
+  "eyeR": [
+   1334,
+   434
+  ],
+  "eyeL": [
+   1475,
+   426
+  ],
+  "browR": [
+   1347,
+   389
+  ],
+  "browL": [
+   1478,
+   382
+  ],
+  "mouth": [
+   1411,
+   566
+  ]
+ },
+ "legNote": "legR/legL kept for reference; rig uses thigh*/shin* (each bound 100% to one bone, overlap 70px at the knee)",
+ "handPoses": {
+  "handR_relaxed": {
+   "file": "hands/handR_relaxed.png",
+   "x": 581,
+   "y": 1617,
+   "w": 267,
+   "h": 401,
+   "bindTo": "handR"
+  },
+  "handR_fist": {
+   "file": "hands/handR_fist.png",
+   "x": 611,
+   "y": 1618,
+   "w": 235,
+   "h": 328,
+   "bindTo": "handR"
+  },
+  "handR_wave": {
+   "file": "hands/handR_wave.png",
+   "x": 562,
+   "y": 1618,
+   "w": 283,
+   "h": 412,
+   "bindTo": "handR"
+  },
+  "handR_peace": {
+   "file": "hands/handR_peace.png",
+   "x": 682,
+   "y": 1620,
+   "w": 176,
+   "h": 456,
+   "bindTo": "handR"
+  },
+  "handR_thumbsup": {
+   "file": "hands/handR_thumbsup.png",
+   "x": 691,
+   "y": 1619,
+   "w": 242,
+   "h": 318,
+   "bindTo": "handR"
+  },
+  "handR_point": {
+   "file": "hands/handR_point.png",
+   "x": 635,
+   "y": 1620,
+   "w": 210,
+   "h": 401,
+   "bindTo": "handR"
+  },
+  "handR_fingerheart": {
+   "file": "hands/handR_fingerheart.png",
+   "x": 635,
+   "y": 1619,
+   "w": 204,
+   "h": 312,
+   "bindTo": "handR"
+  },
+  "handR_bigheart_half": {
+   "file": "hands/handR_bigheart_half.png",
+   "x": 547,
+   "y": 1618,
+   "w": 296,
+   "h": 363,
+   "bindTo": "handR"
+  },
+  "handL_relaxed": {
+   "file": "hands/handL_relaxed.png",
+   "x": 1953,
+   "y": 1724,
+   "w": 267,
+   "h": 294,
+   "bindTo": "handL",
+   "note": "mirror of handR_relaxed without tattoos"
+  },
+  "handL_fist": {
+   "file": "hands/handL_fist.png",
+   "x": 1955,
+   "y": 1724,
+   "w": 235,
+   "h": 222,
+   "bindTo": "handL",
+   "note": "mirror of handR_fist without tattoos"
+  },
+  "handL_wave": {
+   "file": "hands/handL_wave.png",
+   "x": 1956,
+   "y": 1725,
+   "w": 283,
+   "h": 305,
+   "bindTo": "handL",
+   "note": "mirror of handR_wave without tattoos"
+  },
+  "handL_peace": {
+   "file": "hands/handL_peace.png",
+   "x": 1943,
+   "y": 1734,
+   "w": 176,
+   "h": 342,
+   "bindTo": "handL",
+   "note": "mirror of handR_peace without tattoos"
+  },
+  "handL_thumbsup": {
+   "file": "hands/handL_thumbsup.png",
+   "x": 1868,
+   "y": 1733,
+   "w": 242,
+   "h": 204,
+   "bindTo": "handL",
+   "note": "mirror of handR_thumbsup without tattoos"
+  },
+  "handL_point": {
+   "file": "hands/handL_point.png",
+   "x": 1956,
+   "y": 1726,
+   "w": 210,
+   "h": 295,
+   "bindTo": "handL",
+   "note": "mirror of handR_point without tattoos"
+  },
+  "handL_fingerheart": {
+   "file": "hands/handL_fingerheart.png",
+   "x": 1962,
+   "y": 1716,
+   "w": 204,
+   "h": 215,
+   "bindTo": "handL",
+   "note": "mirror of handR_fingerheart without tattoos"
+  },
+  "handL_bigheart_half": {
+   "file": "hands/handL_bigheart_half.png",
+   "x": 1958,
+   "y": 1725,
+   "w": 296,
+   "h": 256,
+   "bindTo": "handL",
+   "note": "mirror of handR_bigheart_half without tattoos"
+  }
+ },
+ "tattooSource": "real-tattoo regen (sheets/master_realtattoo_aligned.webp), warped onto master arm",
+ "symmetry": "armR = mirror(armL) + tattoo ink; all hands = one back-of-hand set (R tattooed, L mirrored without ink)"
+}

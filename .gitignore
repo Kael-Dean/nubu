@@ -10,3 +10,14 @@ node_modules/
 # Pixabay audio: licence forbids redistributing the raw files (repo may be public) - keep local / OneDrive
 /assets/audio/music/*.mp3
 /assets/audio/sfx/*.mp3
+
+# BTS rig: third-party reference photos (not ours to publish) + regenerable test output
+/_bts-ref/**/ref_real_tattoo/
+/_bts-ref/jungkook/_tmpcut/
+/_bts-ref/jungkook/runtime-test/rec/fr/
+/_bts-ref/jungkook/runtime-test/rec/*.webm
+/_bts-ref/jungkook/runtime-test/frames*/
+# licensed-media candidates are not licensed yet
+/assets/licensed-media/**/_candidates/
+# over GitHub's 100 MB file limit (keep local / OneDrive)
+/assets/stock/cine/ep02_shotB.mp4

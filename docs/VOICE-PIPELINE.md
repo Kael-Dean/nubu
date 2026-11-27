@@ -95,3 +95,11 @@
   - CLI กำหนด: ห้ามเขียนโค้ด ElevenLabs จนกว่า `next` = `write_code`/`load_key` · ห้ามสร้างเสียงทดลองจนกว่าผู้ใช้ตอบตกลง · เขียนโค้ดเสร็จต้องรัน `onboard check`
 - [ ] voice id เสียงไทยที่เลือก
 - [ ] Python ไม่มีในเครื่อง → skill `elevenlabs-tts` (Python) ใช้ไม่ได้ ใช้สคริปต์ Node แทน
+
+## แก้เสียงประโยคเดียว (เร็ว, 2026-11-26)
+1. `node --env-file=.env.local pipeline/tts.mjs --voice <id> --speed 1.08 --text "<ประโยคใหม่>" --prev "<ประโยคก่อน>" --next "<ประโยคหลัง>" --out voice/patchX` (ลองหลายสะกด เลือกอันที่ไม่มีช่วงเงียบแปลก ๆ)
+2. `node scripts/splice-voice.js voice/<เดิม> voice/patchX voice/<ใหม่> "<ประโยคเดิม>" [--display "<ซับ>"]` → พิมพ์ `points`
+3. `node scripts/retime-compose.js compose.vN.json --points <points> compose.vN+1.json` แล้วชี้ voice/alignment/nubu ไปไฟล์ใหม่
+4. timeline นุบุ: thai-visemes → acting.js (แก้ anchor ใน cues ถ้าคำเปลี่ยน) → ตั้ง duration → talk-motion
+5. **`node pipeline/render.js <timeline> <out> --audio <voice> --riv ... --from <วินาทีที่เริ่มแก้ − 1> --reuse <โฟลเดอร์ render นุบุรอบก่อน>`** — เฟรมก่อนหน้าก๊อปจากรอบก่อน แคปใหม่เฉพาะช่วงที่แก้
+6. compose: ซีนที่ไม่เปลี่ยนจะ `cached` อัตโนมัติ

@@ -93,7 +93,7 @@ function prepStock(sc, layout, W, H, key) {
   const blur = st.blur ?? 5;
   if (st.kind === 'image') {
     const out = path.join(dir, 'still.jpg');
-    const stamp = JSON.stringify([st, w, h]);
+    const srcM = fs.statSync(file); const stamp = JSON.stringify([st, w, h, srcM.mtimeMs, srcM.size]);
     if (!fs.existsSync(out) || fs.readFileSync(path.join(dir, 'stamp'), 'utf8') !== stamp) {
       fs.mkdirSync(dir, { recursive: true });
       const vf = [st.crop ? `crop=${st.crop}` : null, `scale=${w}:${h}:force_original_aspect_ratio=increase`, `crop=${w}:${h}`,
@@ -101,11 +101,11 @@ function prepStock(sc, layout, W, H, key) {
       ff(['-i', file, '-vf', vf, '-q:v', '2', out], 'stock image');
       fs.writeFileSync(path.join(dir, 'stamp'), stamp);
     }
-    return { kind: 'image', image: pathToFileURL(out).href, credit: st.credit || null };
+    return { kind: 'image', image: pathToFileURL(out).href, credit: st.credit || null, tint: st.tint, stamp };
   }
   const dur = st.dur || (sc.end - sc.start) + 0.5;
   const n = Math.ceil(dur * FPS);
-  const stamp = JSON.stringify([st, w, h, n]);
+  const srcM = fs.statSync(file); const stamp = JSON.stringify([st, w, h, n, srcM.mtimeMs, srcM.size]);
   if (!fs.existsSync(path.join(dir, 'stamp')) || fs.readFileSync(path.join(dir, 'stamp'), 'utf8') !== stamp) {
     fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
     const vf = [st.crop ? `crop=${st.crop}` : null, st.speed ? `setpts=PTS/${st.speed}` : null, `fps=${FPS}`, `scale=${w}:${h}:force_original_aspect_ratio=increase`, `crop=${w}:${h}`,
@@ -114,7 +114,7 @@ function prepStock(sc, layout, W, H, key) {
     fs.writeFileSync(path.join(dir, 'stamp'), stamp);
   }
   const frames = fs.readdirSync(dir).filter((f) => f.endsWith('.jpg')).sort().map((f) => pathToFileURL(path.join(dir, f)).href);
-  return { kind: 'video', frames, fps: FPS, at: st.at };
+  return { kind: 'video', frames, fps: FPS, at: st.at, tint: st.tint, stamp };
 }
 
 // ---------------------------------------------------------------- jobs
@@ -171,7 +171,7 @@ async function capturePieces(browser, job, pieces, workers = 4) {
       const stock = prepStock(sc, job.layout, job.W, job.H, `${job.name}_${sc.id}`);
       // skip capture when nothing that affects this piece changed
       const srcFiles = ['scenes/' + sc.type + '.html', 'scenes/_runtime.js', 'scenes/_base.css', 'fonts/fonts.css', 'lib/track.js'].map((f) => fs.statSync(path.join(HERE, f)).mtimeMs);
-      const hash = require('crypto').createHash('sha1').update(JSON.stringify([sc, CFG.theme || null, CFG.themeDeco || null, pc.from, pc.to, pc.f0, pc.f1, job.layout, job.nubuKeys, job.modes, srcFiles, stock && (stock.frames ? stock.frames.length : stock.image), DRAFT])).digest('hex');
+      const hash = require('crypto').createHash('sha1').update(JSON.stringify([sc, CFG.theme || null, CFG.themeDeco || null, pc.from, pc.to, pc.f0, pc.f1, job.layout, (() => { const K = job.nubuKeys || []; let prev = null; const inside = []; for (const k of K) { if (k.t <= pc.from - (k.dur || 0)) prev = k; else if (k.t <= pc.to) inside.push(k); } return [prev, ...inside]; })(), job.modes, srcFiles, stock && stock.stamp, stock && (stock.frames ? stock.frames.length : stock.image), DRAFT])).digest('hex');
       if (!opt('fresh', false) && fs.existsSync(pc.file) && fs.existsSync(pc.file + '.hash') && fs.readFileSync(pc.file + '.hash', 'utf8') === hash) {
         done++; log(`  cached   ${path.basename(pc.file)} [${done}/${pieces.length}]`); continue;
       }
@@ -297,7 +297,7 @@ function composite(job, pieces, ui, mixFile) {
   const ex = (p) => Track.ffExpr(job.nubuKeys, job.modes, p);
   g.push(`[nall]format=yuva420p,fps=${FPS},scale=w='2*trunc((${ex('w')})/2)':h='2*trunc((${ex('h')})/2)':eval=frame:flags=bicubic,format=yuva420p[nub]`);
   g.push(`[0:v]fps=${FPS},setpts=N/${FPS}/TB[bg]`);
-  g.push(`[bg][nub]overlay=x='${ex('x')}':y='${ex('y')}':eval=frame:format=auto:eof_action=pass[v1]`);
+  g.push(`[bg][nub]overlay=x='${ex('x')}':y='${ex('y')}':eval=frame:format=auto:eof_action=repeat[v1]`);
   g.push(`[2:v]format=rgba,fps=${FPS}[subs]`);
   g.push(`[3:v]format=rgba,fps=${FPS}[tags]`);
   g.push(`[v1][subs]overlay=x='(${ex('sub')})-${job.W / 2}':y='(${ex('suby')})-${job.subsLayout.bottom}':eval=frame:format=auto:eof_action=pass[v2]`);

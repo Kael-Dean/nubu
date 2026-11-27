@@ -1,0 +1,541 @@
+[
+ {
+  "name": "legR",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/legR.png",
+  "x": 419.71,
+  "y": 1368.25,
+  "scaleX": 65.63,
+  "scaleY": 65.689,
+  "rot": 0
+ },
+ {
+  "name": "legL",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/legL.png",
+  "x": 675.93,
+  "y": 1368.25,
+  "scaleX": 65.765,
+  "scaleY": 65.689,
+  "rot": 0
+ },
+ {
+  "name": "shoeR",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/shoeR.png",
+  "x": 381.07,
+  "y": 1722.91,
+  "scaleX": 65.642,
+  "scaleY": 65.855,
+  "rot": 0
+ },
+ {
+  "name": "shoeL",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/shoeL.png",
+  "x": 716.41,
+  "y": 1723.6,
+  "scaleX": 65.69,
+  "scaleY": 65.603,
+  "rot": 0
+ },
+ {
+  "name": "pelvis",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/pelvis.png",
+  "x": 549.2,
+  "y": 910.55,
+  "scaleX": 65.689,
+  "scaleY": 65.593,
+  "rot": 0
+ },
+ {
+  "name": "armL",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/armL.png",
+  "x": 785.41,
+  "y": 631.33,
+  "scaleX": 65.613,
+  "scaleY": 65.742,
+  "rot": 0
+ },
+ {
+  "name": "handL",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL.png",
+  "x": 892.36,
+  "y": 922.51,
+  "scaleX": 65.569,
+  "scaleY": 65.785,
+  "rot": 0
+ },
+ {
+  "name": "torso",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/torso.png",
+  "x": 549.43,
+  "y": 585.1,
+  "scaleX": 65.674,
+  "scaleY": 65.714,
+  "rot": 0
+ },
+ {
+  "name": "armR",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/armR.png",
+  "x": 310.92,
+  "y": 637.54,
+  "scaleX": 65.794,
+  "scaleY": 65.733,
+  "rot": 0
+ },
+ {
+  "name": "handR",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR.png",
+  "x": 203.51,
+  "y": 923.89,
+  "scaleX": 65.823,
+  "scaleY": 65.738,
+  "rot": 0
+ },
+ {
+  "name": "head_blank",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/head_blank.png",
+  "x": 546.67,
+  "y": 233.89,
+  "scaleX": 65.65,
+  "scaleY": 65.62,
+  "rot": 0
+ },
+ {
+  "name": "eyeR_neutral",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/eyeR_neutral.png",
+  "x": 519.07,
+  "y": 239.87,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "eyeL_neutral",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/eyeL_neutral.png",
+  "x": 583.93,
+  "y": 236.19,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "mouth_neutral",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/mouth_neutral.png",
+  "x": 554.95,
+  "y": 301.05,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "browR_neutral",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/browR_neutral.png",
+  "x": 525.05,
+  "y": 219.17,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_eyeR_open",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_open.png",
+  "x": 518.84,
+  "y": 239.64,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_open",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_open.png",
+  "x": 583.93,
+  "y": 235.96,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_eyeR_surprised",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_surprised.png",
+  "x": 519.07,
+  "y": 239.87,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_surprised",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_surprised.png",
+  "x": 583.7,
+  "y": 236.19,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_eyeR_happy",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_happy.png",
+  "x": 518.84,
+  "y": 239.64,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_happy",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_happy.png",
+  "x": 583.7,
+  "y": 235.96,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_eyeR_closed",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_closed.png",
+  "x": 519.07,
+  "y": 239.64,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_closed",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_closed.png",
+  "x": 583.93,
+  "y": 236.19,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_eyeR_sleepy",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_sleepy.png",
+  "x": 519.07,
+  "y": 239.87,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_sleepy",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_sleepy.png",
+  "x": 583.93,
+  "y": 236.19,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_eyeR_wink_open",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeR_wink_open.png",
+  "x": 518.84,
+  "y": 239.64,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeR"
+ },
+ {
+  "name": "swap_eyeL_wink_closed",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_eyeL_wink_closed.png",
+  "x": 583.7,
+  "y": 236.19,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "eyeL"
+ },
+ {
+  "name": "swap_browR_neutral",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_browR_neutral.png",
+  "x": 525.05,
+  "y": 218.94,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_browR_raised",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_browR_raised.png",
+  "x": 524.82,
+  "y": 219.17,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_browR_angry",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_browR_angry.png",
+  "x": 524.82,
+  "y": 218.94,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_browR_worried",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_browR_worried.png",
+  "x": 524.82,
+  "y": 219.17,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_browR_cocky",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_browR_cocky.png",
+  "x": 525.05,
+  "y": 219.17,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "browR"
+ },
+ {
+  "name": "swap_mouth_smile_closed",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_smile_closed.png",
+  "x": 554.26,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_smile_bunny",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_smile_bunny.png",
+  "x": 554.26,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_laugh",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_laugh.png",
+  "x": 554.49,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_surprised_O",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_surprised_O.png",
+  "x": 554.49,
+  "y": 300.59,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_talk_A",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_talk_A.png",
+  "x": 554.49,
+  "y": 300.59,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_talk_E",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_talk_E.png",
+  "x": 554.49,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_talk_O",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_talk_O.png",
+  "x": 554.49,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_talk_MBP",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_talk_MBP.png",
+  "x": 554.49,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "swap_mouth_sad",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/swap_mouth_sad.png",
+  "x": 554.49,
+  "y": 300.36,
+  "scaleX": 46,
+  "scaleY": 46,
+  "rot": 0,
+  "slot": "mouth"
+ },
+ {
+  "name": "handR_fist",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_fist.png",
+  "x": 220.36,
+  "y": 913.15,
+  "scaleX": 46.863,
+  "scaleY": 46.912,
+  "rot": 12.31,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_wave_palm",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_wave_palm.png",
+  "x": 212.08,
+  "y": 935.28,
+  "scaleX": 46.929,
+  "scaleY": 46.926,
+  "rot": 189.92,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_peace",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_peace.png",
+  "x": 217.66,
+  "y": 935.01,
+  "scaleX": 46.852,
+  "scaleY": 46.987,
+  "rot": 190.86,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_thumbsup",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_thumbsup.png",
+  "x": 212.62,
+  "y": 922.51,
+  "scaleX": 47.004,
+  "scaleY": 46.903,
+  "rot": 192.31,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_point",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_point.png",
+  "x": 215.23,
+  "y": 927.08,
+  "scaleX": 47.01,
+  "scaleY": 46.847,
+  "rot": 110.43,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_fingerheart",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_fingerheart.png",
+  "x": 218.96,
+  "y": 919.55,
+  "scaleX": 46.872,
+  "scaleY": 47.019,
+  "rot": 199.02,
+  "slot": "handR"
+ },
+ {
+  "name": "handR_bigheart_half",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handR_bigheart_half.png",
+  "x": 217.08,
+  "y": 924.53,
+  "scaleX": 46.922,
+  "scaleY": 47.017,
+  "rot": 136.85,
+  "slot": "handR"
+ },
+ {
+  "name": "handL_fist",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_fist.png",
+  "x": 866.18,
+  "y": 911.64,
+  "scaleX": 46.9,
+  "scaleY": 46.988,
+  "rot": -13.32,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_wave_palm",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_wave_palm.png",
+  "x": 868.29,
+  "y": 935.17,
+  "scaleX": 46.954,
+  "scaleY": 46.98,
+  "rot": 164.31,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_peace",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_peace.png",
+  "x": 873.17,
+  "y": 932.43,
+  "scaleX": 46.892,
+  "scaleY": 46.987,
+  "rot": 165.24,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_thumbsup",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_thumbsup.png",
+  "x": 863.27,
+  "y": 923.42,
+  "scaleX": 46.949,
+  "scaleY": 46.967,
+  "rot": 166.68,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_point",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_point.png",
+  "x": 867.58,
+  "y": 926.41,
+  "scaleX": 46.928,
+  "scaleY": 47.001,
+  "rot": 84.77,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_fingerheart",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_fingerheart.png",
+  "x": 867.75,
+  "y": 918.28,
+  "scaleX": 46.872,
+  "scaleY": 46.97,
+  "rot": 173.36,
+  "slot": "handL"
+ },
+ {
+  "name": "handL_bigheart_half",
+  "file": "D:/NUBU/_bts-ref/jungkook/rive_assets_v2/handL_bigheart_half.png",
+  "x": 868.15,
+  "y": 923.39,
+  "scaleX": 46.922,
+  "scaleY": 46.869,
+  "rot": 111.43,
+  "slot": "handL"
+ }
+]

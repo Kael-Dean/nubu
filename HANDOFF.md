@@ -105,3 +105,26 @@
 - Talk motion: spring-smoothed bob/tilt (`pipeline/talk-motion.js` defaults); Rive pose 250 ms / expression 120 ms blends.
 - Stock + photo licences: `assets/licensed-media/LOG.csv` (Wikimedia photo needs its credit line).
 - Profile picture: **B dark plum** chosen → `brand/profile/nubu_profile_FINAL.png` (1080×1080, no outfit, no text). Background #2B1745.
+
+## 2026-11-26 — EP02 ซีนหนัง Tilt-Shift (lemo-opuscar)
+- s4 (33.78–55.78) และ s9 (138.59–154.56) เปลี่ยนเป็น scene type ใหม่ `cine` → คลิป `assets/stock/cine/ep02_shotA.mp4`, `ep02_shotB.mp4` (1080×1920 30fps ไม่มีเสียง)
+- โค้ดซีน + TREATMENT: `episodes/ep02_bts_2797_days/cine/tiltshift/` (`?shot=A|B`, เรนเดอร์ด้วย `~/lemo-opuscar/core/render/video.mjs`, PATH ใส่ `node_modules/ffmpeg-static`)
+- compositor: stock ใส่ `blur:0, grade:'null', tint:false` เพื่อไม่ให้คลิปโดนเกรดม่วง/เบลอแบบรูปข่าว (แก้ `compose.js` ส่ง `tint` ต่อ, `_runtime.js` เช็ค `stock.tint`)
+- config เดิม: `compose.pre-cine.json` · export เดิม: `exports/ep02_pre-cine/`
+- จุดอ่อน: ช็อตใกล้หน้าต่าง (s4 ท้าย) ผนังเรียบไป · รถวิ่งเป็นแถวเท่าๆ กัน · ฝูงคนในสนามระยะกลางดูเป็นจุดๆ
+- (รอบ 2, 2026-11-26) ท้าย s4 เปลี่ยนเป็นตัวละคร Sara (`Bust_Test_v7` จากไฟล์ Rive "Sara") นั่งในห้องริมหน้าต่าง — ใช้ภาพแคป PNG (`cine/tiltshift/sara_bust_v7.png`) + ขยับในหน้าเว็บเอง เพราะ export .riv ได้แต่อาร์ตบอร์ด Sip
+- แก้กระตุก: (1) ฉาก 3D เลิก step 10Hz ทั้ง A/B (2) **บั๊ก compositor**: `_runtime.js` stock video ใช้ `Math.floor` → เฟรมซ้ำทุก 0.5 วิ เปลี่ยนเป็น `Math.round` (กระทบ stock video ทุกตอน รวม EP01 — ถ้าเรนเดอร์ EP01 ใหม่จะลื่นขึ้น)
+- cache: stamp ของ stock + hash ของ scene รวม mtime/size ของไฟล์ต้นทางแล้ว (เดิมเปลี่ยนคลิปชื่อเดิมแล้วไม่อัปเดต)
+
+## 2026-11-26 (เย็น) — EP02 v3: เสียงใหม่ + shot C + นุบุไม่หายตอนจบ
+- Final ทดลอง: `exports/ep02_v3_9x16.mp4` (2:51.7, −14.1 LUFS) · config `episodes/ep02_bts_2797_days/compose.v3.json` (ตัวเก่า `compose.json` ยังอยู่)
+- เสียง: ElevenLabs ใหม่ทั้งสคริปต์ `voice/v3_native108/` (voice เดิม, `--speed 1.08` แบบ native — `pipeline/tts.mjs` มีตัวเลือก `--speed` แล้ว) แทนการยืดด้วย rubberband ที่ทำให้เสียงสังเคราะห์
+- เวลาใน compose ย้ายด้วย `scripts/retime-compose.js <compose> <oldAlign> <newAlign> <out>` (แม็ปตามตำแหน่งตัวอักษร)
+- นุบุ: `render/nubu_v3/` (thai-visemes → acting.js cues.json → ตั้ง duration ยาวเลยคลิป → talk-motion → render.js round8) · compositor overlay นุบุเป็น `eof_action=repeat` (เดิม pass ทำให้นุบุหายเมื่อวิดีโอนุบุสั้นกว่าคลิป)
+- s2 เป็น cine shot C (คืนสุดท้าย 2019 ไฟสนามดับ) · s4/s9 เรนเดอร์ใหม่ตามเวลาเสียงใหม่ · เช็คแล้ว 0 เฟรมค้างในทั้ง 3 ซีน
+
+## 2026-11-26 (ค่ำ) — EP02 v4: ฉากเปิด + รูปราชมังฯ 2019 + สั้นลง
+- Final ทดลอง: `exports/ep02_v4_9x16.mp4` (2:49.0, −14.1 LUFS) · config `compose.v4.json` · เสียง `voice/v4_trim/` · นุบุ `render/nubu_v4/`
+- s1: พื้นหลัง cine shot P (เมืองยามค่ำ 2019 กล้องร่อนเข้าหาสนาม) จบตรงกับเฟรมแรกของ shot C (s2) → ต่อเนื่องไม่มีรอยตัด · counter `exitAt` + `topShade` (ฟีเจอร์ใหม่ใน `_runtime.js`: เงาบนที่ค่อยๆ หายก่อนตัด)
+- s3: รูปใหม่ `assets/licensed-media/ep02/bkk2019_purple_ocean.jpg` (ARMY purple ocean ราชมังฯ 7 เม.ย. 2019, Chris Belison, CC BY 3.0) แคปชัน "LOVE YOURSELF · BANGKOK 2019"
+- สั้นลง: `scripts/trim-pauses.js` ตัดช่วงเงียบ >0.35 วิ เหลือ 0.3 วิ (ยกเว้นซีน cine) −2 วิ + ตัดหาง −0.7 วิ · ผู้ใช้เลือกไม่ตัดบท

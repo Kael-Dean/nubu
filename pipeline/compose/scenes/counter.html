@@ -17,6 +17,7 @@
 <body>
 <script src="../lib/track.js"></script>
 <script src="_runtime.js"></script>
+<script src="_plan_x.js"></script>
 <script>
 // type: counter — rolling day counter (odometer) + optional drawn stadium whose crowd lights up purple.
 // cfg: { box:{x,y,w}, kicker:{text,at,size}, value:{from,to,at,dur,size}, unit:{text,at,size}, sub:{text,at,size,hl},
@@ -52,6 +53,75 @@ NB.define({
       NB.css(g, { left: S.x - X * sc + 'px', top: S.y - Y * sc + 'px' });
       c.stad = g; c.halo = g.querySelector('.halo');
       c.crowd = [...g.querySelectorAll('.crowd circle')]; c.crowd2 = [...g.querySelectorAll('.crowd2 circle')];
+    }
+    // concert floor plan (top-down, stage at the top): outline draws itself, sections pop in, lightstick dots spread
+    // out from the stage, beams sweep and sound rings pulse. cfg.plan: {x,y,scale,at,lightsAt,lightsFull,beamsAt}
+    const PL = cfg.plan;
+    if (PL && PL.style === 'x') c.planUpd = NB.planX(c, PL);
+    else if (PL) {
+      const sc = PL.scale || 2.1, X = 200, Y = 250;
+      const r = NB.rng(77);
+      const ring = (a0, a1, rx0, ry0, rx1, ry1) => {
+        const p = (a, rx, ry) => `${(X + Math.cos(a) * rx).toFixed(1)},${(Y + Math.sin(a) * ry).toFixed(1)}`;
+        return `M${p(a0, rx1, ry1)} A${rx1},${ry1} 0 0 1 ${p(a1, rx1, ry1)} L${p(a1, rx0, ry0)} A${rx0},${ry0} 0 0 0 ${p(a0, rx0, ry0)} Z`;
+      };
+      // stands: two tiers of blocks, leaving out the arc behind the stage
+      const blocks = [];
+      const gapA = 0.62;                                     // half-width (rad) of the arc hidden behind the stage, centred on -90°
+      const tiers = [[150, 192, 168, 214, 18], [174, 218, 194, 242, 22]];
+      for (const [rx0, ry0, rx1, ry1, n] of tiers) {
+        const span = Math.PI * 2 - gapA * 2, step = span / n;
+        for (let i = 0; i < n; i++) {
+          const a0 = -Math.PI / 2 + gapA + i * step + 0.012, a1 = a0 + step - 0.024;
+          const am = (a0 + a1) / 2, cx = X + Math.cos(am) * (rx0 + rx1) / 2, cy = Y + Math.sin(am) * (ry0 + ry1) / 2;
+          blocks.push({ d: ring(a0, a1, rx0, ry0, rx1, ry1), a0, a1, rx0, ry0, rx1, ry1, cx, cy });
+        }
+      }
+      // floor zones either side of the runway
+      const zones = [[108, 116, 84, 92], [208, 116, 84, 92], [108, 214, 84, 120], [208, 214, 84, 120]];
+      const zoneNames = ['A1', 'A2', 'B1', 'B2'];
+      const STG = { x: 112, y: 62, w: 176, h: 40 };
+      // lightstick dots: in the stands and floor zones; each lights up later the further it is from the stage
+      const dots = [];
+      const addDot = (x, y) => dots.push({ x, y, d: Math.hypot(x - X, y - (STG.y + STG.h)), ph: r() * 6.28, sp: 1.6 + r() * 2.4, rr: 1.4 + r() * 1.3 });
+      for (const b of blocks) for (let k = 0; k < 16; k++) { const a = b.a0 + (b.a1 - b.a0) * r(), u = 0.15 + 0.7 * r(); addDot(X + Math.cos(a) * (b.rx0 + (b.rx1 - b.rx0) * u), Y + Math.sin(a) * (b.ry0 + (b.ry1 - b.ry0) * u)); }
+      for (const [zx, zy, zw, zh] of zones) for (let k = 0; k < 70; k++) { const x = zx + 4 + r() * (zw - 8), y = zy + 4 + r() * (zh - 8); if (Math.hypot(x - X, y - 300) > 26) addDot(x, y); }
+      const maxD = Math.max(...dots.map((d) => d.d));
+      c.planDots = dots;
+      const dotSvg = dots.map((d) => `<circle cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="${d.rr.toFixed(1)}" fill="oklch(0.8 0.19 302)" opacity="0"/>`).join('');
+      const line = 'oklch(0.86 0.06 302)', ink = 'oklch(0.32 0.09 300)';
+      const g = NB.el('div', 'abs', c.world, `<svg width="${400 * sc}" height="${480 * sc}" viewBox="0 0 400 480" style="overflow:visible">
+        <defs>
+          <radialGradient id="pglow"><stop offset="0" stop-color="oklch(0.66 0.22 302)" stop-opacity=".85"/><stop offset="1" stop-color="oklch(0.66 0.22 302)" stop-opacity="0"/></radialGradient>
+          <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="oklch(0.95 0.06 302)" stop-opacity=".75"/><stop offset="1" stop-color="oklch(0.85 0.15 302)" stop-opacity="0"/></linearGradient>
+          <filter id="pgl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+        </defs>
+        <ellipse class="pglow" cx="${X}" cy="${Y}" rx="260" ry="300" fill="url(#pglow)" opacity="0"/>
+        <ellipse class="rim" cx="${X}" cy="${Y}" rx="226" ry="250" fill="${ink}" fill-opacity=".55" stroke="${line}" stroke-width="2.2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <g class="blocks">${blocks.map((b) => `<path d="${b.d}" fill="${ink}" stroke="${line}" stroke-width="1.1" stroke-opacity=".75" opacity="0"/>`).join('')}</g>
+        <ellipse class="field" cx="${X}" cy="${Y}" rx="140" ry="180" fill="oklch(0.26 0.07 300)" stroke="${line}" stroke-opacity=".5" stroke-width="1" opacity="0"/>
+        <g class="zones">${zones.map(([zx, zy, zw, zh], i) => `<g opacity="0"><rect x="${zx}" y="${zy}" width="${zw}" height="${zh}" rx="5" fill="oklch(0.3 0.09 300)" stroke="${line}" stroke-width="1.1" stroke-dasharray="4 3"/><text x="${zx + 8}" y="${zy + 17}" font-family="IBM Plex Sans Thai Looped, sans-serif" font-weight="700" font-size="13" fill="${line}" fill-opacity=".8">${zoneNames[i]}</text></g>`).join('')}</g>
+        <g class="beams" opacity="0">${[-1, 0, 1].map((k) => `<polygon class="bm" data-k="${k}" points="${X + k * 58},${STG.y + 8} ${X + k * 58 - 34},${STG.y + 330} ${X + k * 58 + 34},${STG.y + 330}" fill="url(#beam)" style="mix-blend-mode:screen"/>`).join('')}</g>
+        <g class="stage" opacity="0">
+          <rect x="${STG.x}" y="${STG.y}" width="${STG.w}" height="${STG.h}" rx="4" fill="oklch(0.2 0.05 300)" stroke="${line}" stroke-width="1.6"/>
+          <rect class="led" x="${STG.x + 22}" y="${STG.y + 7}" width="${STG.w - 44}" height="12" rx="2" fill="oklch(0.7 0.2 302)"/>
+          <rect class="led" x="${STG.x - 22}" y="${STG.y + 2}" width="16" height="30" rx="2" fill="oklch(0.7 0.2 302)"/>
+          <rect class="led" x="${STG.x + STG.w + 6}" y="${STG.y + 2}" width="16" height="30" rx="2" fill="oklch(0.7 0.2 302)"/>
+          <text x="${X}" y="${STG.y + 34}" text-anchor="middle" font-family="IBM Plex Sans Thai Looped, sans-serif" font-weight="700" font-size="11" letter-spacing="2" fill="${line}">STAGE</text>
+        </g>
+        <path class="runway" d="M${X - 7},${STG.y + STG.h} L${X - 7},${300 - 22} M${X + 7},${STG.y + STG.h} L${X + 7},${300 - 22}" stroke="${line}" stroke-width="2" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+        <rect class="runfill" x="${X - 7}" y="${STG.y + STG.h}" width="14" height="${300 - 22 - STG.y - STG.h}" fill="oklch(0.2 0.05 300)" opacity="0"/>
+        <circle class="center" cx="${X}" cy="300" r="22" fill="oklch(0.2 0.05 300)" stroke="${line}" stroke-width="1.8" opacity="0"/>
+        <g class="rings" fill="none" stroke="oklch(0.85 0.14 302)">${[0, 1, 2].map(() => `<ellipse cx="${X}" cy="${STG.y + STG.h}" rx="10" ry="8" stroke-width="2" opacity="0"/>`).join('')}</g>
+        <rect class="foh" x="${X - 11}" y="380" width="22" height="16" rx="2" fill="oklch(0.2 0.05 300)" stroke="${line}" stroke-width="1.2" opacity="0"/>
+        <g class="pdots" filter="url(#pgl)">${dotSvg}</g>
+        <g class="pdots2">${dotSvg}</g>
+      </svg>`);
+      NB.css(g, { left: (PL.x ?? 540) - X * sc + 'px', top: (PL.y ?? 800) - Y * sc + 'px' });
+      const q = (s) => g.querySelector(s), qa = (s) => [...g.querySelectorAll(s)];
+      c.plan = { g, glow: q('.pglow'), rim: q('.rim'), blocks: qa('.blocks path'), blockInfo: blocks, field: q('.field'), zones: qa('.zones > g'), beams: q('.beams'), bm: qa('.bm'),
+        stage: q('.stage'), leds: qa('.led'), runway: q('.runway'), runfill: q('.runfill'), center: q('.center'), rings: qa('.rings ellipse'), foh: q('.foh'),
+        d1: qa('.pdots circle'), d2: qa('.pdots2 circle'), maxD, sY: STG.y + STG.h, X };
     }
     const B = cfg.box || { x: 80, y: 300, w: c.W - 160 };
     const box = NB.el('div', 'abs', ui); NB.css(box, { left: B.x + 'px', top: B.y + 'px', width: B.w + 'px' });
@@ -107,6 +177,60 @@ NB.define({
     if (c.lab) NB.enter(c.lab, t, cfg.unit.at ?? (cfg.value ? (cfg.value.at ?? c.start) + (cfg.value.dur ?? 2.4) : c.start + 0.4), { dy: -10, scale: 1.12, drot: 6, dur: 0.38, exitAt: ex });
     if (c.sub) { NB.enter(c.sub, t, cfg.sub.at ?? c.start + 0.6, { dy: 14, drot: 0, exitAt: ex }); NB.swipe(c.sub, t, (cfg.sub.at ?? c.start + 0.6) + 0.3); }
     (c.chips || []).forEach((ch) => NB.enter(ch.e, t, ch.at, { dy: -8, scale: 1.1, drot: 5, dur: 0.36, exitAt: ch.until ?? ex }));
+    if (c.planUpd) c.planUpd(t);
+    if (c.plan) {
+      const P = c.plan, PL = cfg.plan, E = NB.ease;
+      const at = PL.at ?? c.start, la = PL.lightsAt ?? at + 2.5, lf = PL.lightsFull ?? la + 2.5, ba = PL.beamsAt ?? la;
+      NB.enter(P.g, t, at - 0.1, { dy: 30, scale: 0.97, drot: 0, dur: 0.7, exitAt: PL.exitAt });
+      const draw = E.inOutCubic(NB.p(t, at, 1.1));
+      P.rim.setAttribute('stroke-dashoffset', (1 - draw).toFixed(4));
+      P.rim.setAttribute('fill-opacity', (0.55 * E.inOutSine(NB.p(t, at + 0.7, 0.6))).toFixed(3));
+      P.field.setAttribute('opacity', (0.9 * E.outCubic(NB.p(t, at + 0.5, 0.6))).toFixed(3));
+      // stage drops in, runway draws out to the centre stage
+      const st = E.outBack ? E.outBack(NB.p(t, at + 0.35, 0.5)) : E.outCubic(NB.p(t, at + 0.35, 0.5));
+      P.stage.setAttribute('opacity', Math.min(1, st * 1.2).toFixed(3));
+      P.stage.setAttribute('transform', `translate(0 ${(-14 * (1 - st)).toFixed(2)})`);
+      const rw = E.inOutCubic(NB.p(t, at + 0.75, 0.6));
+      P.runway.setAttribute('stroke-dashoffset', (1 - rw).toFixed(4));
+      P.runfill.setAttribute('opacity', rw.toFixed(3));
+      const cs = E.outCubic(NB.p(t, at + 1.2, 0.4));
+      P.center.setAttribute('opacity', cs.toFixed(3));
+      P.center.setAttribute('r', (22 * (0.6 + 0.4 * cs)).toFixed(2));
+      P.foh.setAttribute('opacity', E.outCubic(NB.p(t, at + 1.5, 0.4)).toFixed(3));
+      // stand blocks pop in around the bowl, floor zones after
+      P.blocks.forEach((el, i) => {
+        const b = P.blockInfo[i];
+        const order = (Math.atan2(b.cy - 250, b.cx - P.X) + Math.PI * 2.5) % (Math.PI * 2) / (Math.PI * 2);
+        el.setAttribute('opacity', (0.9 * E.outCubic(NB.p(t, at + 0.4 + order * 0.9 + (b.rx0 > 160 ? 0.15 : 0), 0.3))).toFixed(3));
+      });
+      P.zones.forEach((el, i) => el.setAttribute('opacity', E.outCubic(NB.p(t, at + 1.3 + i * 0.12, 0.35)).toFixed(3)));
+      // lights: dots switch on from the stage outward, then twinkle
+      const L = E.inOutSine(NB.p(t, la, lf - la));
+      P.glow.setAttribute('opacity', (0.12 + 0.5 * L).toFixed(3));
+      const front = L * (P.maxD + 60);
+      P.planDots = P.planDots || c.planDots;
+      c.planDots.forEach((d, i) => {
+        const on = Math.max(0, Math.min(1, (front - d.d) / 50));
+        const o = on * (0.4 + 0.6 * (0.5 + 0.5 * Math.sin(t * d.sp + d.ph)));
+        P.d1[i].setAttribute('opacity', o.toFixed(3));
+        P.d2[i].setAttribute('opacity', (o * 0.85).toFixed(3));
+      });
+      const ledO = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * 5.2)) * L + 0.35 * (1 - L);
+      P.leds.forEach((el) => el.setAttribute('opacity', ledO.toFixed(3)));
+      // beams sweep, sound rings pulse from the stage
+      const B = E.inOutSine(NB.p(t, ba, 0.8));
+      P.beams.setAttribute('opacity', (0.55 * B).toFixed(3));
+      P.bm.forEach((el) => {
+        const k = +el.dataset.k, ang = Math.sin(t * 0.9 + k * 1.7) * 16 + k * 6;
+        el.setAttribute('transform', `rotate(${ang.toFixed(2)} ${P.X + k * 58} ${P.sY - 32})`);
+      });
+      P.rings.forEach((el, i) => {
+        const ph = ((((t - la) / 1.6 + i / 3) % 1) + 1) % 1;
+        const live = t >= la ? 1 : 0;
+        el.setAttribute('rx', (10 + ph * 210).toFixed(1)); el.setAttribute('ry', (8 + ph * 240).toFixed(1));
+        el.setAttribute('opacity', (live * L * 0.45 * (1 - ph)).toFixed(3));
+      });
+    }
     if (c.stad) {
       const S = cfg.stadium;
       NB.enter(c.stad, t, S.at ?? c.start, { dy: 40, scale: 1, drot: 0, dur: 0.7 });

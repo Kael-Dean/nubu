@@ -1,0 +1,11 @@
+const { chromium } = require('D:/NUBU/node_modules/playwright');
+const http = require('http'), fs = require('fs'), path = require('path');
+const ROOT = __dirname;
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.wasm': 'application/wasm', '.riv': 'application/octet-stream' };
+const srv = http.createServer((q, s) => { const f = path.join(ROOT, decodeURIComponent(q.url.split('?')[0]) === '/' ? 'index.html' : decodeURIComponent(q.url.split('?')[0]));
+  if (!f.startsWith(ROOT) || !fs.existsSync(f)) { s.writeHead(404); return s.end(); } s.writeHead(200, { 'Content-Type': types[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(s); });
+(async () => { await new Promise(r => srv.listen(5179, '127.0.0.1', r));
+  const br = await chromium.launch(); const pg = await br.newPage({ viewport: { width: 800, height: 1000 } });
+  await pg.goto('http://127.0.0.1:5179/'); await pg.waitForFunction(() => window.__ready || window.__errors.length, null, { timeout: 30000 });
+  await new Promise(r => setTimeout(r, 1500)); await pg.locator('#c').screenshot({ path: path.join(ROOT, 'frames', 'zz_default_load.png') });
+  await br.close(); srv.close(); })();

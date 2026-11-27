@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_base.css">
+</head>
+<body>
+<script src="../lib/track.js"></script>
+<script src="_runtime.js"></script>
+<script>
+// type: cine — a full-bleed film insert (e.g. a Lemo-Opuscar tilt-shift clip) with nothing drawn on top.
+// Needs stock {kind:'video', file, at} + stockAs:'background'. Set push:0 and theme:false in the scene so the
+// clip's own camera is untouched; stockShade defaults below to a light bottom gradient for subtitle legibility.
+// The drawn fallback (missing file) is a plain dark page.
+NB.define({
+  build(c) {
+    if (!c.stockBg) NB.css(c.bg, { background: 'oklch(0.18 0.03 290)' });
+  },
+  update() {},
+});
+</script>
+</body></html>

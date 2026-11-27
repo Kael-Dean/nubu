@@ -1,0 +1,5 @@
+{ "armR": {"rot": 55, "pivot": [995,950]}, "handR": {"rot": 55, "pivot": [995,950]},
+  "armL": {"rot": -55, "pivot": [1805,950]}, "handL": {"rot": -55, "pivot": [1805,950]},
+  "capR": {"rot": 8, "pivot": [1150,850]}, "capL": {"rot": -8, "pivot": [1650,850]},
+  "head": {"rot": 10, "pivot": [1400,640]},
+  "shinR": {"rot": 30, "pivot": [1155,2950]}, "shoeR": {"rot": 30, "pivot": [1155,2950]} }

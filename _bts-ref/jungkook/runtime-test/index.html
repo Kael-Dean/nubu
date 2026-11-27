@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jungkook rig test</title>
+<style>
+  :root { --bg: #2b2b2b; --panel: #1e1e1e; --ink: #eee; --muted: #9a9a9a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; display: flex; min-height: 100vh; }
+  canvas { flex: 1; width: 100%; height: 100vh; display: block; }
+  aside { width: 260px; background: var(--panel); padding: 16px; display: flex; flex-direction: column; gap: 14px; overflow: auto; }
+  label { display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 12px; }
+  select, input { font: inherit; }
+  #log { font: 11px/1.4 ui-monospace, monospace; color: var(--muted); white-space: pre-wrap; }
+  @media (max-width: 640px) { body { flex-direction: column; } aside { width: 100%; } canvas { height: 70vh; } }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<aside id="ui"><div id="log">loading…</div></aside>
+<script src="node_modules/@rive-app/canvas/rive.js"></script>
+<script>
+rive.RuntimeLoader.setWasmUrl('node_modules/@rive-app/canvas/rive.wasm');
+const log = (...a) => { document.getElementById('log').textContent += '\n' + a.join(' '); console.log(...a); };
+window.__errors = [];
+window.addEventListener('error', e => window.__errors.push(String(e.message)));
+const r = new rive.Rive({
+  src: 'bts.riv', canvas: document.getElementById('c'), artboard: 'Jungkook', stateMachines: 'Main',
+  autoplay: true, autoBind: true,
+  onLoad: () => {
+    r.resizeDrawingSurfaceToCanvas();
+    const vmi = r.viewModelInstance;
+    window.__vmi = vmi; window.__rive = r;
+    const ui = document.getElementById('ui');
+    const fields = {};
+    for (const p of (vmi ? vmi.properties : [])) fields[p.name] = p.type;
+    window.__fields = fields;
+    const enums = {};
+    for (const [n, t] of Object.entries(fields)) {
+      if (String(t).includes('enum')) { const e = vmi.enum(n); enums[n] = e.values || [];
+        const l = document.createElement('label'); l.textContent = n; const s = document.createElement('select');
+        for (const v of enums[n]) s.add(new Option(v, v)); s.value = e.value; s.onchange = () => e.value = s.value; l.append(s); ui.prepend(l); }
+      else if (String(t).includes('number')) { const nn = vmi.number(n); const l = document.createElement('label'); l.textContent = n;
+        const s = document.createElement('input'); s.type = 'range'; s.min = -1; s.max = 1; s.step = 0.01; s.value = nn.value; s.oninput = () => nn.value = +s.value; l.append(s); ui.prepend(l); }
+      else if (String(t).includes('bool')) { const b = vmi.boolean(n); const l = document.createElement('label'); l.textContent = n;
+        const s = document.createElement('input'); s.type = 'checkbox'; s.checked = b.value; s.onchange = () => b.value = s.checked; l.append(s); ui.prepend(l); }
+    }
+    window.__enums = enums;
+    window.__ready = true;
+    log('loaded; artboard', r.activeArtboard, 'SMs', JSON.stringify(r.stateMachineNames), 'playing', r.isPlaying, 'vm', JSON.stringify(fields));
+  },
+  onLoadError: e => { window.__errors.push('loadError ' + JSON.stringify(e && (e.data||e.message||e))); log('load error', e); },
+});
+window.setVM = (name, v) => { const t = String(window.__fields[name]);
+  if (t.includes('enum')) window.__vmi.enum(name).value = v; else if (t.includes('number')) window.__vmi.number(name).value = v; else window.__vmi.boolean(name).value = v; };
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+{ "armR": {"rot": 62, "pivot": [990,960]}, "handR": {"rot": 62, "pivot": [990,960]},
+  "armL": {"rot": -62, "pivot": [1810,960]}, "handL": {"rot": -62, "pivot": [1810,960]},
+  "capR": {"rot": 12, "pivot": [1150,850]}, "capL": {"rot": -12, "pivot": [1650,850]} }

@@ -1,0 +1,207 @@
+[
+ {
+  "t": 1585,
+  "k": "gesture",
+  "v": "wave"
+ },
+ {
+  "t": 2901,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 3802,
+  "k": "gesture",
+  "v": "peace"
+ },
+ {
+  "t": 5105,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 6015,
+  "k": "gesture",
+  "v": "point"
+ },
+ {
+  "t": 7317,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 8220,
+  "k": "gesture",
+  "v": "thumbsUp"
+ },
+ {
+  "t": 9535,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 10441,
+  "k": "gesture",
+  "v": "holdMic"
+ },
+ {
+  "t": 11749,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 12652,
+  "k": "gesture",
+  "v": "fingerHeart"
+ },
+ {
+  "t": 13968,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 14869,
+  "k": "gesture",
+  "v": "flex"
+ },
+ {
+  "t": 16182,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 17084,
+  "k": "gesture",
+  "v": "wave"
+ },
+ {
+  "t": 17988,
+  "k": "gesture",
+  "v": "peace"
+ },
+ {
+  "t": 18899,
+  "k": "gesture",
+  "v": "flex"
+ },
+ {
+  "t": 19801,
+  "k": "gesture",
+  "v": "none"
+ },
+ {
+  "t": 20717,
+  "k": "stance",
+  "v": "aPose"
+ },
+ {
+  "t": 21736,
+  "k": "stance",
+  "v": "natural"
+ },
+ {
+  "t": 22753,
+  "k": "expression",
+  "v": "happy"
+ },
+ {
+  "t": 23467,
+  "k": "expression",
+  "v": "laugh"
+ },
+ {
+  "t": 24185,
+  "k": "expression",
+  "v": "surprised"
+ },
+ {
+  "t": 24899,
+  "k": "expression",
+  "v": "wink"
+ },
+ {
+  "t": 25599,
+  "k": "expression",
+  "v": "sad"
+ },
+ {
+  "t": 26301,
+  "k": "expression",
+  "v": "neutral"
+ },
+ {
+  "t": 27016,
+  "k": "talking",
+  "v": true
+ },
+ {
+  "t": 28524,
+  "k": "talking",
+  "v": false
+ },
+ {
+  "t": 28932,
+  "k": "headTurn",
+  "v": -0.3
+ },
+ {
+  "t": 29384,
+  "k": "headTurn",
+  "v": -0.6
+ },
+ {
+  "t": 29851,
+  "k": "headTurn",
+  "v": -1
+ },
+ {
+  "t": 30316,
+  "k": "headTurn",
+  "v": -0.6
+ },
+ {
+  "t": 30784,
+  "k": "headTurn",
+  "v": 0
+ },
+ {
+  "t": 31249,
+  "k": "headTurn",
+  "v": 0.6
+ },
+ {
+  "t": 31705,
+  "k": "headTurn",
+  "v": 1
+ },
+ {
+  "t": 32156,
+  "k": "headTurn",
+  "v": 0.6
+ },
+ {
+  "t": 32616,
+  "k": "headTurn",
+  "v": 0
+ },
+ {
+  "t": 33078,
+  "k": "gesture",
+  "v": "holdMic"
+ },
+ {
+  "t": 33086,
+  "k": "talking",
+  "v": true
+ },
+ {
+  "t": 34898,
+  "k": "talking",
+  "v": false
+ },
+ {
+  "t": 34899,
+  "k": "gesture",
+  "v": "none"
+ }
+]
